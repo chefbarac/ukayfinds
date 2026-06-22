@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Ukay Finds</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: Inter, Arial, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                background: #f7f7f7;
+                color: #222;
+            }
+
+            header {
+                background: #111;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: auto;
+                padding: 20px;
+            }
+
+            /* Controls */
+
+            .controls {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 12px;
+                margin-bottom: 25px;
+            }
+
+            input,
+            select {
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+            }
+
+            /* Product */
+
+            .products {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+
+            .card {
+                background: white;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px #0001;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            /* Sold Banner Styling */
+            .sold-banner {
+                position: absolute;
+                top: 15px;
+                left: -40px;
+                background-color: #ff4d4d;
+                color: white;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 0.8rem;
+                padding: 5px 40px;
+                transform: rotate(-45deg);
+                z-index: 10;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Optional: Fade out the card slightly if sold */
+            .card.sold {
+                opacity: 0.6; /* Fades the entire card */
+                filter: grayscale(60%); /* Tones down the vibrant colors and image */
+                /* pointer-events: none; /* Optional: Prevents clicks on buttons/thumbs */
+            }
+
+            .card img {
+                width: 100%;
+                height: 260px;
+                object-fit: cover;
+            }
+
+            .card-body {
+                padding: 15px;
+            }
+
+            .price {
+                color: #e63946;
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+            .badge {
+                display: inline-block;
+                background: #eee;
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 12px;
+            }
+
+            .favorite {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                background: white;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                border: none;
+                cursor: pointer;
+                font-size: 20px;
+            }
+
+            .favorite.active {
+                color: red;
+            }
+
+            button {
+                cursor: pointer;
+            }
+
+            .no-result {
+                text-align: center;
+                padding: 40px;
+            }
+
+            .carousel {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .main-img {
+                width: 100%;
+                height: 260px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+
+            .thumbs {
+                display: flex;
+                gap: 6px;
+                overflow-x: auto;
+            }
+
+            .thumbs img {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                border-radius: 6px;
+                cursor: pointer;
+                border: 2px solid transparent;
+            }
+
+            .thumbs img:hover {
+                border-color: #333;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>🛍️ Ukay Finds</h1>
+            <p>Anhia lang sa balay. Sa maka-una lang!</p>
+        </header>
+
+        <div class="container">
+            <div class="controls">
+                <input type="search" id="search" placeholder="Search clothes..." />
+
+                <select id="category">
+                    <option value="">All Categories</option>
+                    <option>T-Shirt</option>
+                    <option>Jacket</option>
+                    <option>Pants</option>
+                    <option>Dress</option>
+                </select>
+
+                <select id="size">
+                    <option value="">All Sizes</option>
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                </select>
+
+                <select id="price">
+                    <option value="">Any Price</option>
+                    <option value="300">Below ₱300</option>
+                    <option value="500">Below ₱500</option>
+                    <option value="1000">Below ₱1000</option>
+                </select>
+
+                <button onclick="showFavorites()">❤️ Favorites</button>
+            </div>
+
+            <div id="products" class="products"></div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // 1. Get the query string from the URL (e.g., ?p=javascript)
+                const urlParams = new URLSearchParams(window.location.search);
+
+                // 2. Extract the value of the 'p' parameter
+                const productNumber = urlParams.get("p");
+
+                // 3. If 'p' exists in the URL, populate the input field
+                if (productNumber) {
+                    const searchInput = document.getElementById("search");
+                    searchInput.value = `#${productNumber}`;
+                    // 2. Create a new 'input' event
+                    const event = new Event("input", {
+                        bubbles: true, // Allows the event to bubble up the DOM tree
+                        cancelable: true, // Allows the event to be canceled
+                    });
+
+                    // 3. Dispatch the event on the input element
+                    searchInput.dispatchEvent(event);
+                }
+            });
+
+            const products = [
+                {
+                    id: 1,
+                    name: "#1 Vintage Nike Shirt",
+                    description: "Original vintage sports shirt",
+                    category: "T-Shirt",
+                    size: "M",
+                    amount: 350,
+                    images: ["1zBsbPMEEqgwyTlrFlt9wpJgB0DQm2qDD"],
+                },
+                {
+                    id: 2,
+                    name: "#2 Denim Jacket",
+                    description: "Classic oversized denim",
+                    category: "Jacket",
+                    size: "L",
+                    amount: 800,
+                    images: ["1xIvJBcnPLznYTqVtiJ3RAmWlqqk4cZum", "14nxa5bZnb3RDurHrign_ZKCJGlZ9bYA8"],
+                    isSold: true,
+                },
+                {
+                    id: 3,
+                    name: "#3 Summer Dress",
+                    description: "Floral casual dress",
+                    category: "Dress",
+                    size: "S",
+                    amount: 450,
+                    images: ["1T3rKK6HM79IfMa7C5LCvXtT7lNF3TDYL", "1eHzOJ8hEWh47rd5vET5SGhhifndBI5-G"],
+                    // isArchived: true,
+                },
+            ];
+
+            let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+            let favoriteMode = false;
+
+            const productContainer = document.getElementById("products");
+
+            const activeImageIndex = {};
+
+            function toDriveUrl(id) {
+                return `https://lh3.googleusercontent.com/d/${id}`;
+            }
+
+            function setImage(productId, index) {
+                const product = products.find((p) => p.id == productId);
+
+                const imgEl = document.querySelector(`#carousel-${productId} .main-img`);
+
+                imgEl.src = toDriveUrl(product.images[index]);
+
+                activeImageIndex[productId] = index;
+            }
+
+            function render() {
+                let list = [...products];
+
+                const search = document.getElementById("search").value.toLowerCase();
+
+                const category = document.getElementById("category").value;
+
+                const size = document.getElementById("size").value;
+
+                const price = document.getElementById("price").value;
+
+                if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
+
+                if (category) list = list.filter((x) => x.category === category);
+
+                if (size) list = list.filter((x) => x.size === size);
+
+                if (price) list = list.filter((x) => x.amount <= Number(price));
+
+                if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
+
+                if (!list.length) {
+                    productContainer.innerHTML = `
+            <div class="no-result">
+            No products found
+            </div>
+            `;
+
+                    return;
+                }
+
+                // TODO: .filter((p) => !p.isSold)
+                productContainer.innerHTML = list
+                    .filter((p) => !p.isArchived)
+                    .map((product) => {
+                        const fav = favorites.includes(product.id);
+
+                        return `
+
+            <div class="card ${product.isSold ? "sold" : ""}">
+
+                ${product.isSold ? `<div class="sold-banner">Sold</div>` : ""}
+
+            <button
+            class="favorite ${fav ? "active" : ""}"
+            onclick="toggleFavorite(${product.id})">
+
+            ${fav ? "❤️" : "♡"}
+
+            </button>
+
+
+            <div class="carousel" id="carousel-${product.id}">
+              <img src="${toDriveUrl(product.images[0])}" class="main-img">
+              <div class="thumbs">
+                ${product.images
+                    .map(
+                        (img, i) => `
+                  <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
+                `,
+                    )
+                    .join("")}
+              </div>
+            </div>
+
+
+            <div class="card-body">
+
+
+            <h3>
+            ${product.name}
+            </h3>
+
+
+            <p>
+            ${product.description}
+            </p>
+
+
+            <span class="badge">
+            ${product.category}
+            </span>
+
+
+            <span class="badge">
+            Size ${product.size}
+            </span>
+
+
+            <p class="price">
+            ₱${product.amount}
+            </p>
+
+
+            </div>
+
+
+            </div>
+
+            `;
+                    })
+                    .join("");
+            }
+
+            function toggleFavorite(id) {
+                if (favorites.includes(id)) {
+                    favorites = favorites.filter((x) => x !== id);
+                } else {
+                    favorites.push(id);
+                }
+
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+
+                render();
+            }
+
+            function showFavorites() {
+                favoriteMode = !favoriteMode;
+
+                render();
+            }
+
+            document.querySelectorAll("input,select").forEach((x) => x.addEventListener("input", render));
+
+            render();
+        </script>
+    </body>
+</html>
