@@ -262,7 +262,7 @@
                     <option value="99">₱99</option>
                 </select>
 
-                <button onclick="showFavorites()">❤️ Favorites</button>
+                <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button>
             </div>
 
             <div id="products" class="products">Loading products...</div>
@@ -504,6 +504,9 @@
 
             function showFavorites() {
                 favoriteMode = !favoriteMode;
+
+                const btn = document.getElementById("btnShowFavorites");
+                if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites";
 
                 render();
             }
