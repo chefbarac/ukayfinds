@@ -304,8 +304,7 @@
                 }
             });
 
-            /*
-            const products = [
+            let products = [
                 {
                     id: 1,
                     name: "#1 Vintage Nike Shirt",
@@ -313,7 +312,7 @@
                     category: "T-Shirt",
                     size: "M",
                     amount: 350,
-                    images: ["1zBsbPMEEqgwyTlrFlt9wpJgB0DQm2qDD"],
+                    images: "1zBsbPMEEqgwyTlrFlt9wpJgB0DQm2qDD",
                 },
                 {
                     id: 2,
@@ -322,7 +321,7 @@
                     category: "Jacket",
                     size: "L",
                     amount: 800,
-                    images: ["1xIvJBcnPLznYTqVtiJ3RAmWlqqk4cZum", "14nxa5bZnb3RDurHrign_ZKCJGlZ9bYA8"],
+                    images: "1xIvJBcnPLznYTqVtiJ3RAmWlqqk4cZum||14nxa5bZnb3RDurHrign_ZKCJGlZ9bYA8",
                     isSold: true,
                 },
                 {
@@ -332,14 +331,13 @@
                     category: "Dress",
                     size: "S",
                     amount: 450,
-                    images: ["1T3rKK6HM79IfMa7C5LCvXtT7lNF3TDYL", "1eHzOJ8hEWh47rd5vET5SGhhifndBI5-G"],
+                    images: "1T3rKK6HM79IfMa7C5LCvXtT7lNF3TDYL||1eHzOJ8hEWh47rd5vET5SGhhifndBI5-G",
                     // isArchived: true,
                 },
             ];
-            */
 
             // Using google sheet as database
-            let products = [];
+            /*let products = [];
             async function fetchData() {
                 fetch("https://script.google.com/macros/s/XXXXXXXXX/exec")
                     .then((res) => res.json())
@@ -349,7 +347,10 @@
                         });
                         render();
                     });
-            }
+            }*/
+            products = products.map((p) => {
+                return { ...p, images: p.images ? p.images.split("||") : [] };
+            });
 
             let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
@@ -505,7 +506,8 @@
 
             document.querySelectorAll("input,select").forEach((x) => x.addEventListener("input", render));
 
-            fetchData();
+            // fetchData();
+            render();
         </script>
     </body>
 </html>
