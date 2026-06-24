@@ -308,47 +308,54 @@
                 {
                     id: 1,
                     name: "#1 Vintage Nike Shirt",
-                    description: "Original vintage sports shirt",
+                    description: "90s style",
                     category: "T-Shirt",
                     size: "M",
-                    amount: 350,
+                    condition: "Fair",
+                    amount: 59,
+                    is_sold: false,
+                    is_archived: false,
                     images: "1zBsbPMEEqgwyTlrFlt9wpJgB0DQm2qDD",
                 },
                 {
                     id: 2,
                     name: "#2 Denim Jacket",
-                    description: "Classic oversized denim",
+                    description: "Oversized",
                     category: "Jacket",
                     size: "L",
-                    amount: 800,
+                    condition: "Very Good",
+                    amount: 99,
+                    is_sold: true,
+                    is_archived: false,
                     images: "1xIvJBcnPLznYTqVtiJ3RAmWlqqk4cZum||14nxa5bZnb3RDurHrign_ZKCJGlZ9bYA8",
-                    isSold: true,
                 },
                 {
-                    id: 3,
+                    id: 2,
                     name: "#3 Summer Dress",
                     description: "Floral casual dress",
                     category: "Dress",
                     size: "S",
-                    amount: 450,
+                    condition: "Good",
+                    amount: 79,
+                    is_sold: false,
+                    is_archived: false,
                     images: "1T3rKK6HM79IfMa7C5LCvXtT7lNF3TDYL||1eHzOJ8hEWh47rd5vET5SGhhifndBI5-G",
-                    // isArchived: true,
                 },
             ];
 
             // Using google sheet as database
             /*let products = [];
-            async function fetchData() {
-                fetch("https://script.google.com/macros/s/XXXXXXXXX/exec")
-                    .then((res) => res.json())
-                    .then((data) => {
-                        products = data.map((p) => {
-                            return { ...p, images: p.images ? p.images.split("||") : [] };
-                        });
-                        render();
-                    });
-            }*/
-            products = products.map((p) => {
+                      async function fetchData() {
+                          fetch("https://script.google.com/macros/s/XXXXXXXXX/exec")
+                              .then((res) => res.json())
+                              .then((data) => {
+                                  products = data.map((p) => {
+                                      return { ...p, images: p.images ? p.images.split("||") : [] };
+                                  });
+                                  render();
+                              });
+                      }*/
+            products = products.toReversed().map((p) => {
                 return { ...p, images: p.images ? p.images.split("||") : [] };
             });
 
@@ -397,83 +404,83 @@
 
                 if (!list.length) {
                     productContainer.innerHTML = `
-            <div class="no-result">
-            No products found
-            </div>
-            `;
+                      <div class="no-result">
+                      No products found
+                      </div>
+                      `;
 
                     return;
                 }
 
-                // TODO: .filter((p) => !p.isSold)
+                // TODO: .filter((p) => !p.is_sold)
                 productContainer.innerHTML = list
-                    .filter((p) => !p.isArchived)
+                    .filter((p) => !p.is_archived)
                     .map((product) => {
                         const fav = favorites.includes(product.id);
 
                         return `
 
-            <div class="card ${product.isSold ? "sold" : ""}">
+                      <div class="card ${product.is_sold ? "sold" : ""}">
 
-                ${product.isSold ? `<div class="sold-banner">Sold</div>` : ""}
+                          ${product.is_sold ? `<div class="sold-banner">Sold</div>` : ""}
 
-            <button
-            class="favorite ${fav ? "active" : ""}"
-            onclick="toggleFavorite(${product.id})">
+                      <button
+                      class="favorite ${fav ? "active" : ""}"
+                      onclick="toggleFavorite(${product.id})">
 
-            ${fav ? "❤️" : "♡"}
+                      ${fav ? "❤️" : "♡"}
 
-            </button>
-
-
-            <div class="carousel" id="carousel-${product.id}">
-              <img src="${toDriveUrl(product.images[0])}" class="main-img">
-              <div class="thumbs">
-                ${product.images
-                    .map(
-                        (img, i) => `
-                  <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
-                `,
-                    )
-                    .join("")}
-              </div>
-            </div>
+                      </button>
 
 
-            <div class="card-body">
+                      <div class="carousel" id="carousel-${product.id}">
+                        <img src="${toDriveUrl(product.images[0])}" class="main-img">
+                        <div class="thumbs">
+                          ${product.images
+                              .map(
+                                  (img, i) => `
+                            <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
+                          `,
+                              )
+                              .join("")}
+                        </div>
+                      </div>
 
 
-            <h3>
-            ${product.name}
-            </h3>
+                      <div class="card-body">
 
 
-            <p>
-            ${product.description}
-            </p>
+                      <h3>
+                      ${product.name}
+                      </h3>
 
 
-            <span class="badge">
-            ${product.category}
-            </span>
+                      <p>
+                      ${product.description}
+                      </p>
 
 
-            <span class="badge">
-            Size ${product.size}
-            </span>
+                      <span class="badge">
+                      ${product.category}
+                      </span>
 
 
-            <p class="price">
-            ₱${product.amount}
-            </p>
+                      <span class="badge">
+                      Size ${product.size}
+                      </span>
 
 
-            </div>
+                      <p class="price">
+                      ₱${product.amount}
+                      </p>
 
 
-            </div>
+                      </div>
 
-            `;
+
+                      </div>
+
+                      `;
                     })
                     .join("");
             }
