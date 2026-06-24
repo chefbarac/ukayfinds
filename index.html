@@ -168,6 +168,63 @@
             .thumbs img:hover {
                 border-color: #333;
             }
+
+            .fb-contact-btn {
+                display: inline-flex;
+                align-items: center;
+                background-color: #0084ff;
+                color: #fff;
+                font-family: system-ui, sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                padding: 6px 12px;
+                border-radius: 6px;
+                text-decoration: none;
+                transition: background 0.2s;
+            }
+
+            .fb-contact-btn:hover {
+                background-color: #0066cc;
+            }
+
+            .fb-icon {
+                width: 14px;
+                height: 14px;
+                margin-right: 5px;
+                fill: currentColor;
+            }
+
+            .copy-btn {
+                display: inline-flex;
+                align-items: center;
+                border: 1px solid black;
+                color: #111;
+                font-family: system-ui, sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                padding: 6px 12px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+
+            .copy-btn:hover {
+                background-color: #444;
+                color: white;
+            }
+
+            /* Turns green temporarily when clicked successfully */
+            .copy-btn.copied {
+                background-color: #00a86b;
+            }
+
+            .copy-icon {
+                width: 14px;
+                height: 14px;
+                margin-right: 5px;
+                fill: currentColor;
+            }
         </style>
     </head>
 
@@ -212,12 +269,25 @@
         </div>
 
         <script>
+            function cleanParams() {
+                const url = new URL(window.location);
+
+                // Modify your parameters
+                url.searchParams.delete("p");
+
+                // Clean up: If no parameters remain, strip the '?'
+                const cleanUrl = url.searchParams.toString() ? url.toString() : url.toString().split("?")[0];
+
+                window.history.replaceState({}, "", cleanUrl);
+            }
+
             window.addEventListener("DOMContentLoaded", () => {
                 // 1. Get the query string from the URL (e.g., ?p=javascript)
                 const urlParams = new URLSearchParams(window.location.search);
 
                 // 2. Extract the value of the 'p' parameter
                 const productNumber = urlParams.get("p");
+                cleanParams();
 
                 // 3. If 'p' exists in the URL, populate the input field
                 if (productNumber) {
@@ -377,9 +447,22 @@
             </span>
 
 
-            <p class="price">
-            ₱${product.amount}
-            </p>
+            <div style="display: flex; gap: 5px; align-items: center;">
+                <p class="price">
+                ₱${product.amount}
+                </p>
+                <a id="fbChatBtn" class="fb-contact-btn" target="_blank" rel="noopener noreferrer" href="https://m.me/61591084660577?ref=${product.id}">
+                    <!-- Ultra-minimal 14px chat dot icon -->
+                    <svg class="fb-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.45 5.5 3.73 7.15l-.07 2.22c-.02.58.59 1.01 1.11.75l2.49-1.24c1.22.35 2.53.53 3.91.53 5.52 0 10-4.14 10-9.25S17.52 2 12 2zm1 13h-2v-2h2v2zm0-4h-2V7h2v4z"/></svg>
+                    Chat
+                </a>
+
+                <button id="copyBtn" class="copy-btn" onclick="${copyProductLink}">
+                    <!-- Minimal Copy Link Icon -->
+                    <svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    <span id="copyText">Copy Link</span>
+                </button>
+            </div>
 
 
             </div>
@@ -390,6 +473,14 @@
             `;
                     })
                     .join("");
+            }
+
+            function copyProductLink(productId) {
+                const link = `https://chefbarac.github.io/portfolio?p=${productId}`;
+                // Copy to clipboard
+                navigator.clipboard.writeText(link).then(() => {
+                    alert(`Product link copied to clipboard!`);
+                });
             }
 
             function toggleFavorite(id) {
