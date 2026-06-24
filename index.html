@@ -100,7 +100,7 @@
             .price {
                 color: #e63946;
                 font-weight: bold;
-                font-size: 20px;
+                font-size: 16px;
             }
 
             .badge {
@@ -265,7 +265,7 @@
                 <button onclick="showFavorites()">❤️ Favorites</button>
             </div>
 
-            <div id="products" class="products"></div>
+            <div id="products" class="products">Loading products...</div>
         </div>
 
         <script>
@@ -304,6 +304,7 @@
                 }
             });
 
+            /*
             const products = [
                 {
                     id: 1,
@@ -335,6 +336,20 @@
                     // isArchived: true,
                 },
             ];
+            */
+
+            // Using google sheet as database
+            let products = [];
+            async function fetchData() {
+                fetch("https://script.google.com/macros/s/XXXXXXXXX/exec")
+                    .then((res) => res.json())
+                    .then((data) => {
+                        products = data.map((p) => {
+                            return { ...p, images: p.images ? p.images.split("||") : [] };
+                        });
+                        render();
+                    });
+            }
 
             let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
@@ -447,11 +462,9 @@
             </span>
 
 
-            <div style="display: flex; gap: 5px; align-items: center;">
-                <p class="price">
-                ₱${product.amount}
-                </p>
-            </div>
+            <p class="price">
+            ₱${product.amount}
+            </p>
 
 
             </div>
@@ -492,7 +505,7 @@
 
             document.querySelectorAll("input,select").forEach((x) => x.addEventListener("input", render));
 
-            render();
+            fetchData();
         </script>
     </body>
 </html>
