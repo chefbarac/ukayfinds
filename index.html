@@ -103,8 +103,6 @@
             }
 
             .price {
-                color: #e63946;
-                font-weight: bold;
                 font-size: 14px;
             }
 
@@ -274,8 +272,11 @@
                     collection: "T-Shirt",
                     size: "M",
                     category: "Fair",
-                    price: 59,
-                    date_purchased: "",
+                    price: 45,
+                    discounted_price: 40,
+                    anchor_price: 59,
+                    date_purchased: "2026-06-24T16:00:00.000Z",
+                    date_displayed: "",
                     is_sold: false,
                     date_sold: "",
                     is_archived: false,
@@ -288,8 +289,11 @@
                     collection: "Jacket",
                     size: "L",
                     category: "Very Good",
-                    price: 99,
-                    date_purchased: "",
+                    price: 80,
+                    discounted_price: 75,
+                    anchor_price: 99,
+                    date_purchased: "2026-06-24T16:00:00.000Z",
+                    date_displayed: "",
                     is_sold: false,
                     date_sold: "",
                     is_archived: false,
@@ -299,29 +303,21 @@
                     id: 3,
                     name: "#3 Summer Dress",
                     description: "Floral casual dress",
-                    collection: "Dress",
+                    collection: "T-Shirt",
                     size: "S",
                     category: "Good",
-                    price: 79,
-                    date_purchased: "",
+                    price: 60,
+                    discounted_price: 55,
+                    anchor_price: 79,
+                    date_purchased: "2026-06-24T16:00:00.000Z",
+                    date_displayed: "",
                     is_sold: false,
                     date_sold: "",
                     is_archived: false,
                     images: "1T3rKK6HM79IfMa7C5LCvXtT7lNF3TDYL||1eHzOJ8hEWh47rd5vET5SGhhifndBI5-G",
                 },
             ];
-            // Using google sheet as database
-            /*let products = [];
-                      async function fetchData() {
-                          fetch("https://script.google.com/macros/s/XXXXXXXXX/exec")
-                              .then((res) => res.json())
-                              .then((data) => {
-                                  products = data.map((p) => {
-                                      return { ...p, images: p.images ? p.images.split("||") : [] };
-                                  });
-                                  render();
-                              });
-                      }*/
+
             products = products.toReversed().map((p) => {
                 return { ...p, images: p.images ? p.images.split("||") : [] };
             });
@@ -527,8 +523,9 @@
                         </span>
 
                         <span class="price">
-                          ₱${product.price}
-                          </span>
+                          <span style="color: gray; text-decoration: line-through; font-style: italic;">₱${product.anchor_price}</span>
+                          <span style="color: #e63946; font-weight: bold;">₱${product.price}</span>
+                        </span>
 
                       </div>
 
