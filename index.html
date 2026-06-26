@@ -247,26 +247,14 @@
 
                 <select id="collection">
                     <option value="">All Collections</option>
-                    <option>T-Shirt</option>
-                    <option>Jacket</option>
-                    <option>Pants</option>
-                    <option>Dress</option>
                 </select>
 
                 <select id="size">
                     <option value="">All Sizes</option>
-                    <option>XS</option>
-                    <option>S</option>
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
                 </select>
 
                 <select id="price">
                     <option value="">Any Price</option>
-                    <option value="59">₱59</option>
-                    <option value="79">₱79</option>
-                    <option value="99">₱99</option>
                 </select>
 
                 <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button>
@@ -276,55 +264,6 @@
         </div>
 
         <script>
-            function cleanParams() {
-                const url = new URL(window.location);
-
-                // Modify your parameters
-                url.searchParams.delete("p");
-                url.searchParams.delete("c");
-
-                // Clean up: If no parameters remain, strip the '?'
-                const cleanUrl = url.searchParams.toString() ? url.toString() : url.toString().split("?")[0];
-
-                window.history.replaceState({}, "", cleanUrl);
-            }
-
-            window.addEventListener("DOMContentLoaded", () => {
-                // 1. Get the query string from the URL (e.g., ?p=javascript)
-                const urlParams = new URLSearchParams(window.location.search);
-
-                // 2. Extract the value of the 'p' parameter
-                const productNumber = urlParams.get("p");
-                const collectionName = urlParams.get("c");
-                cleanParams();
-
-                // 3. If 'p' exists in the URL, populate the input field
-                if (productNumber) {
-                    const searchInput = document.getElementById("search");
-                    searchInput.value = `#${productNumber}`;
-                    // 2. Create a new 'input' event
-                    const event = new Event("input", {
-                        bubbles: true, // Allows the event to bubble up the DOM tree
-                        cancelable: true, // Allows the event to be canceled
-                    });
-
-                    // 3. Dispatch the event on the input element
-                    searchInput.dispatchEvent(event);
-                }
-                if (collectionName) {
-                    const collectionInput = document.getElementById("collection");
-                    collectionInput.value = `${collectionName}`;
-                    // 2. Create a new 'input' event
-                    const event = new Event("input", {
-                        bubbles: true, // Allows the event to bubble up the DOM tree
-                        cancelable: true, // Allows the event to be canceled
-                    });
-
-                    // 3. Dispatch the event on the input element
-                    collectionInput.dispatchEvent(event);
-                }
-            });
-
             let products = [
                 {
                     id: 1,
@@ -383,6 +322,96 @@
                       }*/
             products = products.toReversed().map((p) => {
                 return { ...p, images: p.images ? p.images.split("||") : [] };
+            });
+
+            function cleanParams() {
+                const url = new URL(window.location);
+
+                // Modify your parameters
+                url.searchParams.delete("p");
+                url.searchParams.delete("c");
+
+                // Clean up: If no parameters remain, strip the '?'
+                const cleanUrl = url.searchParams.toString() ? url.toString() : url.toString().split("?")[0];
+
+                window.history.replaceState({}, "", cleanUrl);
+            }
+
+            function handleParams() {
+                // 1. Get the query string from the URL (e.g., ?p=javascript)
+                const urlParams = new URLSearchParams(window.location.search);
+
+                // 2. Extract the value of the 'p' parameter
+                const productNumber = urlParams.get("p");
+                const collectionName = urlParams.get("c");
+                cleanParams();
+
+                // 3. If 'p' exists in the URL, populate the input field
+                if (productNumber) {
+                    const searchInput = document.getElementById("search");
+                    searchInput.value = `#${productNumber}`;
+                    // 2. Create a new 'input' event
+                    const event = new Event("input", {
+                        bubbles: true, // Allows the event to bubble up the DOM tree
+                        cancelable: true, // Allows the event to be canceled
+                    });
+
+                    // 3. Dispatch the event on the input element
+                    searchInput.dispatchEvent(event);
+                }
+                if (collectionName) {
+                    const collectionInput = document.getElementById("collection");
+                    collectionInput.value = `${collectionName}`;
+                    // 2. Create a new 'input' event
+                    const event = new Event("input", {
+                        bubbles: true, // Allows the event to bubble up the DOM tree
+                        cancelable: true, // Allows the event to be canceled
+                    });
+
+                    // 3. Dispatch the event on the input element
+                    collectionInput.dispatchEvent(event);
+                }
+            }
+
+            async function populateFilters() {
+                const collections = [...new Set(products.map((p) => p.collection).filter(Boolean))].sort();
+                const sizes = [...new Set(products.map((p) => p.size).filter(Boolean))].sort(sizeComparator);
+                const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))].sort((a, b) => a - b);
+
+                const fillSelect = (id, items, labelFn, valueFn) => {
+                    const select = document.getElementById(id);
+                    select.querySelectorAll('option:not([value=""])').forEach((o) => o.remove());
+                    items.forEach((item) => {
+                        const opt = document.createElement("option");
+                        opt.value = valueFn ? valueFn(item) : item;
+                        opt.textContent = labelFn(item);
+                        select.appendChild(opt);
+                    });
+                };
+
+                fillSelect("collection", collections, (c) => c);
+                fillSelect("size", sizes, (s) => s);
+                fillSelect(
+                    "price",
+                    prices,
+                    (p) => `₱${p}`,
+                    (p) => String(p),
+                );
+            }
+
+            function sizeComparator(a, b) {
+                const ORDER = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"];
+                const ai = ORDER.indexOf(a.toUpperCase());
+                const bi = ORDER.indexOf(b.toUpperCase());
+                if (ai === -1 && bi === -1) return a.localeCompare(b);
+                if (ai === -1) return 1;
+                if (bi === -1) return -1;
+                return ai - bi;
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                populateFilters();
+                handleParams();
             });
 
             let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
