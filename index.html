@@ -1049,15 +1049,17 @@
                 <div style="text-align:center;padding:40px;font-family:sans-serif">
                     <h2>Open Ukay Finds</h2>
                     <p>For the best experience, open this page in External Browser.</p>
+                    <p>Use the button below or the 3 dots on the top right corner.</p>
                     <button onclick="openExternal()"
                         style="padding:15px 25px;font-size:18px">
-                        Open in Browser
+                        Open in External Browser
                     </button>
                 </div>
             `;
 
                     window.openExternal = function () {
-                        window.location.href = window.location.href;
+                        // window.location.href = window.location.href;
+                        window.location.href = "intent://chefbarac.github.io/ukayfinds/#Intent;scheme=https;package=com.android.chrome;end";
                     };
                 } else {
                     populateFilters();
