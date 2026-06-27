@@ -1054,8 +1054,9 @@
 
                 if (isFacebookOrMessenger) {
                     const fbMsgEl = document.getElementById("fbMessage");
-                    fbMsgEl.innerHTML =
-                        "Tip: <a href='intent://chefbarac.github.io/ukayfinds/#Intent;scheme=https;package=com.android.chrome;end'>Open in External Browser</a> using the 3 dots on the top-right corner.";
+                    const currentURL = window.location.origin + window.location.pathname + window.location.search + window.location.hash;
+                    const intentURL = `intent://${currentURL.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
+                    fbMsgEl.innerHTML = `Tip: <a href='${intentURL}'>Open in External Browser</a> using the 3 dots on the top-right corner.`;
                     /*document.body.innerHTML = `
                         <div style="text-align:center;padding:40px;font-family:sans-serif">
                             <h2>Open Ukay Finds</h2>
