@@ -1043,9 +1043,10 @@
             document.addEventListener("DOMContentLoaded", () => {
                 const ua = navigator.userAgent || navigator.vendor;
 
-                const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
+                // const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
+                const isFacebookOrMessenger = /FBAN|FBAV|FB_IAB|Messenger/i.test(ua);
 
-                if (isFacebookBrowser) {
+                if (isFacebookOrMessenger) {
                     const fbMsgEl = document.getElementById("fbMessage");
                     fbMsgEl.innerText = "Tip: Open in External Browser using the 3 dots on the top-right corner.";
                     /*document.body.innerHTML = `
