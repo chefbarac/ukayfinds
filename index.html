@@ -261,6 +261,7 @@
                 Visit our <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/61591084660577">Facebook</a> page or
                 <a target="_blank" rel="noopener noreferrer" href="https://m.me/61591084660577">Chat</a> with the seller.
             </p>
+            <p><small id="fbMessage"></small></p>
         </header>
 
         <div class="container">
@@ -1040,12 +1041,14 @@
             }
 
             document.addEventListener("DOMContentLoaded", () => {
-                /*const ua = navigator.userAgent || navigator.vendor;
+                const ua = navigator.userAgent || navigator.vendor;
 
                 const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
 
                 if (isFacebookBrowser) {
-                    document.body.innerHTML = `
+                    const fbMsgEl = document.getElementById("fbMessage");
+                    fbMsgEl.innerText = "Tip: Open in External Browser using the 3 dots on the top-right corner.";
+                    /*document.body.innerHTML = `
                         <div style="text-align:center;padding:40px;font-family:sans-serif">
                             <h2>Open Ukay Finds</h2>
                             <p>For the best experience, open this page in External Browser.</p>
@@ -1060,9 +1063,8 @@
                     window.openExternal = function () {
                         // window.location.href = window.location.href;
                         window.location.href = "intent://chefbarac.github.io/ukayfinds/#Intent;scheme=https;package=com.android.chrome;end";
-                    };
-                    return;
-                }*/
+                    };*/
+                }
 
                 populateFilters();
                 handleParams();
