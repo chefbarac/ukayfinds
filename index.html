@@ -119,7 +119,19 @@
                 position: absolute;
                 right: 15px;
                 top: 15px;
-                background: white;
+                background: #ffffffcc;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                border: none;
+                cursor: pointer;
+                font-size: 20px;
+            }
+            .share-link {
+                position: absolute;
+                right: 60px;
+                top: 15px;
+                background: #ffffffcc;
                 border-radius: 50%;
                 width: 40px;
                 height: 40px;
@@ -1034,15 +1046,15 @@
 
                 if (isFacebookBrowser) {
                     document.body.innerHTML = `
-            <div style="text-align:center;padding:40px;font-family:sans-serif">
-                <h2>Open Ukay Finds</h2>
-                <p>For the best experience, open this page in External Browser.</p>
-                <button onclick="openExternal()"
-                    style="padding:15px 25px;font-size:18px">
-                    Open in Browser
-                </button>
-            </div>
-        `;
+                <div style="text-align:center;padding:40px;font-family:sans-serif">
+                    <h2>Open Ukay Finds</h2>
+                    <p>For the best experience, open this page in External Browser.</p>
+                    <button onclick="openExternal()"
+                        style="padding:15px 25px;font-size:18px">
+                        Open in Browser
+                    </button>
+                </div>
+            `;
 
                     window.openExternal = function () {
                         window.location.href = window.location.href;
@@ -1098,10 +1110,10 @@
 
                 if (!list.length) {
                     productContainer.innerHTML = `
-                      <div class="no-result">
-                      No products found
-                      </div>
-                      `;
+                          <div class="no-result">
+                          No products found
+                          </div>
+                          `;
 
                     return;
                 }
@@ -1111,58 +1123,64 @@
                     Regular: "linear-gradient(135deg, #DCEEEA 0%, #A9CFC8 50%, #6FA8A0 100%)",
                     Premium: "linear-gradient(135deg, #F5E1DD 0%, #DDB1A8 50%, #B97870 100%)",
                 };
+
                 productContainer.innerHTML = list
                     .filter((p) => !p.is_archived)
                     .map((product) => {
                         const fav = favorites.includes(product.id);
 
                         return `
-                      <div class="card ${product.is_sold ? "sold" : ""}">
-                          ${product.is_sold ? `<div class="sold-banner">Sold</div>` : ""}
-                      <button
-                      class="favorite ${fav ? "active" : ""}"
-                      onclick="toggleFavorite(${product.id})">
-                        ${fav ? "❤️" : "♡"}
-                      </button>
+                          <div class="card ${product.is_sold ? "sold" : ""}">
+                              ${product.is_sold ? `<div class="sold-banner">Sold</div>` : ""}
+                          <button
+                          class="favorite ${fav ? "active" : ""}"
+                          onclick="toggleFavorite(${product.id})">
+                            ${fav ? "❤️" : "♡"}
+                          </button>
+                          <button
+                            class="share-link"
+                            onclick="copyShareLink(${product.id})">
+                                ${"🔗"}
+                            </button>
 
-                      <div class="carousel" id="carousel-${product.id}">
-                        <img src="${toDriveUrl(product.images[0])}" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};">
-                        <div class="thumbs">
-                          ${product.images
-                              .map(
-                                  (img, i) => `
-                                    <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
-                                `,
-                              )
-                              .join("")}
-                        </div>
-                      </div>
+                          <div class="carousel" id="carousel-${product.id}">
+                            <img src="${toDriveUrl(product.images[0])}" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};">
+                            <div class="thumbs">
+                              ${product.images
+                                  .map(
+                                      (img, i) => `
+                                        <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
+                                    `,
+                                  )
+                                  .join("")}
+                            </div>
+                          </div>
 
-                      <div class="card-body">
-                        <h3>
-                            ${product.name}
-                        </h3>
+                          <div class="card-body">
+                            <h3>
+                                ${product.name}
+                            </h3>
 
-                        <p>
-                            ${product.description}
-                        </p>
+                            <p>
+                                ${product.description}
+                            </p>
 
-                        <span class="badge">
-                          ${product.collection}
-                        </span>
+                            <span class="badge">
+                              ${product.collection}
+                            </span>
 
-                        <span class="badge">
-                            Size ${product.size}
-                        </span>
+                            <span class="badge">
+                                Size ${product.size}
+                            </span>
 
-                        <span class="price">
-                          <span style="color: gray; text-decoration: line-through; font-style: italic;">₱${product.anchor_price}</span>
-                          <span style="color: #e63946; font-weight: bold;">₱${product.price}</span>
-                        </span>
-                      </div>
-                      </div>
+                            <span class="price">
+                              <span style="color: gray; text-decoration: line-through; font-style: italic;">₱${product.anchor_price}</span>
+                              <span style="color: #e63946; font-weight: bold;">₱${product.price}</span>
+                            </span>
+                          </div>
+                          </div>
 
-                      `;
+                          `;
                     })
                     .join("");
             }
@@ -1172,6 +1190,14 @@
                 // Copy to clipboard
                 navigator.clipboard.writeText(link).then(() => {
                     alert(`Product link copied to clipboard!`);
+                });
+            }
+
+            function copyShareLink(productId) {
+                const url = `${window.location.origin}${window.location.pathname}?p=${productId}`;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert("Product link now copied to clipboard!");
+                    // optional: show a brief "Copied!" toast
                 });
             }
 
