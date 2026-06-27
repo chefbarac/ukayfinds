@@ -944,6 +944,12 @@
                 return { ...p, images: p.images ? p.images.split("||") : [] };
             });
 
+            const categoryMap = {
+                Affordable: "Sulit",
+                Regular: "Classic",
+                Premium: "Premium",
+            };
+
             function cleanParams() {
                 const url = new URL(window.location);
 
@@ -1178,6 +1184,12 @@
 
                             <span class="badge">
                                 Size ${product.size}
+                            </span>
+
+                            <br><br>
+
+                            <span class="badge" style="background: ${imageColors[product.category]}">
+                              ${categoryMap[product.category]}
                             </span>
 
                             <span class="price">
