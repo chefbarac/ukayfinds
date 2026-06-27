@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>" />
 
+        <!-- Facebook -->
+        <meta property="og:title" content="Ukay Finds" />
+        <meta property="og:description" content="Anhia lang sa balay. Sa maka-una lang!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://chefbarac.github.io/ukayfinds/" />
+        <meta property="og:image" content="https://lh3.googleusercontent.com/d/1uSf_eEdWAQISeIoffQC826n6rhGbcCmW" />
+
         <title>Ukay Finds</title>
 
         <style>
@@ -145,7 +152,16 @@
                 height: 360px;
                 object-fit: contain;
                 border-radius: 10px;
-                background: linear-gradient(135deg, #c8c8c8 0%, #e8e8e8 50%, #c8c8c8 100%);
+            }
+
+            .main-img::before {
+                content: "";
+                position: absolute;
+                inset: -20px;
+                background: inherit;
+                filter: blur(15px);
+                opacity: 0.8;
+                z-index: -1;
             }
 
             .thumbs {
@@ -965,28 +981,39 @@
             }
 
             async function populateFilters() {
-                const collections = [...new Set(products.map((p) => p.collection).filter(Boolean))].sort();
-                const sizes = [...new Set(products.map((p) => p.size).filter(Boolean))].sort(sizeComparator);
-                const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))].sort((a, b) => a - b);
+                const collections = [...new Set(products.map((p) => p.collection).filter(Boolean))].sort().map((collection) => ({
+                    name: collection,
+                    count: products.filter((p) => p.collection === collection).length,
+                }));
+                const sizes = [...new Set(products.map((p) => p.size).filter(Boolean))].sort(sizeComparator).map((size) => ({
+                    name: size,
+                    count: products.filter((p) => p.size === size).length,
+                }));
+                const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))]
+                    .sort((a, b) => a - b)
+                    .map((price) => ({
+                        name: price,
+                        count: products.filter((p) => p.price === price).length,
+                    }));
 
                 const fillSelect = (id, items, labelFn, valueFn) => {
                     const select = document.getElementById(id);
                     select.querySelectorAll('option:not([value=""])').forEach((o) => o.remove());
                     items.forEach((item) => {
                         const opt = document.createElement("option");
-                        opt.value = valueFn ? valueFn(item) : item;
+                        opt.value = valueFn ? valueFn(item) : item.name;
                         opt.textContent = labelFn(item);
                         select.appendChild(opt);
                     });
                 };
 
-                fillSelect("collection", collections, (c) => c);
-                fillSelect("size", sizes, (s) => s);
+                fillSelect("collection", collections, (c) => `${c.name} (${c.count})`);
+                fillSelect("size", sizes, (s) => `${s.name} (${s.count})`);
                 fillSelect(
                     "price",
                     prices,
-                    (p) => `₱${p}`,
-                    (p) => String(p),
+                    (p) => `₱${p.name} (${p.count})`,
+                    (p) => String(p.name),
                 );
             }
 
@@ -1001,8 +1028,29 @@
             }
 
             document.addEventListener("DOMContentLoaded", () => {
-                populateFilters();
-                handleParams();
+                const ua = navigator.userAgent || navigator.vendor;
+
+                const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
+
+                if (isFacebookBrowser) {
+                    document.body.innerHTML = `
+            <div style="text-align:center;padding:40px;font-family:sans-serif">
+                <h2>Open Ukay Finds</h2>
+                <p>For the best experience, open this page in External Browser.</p>
+                <button onclick="openExternal()"
+                    style="padding:15px 25px;font-size:18px">
+                    Open in Browser
+                </button>
+            </div>
+        `;
+
+                    window.openExternal = function () {
+                        window.location.href = window.location.href;
+                    };
+                } else {
+                    populateFilters();
+                    handleParams();
+                }
             });
 
             let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -1058,58 +1106,50 @@
                     return;
                 }
 
-                // TODO: .filter((p) => !p.is_sold)
+                const imageColors = {
+                    Affordable: "linear-gradient(135deg, #F6EBDD 0%, #E4CDB2 50%, #CFAF8B 100%)",
+                    Regular: "linear-gradient(135deg, #DCEEEA 0%, #A9CFC8 50%, #6FA8A0 100%)",
+                    Premium: "linear-gradient(135deg, #F5E1DD 0%, #DDB1A8 50%, #B97870 100%)",
+                };
                 productContainer.innerHTML = list
                     .filter((p) => !p.is_archived)
                     .map((product) => {
                         const fav = favorites.includes(product.id);
 
                         return `
-
                       <div class="card ${product.is_sold ? "sold" : ""}">
-
                           ${product.is_sold ? `<div class="sold-banner">Sold</div>` : ""}
-
                       <button
                       class="favorite ${fav ? "active" : ""}"
                       onclick="toggleFavorite(${product.id})">
-
-                      ${fav ? "❤️" : "♡"}
-
+                        ${fav ? "❤️" : "♡"}
                       </button>
 
-
                       <div class="carousel" id="carousel-${product.id}">
-                        <img src="${toDriveUrl(product.images[0])}" class="main-img">
+                        <img src="${toDriveUrl(product.images[0])}" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};">
                         <div class="thumbs">
                           ${product.images
                               .map(
                                   (img, i) => `
-                            <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
-                          `,
+                                    <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
+                                `,
                               )
                               .join("")}
                         </div>
                       </div>
 
-
                       <div class="card-body">
+                        <h3>
+                            ${product.name}
+                        </h3>
 
+                        <p>
+                            ${product.description}
+                        </p>
 
-                      <h3>
-                      ${product.name}
-                      </h3>
-
-
-                      <p>
-                      ${product.description}
-                      </p>
-
-
-                      <span class="badge">
+                        <span class="badge">
                           ${product.collection}
                         </span>
-
 
                         <span class="badge">
                             Size ${product.size}
@@ -1119,10 +1159,7 @@
                           <span style="color: gray; text-decoration: line-through; font-style: italic;">₱${product.anchor_price}</span>
                           <span style="color: #e63946; font-weight: bold;">₱${product.price}</span>
                         </span>
-
                       </div>
-
-
                       </div>
 
                       `;
@@ -1131,7 +1168,7 @@
             }
 
             function copyProductLink(productId) {
-                const link = `https://chefbarac.github.io/portfolio?p=${productId}`;
+                const link = `https://chefbarac.github.io/ukayfinds/?p=${productId}`;
                 // Copy to clipboard
                 navigator.clipboard.writeText(link).then(() => {
                     alert(`Product link copied to clipboard!`);
