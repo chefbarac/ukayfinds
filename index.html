@@ -1040,7 +1040,7 @@
             }
 
             document.addEventListener("DOMContentLoaded", () => {
-                const ua = navigator.userAgent || navigator.vendor;
+                /*const ua = navigator.userAgent || navigator.vendor;
 
                 const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
 
@@ -1061,10 +1061,10 @@
                         // window.location.href = window.location.href;
                         window.location.href = "intent://chefbarac.github.io/ukayfinds/#Intent;scheme=https;package=com.android.chrome;end";
                     };
-                } else {
-                    populateFilters();
-                    handleParams();
-                }
+                } else {*/
+                populateFilters();
+                handleParams();
+                //}
             });
 
             let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
