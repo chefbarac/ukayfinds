@@ -288,7 +288,7 @@
         </div>
 
         <script>
-            console.log("Version 1.0.21");
+            console.log("Version 1.0.22");
 
             let products = [
                 {
@@ -1237,12 +1237,12 @@
                             </button>
 
                           <div class="carousel" id="carousel-${product.id}">
-                            <img src="${toDriveUrl(product.images[0])}" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};">
+                            <img src="${toDriveUrl(product.images[0])}" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};" loading="lazy">
                             <div class="thumbs">
                               ${product.images
                                   .map(
                                       (img, i) => `
-                                        <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})">
+                                        <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})"  loading="lazy">
                                     `,
                                   )
                                   .join("")}
