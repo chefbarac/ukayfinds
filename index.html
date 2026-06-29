@@ -264,8 +264,8 @@
                 margin: auto;
                 width: 32px;
                 height: 32px;
-                border: 3px solid rgba(0, 0, 0, 0.1);
-                border-top-color: #555;
+                border: 3px solid rgba(255, 255, 255, 0.1);
+                border-top-color: #ffffff;
                 border-radius: 50%;
                 animation: spin 0.7s linear infinite;
             }
@@ -312,7 +312,7 @@
         </div>
 
         <script>
-            console.log("Version 1.0.23");
+            console.log("Version 1.0.24");
 
             let products = [
                 {
@@ -1073,6 +1073,13 @@
                 return ai - bi;
             }
 
+            window.addEventListener("popstate", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+
             document.addEventListener("DOMContentLoaded", () => {
                 const ua = navigator.userAgent || navigator.vendor;
 
@@ -1202,17 +1209,17 @@
 
                 // show spinner
                 spinner.style.display = "block";
-                imgEl.style.opacity = "0";
+                // imgEl.style.opacity = "0";
 
                 const full = new Image();
                 full.onload = () => {
                     imgEl.src = full.src;
-                    imgEl.style.opacity = "1";
+                    // imgEl.style.opacity = "1";
                     spinner.style.display = "none";
                 };
                 full.onerror = () => {
                     spinner.style.display = "none";
-                    imgEl.style.opacity = "1";
+                    // imgEl.style.opacity = "1";
                 };
                 full.src = toDriveUrl(product.images[index]);
 
