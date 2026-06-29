@@ -251,6 +251,30 @@
                 margin-right: 5px;
                 fill: currentColor;
             }
+
+            /* thumbnail loading */
+            .main-img {
+                transition: opacity 0.2s ease;
+            }
+
+            .img-spinner {
+                display: none;
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                width: 32px;
+                height: 32px;
+                border: 3px solid rgba(0, 0, 0, 0.1);
+                border-top-color: #555;
+                border-radius: 50%;
+                animation: spin 0.7s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
         </style>
     </head>
 
@@ -288,7 +312,7 @@
         </div>
 
         <script>
-            console.log("Version 1.0.22");
+            console.log("Version 1.0.23");
 
             let products = [
                 {
@@ -1172,10 +1196,25 @@
 
             function setImage(productId, index) {
                 const product = products.find((p) => p.id == productId);
+                const carousel = document.querySelector(`#carousel-${productId}`);
+                const imgEl = carousel.querySelector(".main-img");
+                const spinner = carousel.querySelector(".img-spinner");
 
-                const imgEl = document.querySelector(`#carousel-${productId} .main-img`);
+                // show spinner
+                spinner.style.display = "block";
+                imgEl.style.opacity = "0";
 
-                imgEl.src = toDriveUrl(product.images[index]);
+                const full = new Image();
+                full.onload = () => {
+                    imgEl.src = full.src;
+                    imgEl.style.opacity = "1";
+                    spinner.style.display = "none";
+                };
+                full.onerror = () => {
+                    spinner.style.display = "none";
+                    imgEl.style.opacity = "1";
+                };
+                full.src = toDriveUrl(product.images[index]);
 
                 activeImageIndex[productId] = index;
             }
@@ -1238,11 +1277,12 @@
 
                           <div class="carousel" id="carousel-${product.id}">
                             <img src="${toDriveUrl(product.images[0])}" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};" loading="lazy">
+                            <div class="img-spinner"></div>
                             <div class="thumbs">
                               ${product.images
                                   .map(
                                       (img, i) => `
-                                        <img src="${toDriveUrl(img)}" onclick="setImage(${product.id}, ${i})"  loading="lazy">
+                                        <img src="${toDriveUrl(img)}=s150" onclick="setImage(${product.id}, ${i})"  loading="lazy">
                                     `,
                                   )
                                   .join("")}
