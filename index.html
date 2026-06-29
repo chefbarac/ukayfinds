@@ -80,7 +80,7 @@
             .sold-banner {
                 position: absolute;
                 top: 15px;
-                left: -40px;
+                left: -30px;
                 background-color: #ff4d4d;
                 color: white;
                 text-transform: uppercase;
@@ -1073,11 +1073,10 @@
                 return ai - bi;
             }
 
-            window.addEventListener("popstate", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });
+            window.addEventListener("popstate", (e) => {
+                // Re-push state to keep trapping the back button
+                history.pushState(null, "", window.location.href);
+                window.scrollTo({ top: 0, behavior: "smooth" });
             });
 
             document.addEventListener("DOMContentLoaded", () => {
