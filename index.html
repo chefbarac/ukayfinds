@@ -1002,7 +1002,7 @@
                 // 3. If 'p' exists in the URL, populate the input field
                 if (productNumber) {
                     const searchInput = document.getElementById("search");
-                    searchInput.value = `#${productNumber}`;
+                    searchInput.value = `#${productNumber} `;
                     // 2. Create a new 'input' event
                     const event = new Event("input", {
                         bubbles: true, // Allows the event to bubble up the DOM tree
