@@ -1146,7 +1146,7 @@
                     spinner.style.display = "none";
                     // imgEl.style.opacity = "1";
                 };
-                full.src = toDriveUrl(product.images[index]) + "=w300";
+                full.src = toDriveUrl(product.images[index]) + "=w600";
 
                 activeImageIndex[productId] = index;
             }
@@ -1208,13 +1208,13 @@
                             </button>
 
                           <div class="carousel" id="carousel-${product.id}">
-                            <img src="${toDriveUrl(product.images[0])}=w300" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};" loading="lazy">
+                            <img src="${toDriveUrl(product.images[0])}=w600" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};" loading="lazy">
                             <div class="img-spinner"></div>
                             <div class="thumbs">
                               ${product.images
                                   .map(
                                       (img, i) => `
-                                        <img src="${toDriveUrl(img)}=w50" onclick="setImage(${product.id}, ${i})"  loading="lazy">
+                                        <img src="${toDriveUrl(img)}=w100" onclick="setImage(${product.id}, ${i})"  loading="lazy">
                                     `,
                                   )
                                   .join("")}
