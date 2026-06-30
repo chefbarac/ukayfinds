@@ -1301,7 +1301,7 @@
                     price,
                     favoriteMode,
                 });
-            }, 1000); // wait 1 second after user stops typing
+            }, 3000); // wait 3 second after user stops typing
 
             function render() {
                 let list = [...products];
@@ -1448,7 +1448,7 @@
             }
 
             document.querySelectorAll("input,select").forEach((x) =>
-                x.addEventListener("input", () => {
+                x.addEventListener("input", (e) => {
                     render();
                     trackFilter(e.target.value); // gtag waits for pause
                 }),
