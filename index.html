@@ -77,11 +77,10 @@
             }
 
             /* Sold Banner Styling */
-            .sold-banner {
+            .banner {
                 position: absolute;
                 top: 15px;
                 left: -30px;
-                background-color: #ff4d4d;
                 color: white;
                 text-transform: uppercase;
                 font-weight: bold;
@@ -90,6 +89,22 @@
                 transform: rotate(-45deg);
                 z-index: 10;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .sold-banner {
+                left: -32px;
+                background-color: #ff4d4d;
+            }
+
+            .reserved-banner {
+                top: 20px;
+                left: -42px;
+                background-color: #f59e0b; /* Orange - Reserved */
+            }
+
+            .new-banner {
+                left: -28px;
+                background-color: #22c55e; /* Green - New */
             }
 
             /* Optional: Fade out the card slightly if sold */
@@ -330,7 +345,7 @@
         </div>
 
         <script>
-            console.log("Version 1.0.27");
+            console.log("Version 1.0.28");
 
             let products = [
                 {
@@ -343,7 +358,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1m86vRkVzr8A1eiurZSLoe5QT-FBFpZJx||1Q5ilH_duUYjNilNyx9RsIaqsu48Tzc1a||17KzlcPFK4A3Ygnd0K6STfPGJ74iZEdvN||1mwl49EXaX7NdjU_GQVqsJ9I2iyCJoT8B",
                 },
                 {
@@ -356,7 +373,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1_X6ZIOb9mHJaEPIaSZTIswJ2xqjIe7Hr||1QwyOmAdmHRzT_lgVzjoclVlD5-4OsCpn",
                 },
                 {
@@ -369,7 +388,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1Z5AYI-soYLFB5gtQXTI__d_Z-LIMXlB8||1ruCRJWY5DnZ0b4uHOfl13fuqvklLzl84",
                 },
                 {
@@ -382,7 +403,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "145nwKtVDOmB0O0pCzKttPusYWsu3Q0Iv||1ujbyIl6NQba2hLpugH0FGcFzn4IJBYUV||10uk_Fz1-nqU1-B_22VH4ZVMPPDANGk1g",
                 },
                 {
@@ -395,7 +418,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1c3JWgxxo7k4QbFy2kmyZs2yaQk-mVzDF||1MQgRgM0kpoHht_XXnBbCZQMO7HjwMz2y",
                 },
                 {
@@ -408,7 +433,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1X7dKAHchgUuIKRV3PydbvnMuwYfYQPiB||1nMhMENl4JEssrrb7j-Ovds2VCWMSssJF",
                 },
                 {
@@ -421,7 +448,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1foPI-pqvhP762YYkKYfFJ-zoHWdECP1j||10c8hrl6vZh6fEncVvZGgMrLD26_Q38aJ||1V-LjP2tZF_zKJhnVXrt7DyqvW0DS1ehB||1BXDHxcvRUvivQHhqGhOSX57lxzfgbRNL",
                 },
                 {
@@ -434,7 +463,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1RdauQ4rZpvLsvfUm9B-gsVH93UpqS15S||1UjGD3CLHGyVtHMFmd5osorKZ9aP3Xap6||153ntxro58C-7l5FR2qY5kXZzfilTPCuF",
                 },
                 {
@@ -447,7 +478,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1xsIhZyOxX0YkQ-ALMHZh4p-uprHbmJAe||1t9dE3QuBAAwDoei94-577lsuzXCufRN2",
                 },
                 {
@@ -460,7 +493,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1K3c8nchy56_0sQnwnxFGAvlH436FcK5G||1hERU-gNcVinQzyvkOa1QZO_YgIZaNV98",
                 },
                 {
@@ -473,7 +508,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "10AkCy8DrQpeweew2VovKGsW7WH4-i-uo||1eeXnuN6lc-i0M2FaO-upX6ExdyWEDeDw||1tai636JKjBV84UXhskAFXw2-7KIqrQvo",
                 },
                 {
@@ -486,7 +523,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1on4_5OKBBi3J3RwsiYJKnUj8lNt_8-TA||1NGGWZpJSh1I9vjoHEWdcW2e9RMbOc2OF",
                 },
                 {
@@ -499,7 +538,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: true,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1q4XfYoXKDf3LXvWErfbIpCUSwUGr8Nxb||1LSf_dBAdeacA8I2S4qbleD1Wulcic2ND||1jrWgYUpcosjEGBIvbWTQu7ujW6jU5LhK||1mPCptQ9BSIsimwSnv-fRx4oGjQxLPL7A",
                 },
                 {
@@ -512,7 +553,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1eq1Zn9AGMPbh9zP-lMNtcPkvQLxRcx8T||1UuYXZwFQiIM9cw3OaLnxRPvjRPBkunmm||1CSO-HeF3W8BBJULFYql5Al7n8510BfGB||1HUnpYD5mo2s9ECVHlzGmnci5CrTe-Pei",
                 },
                 {
@@ -525,7 +568,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "157SdwmYCAtkajVoXjy-65xJiNO_rB8gR||1w0kR0Csd20DumAeey3033D6gh9HDXG8n",
                 },
                 {
@@ -538,7 +583,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1raL7TS6l2gER0YMZenmWxV25wKaMN2P3||1nTa47McX5oSI5dS0TVLsuoM6vlQC2jlR",
                 },
                 {
@@ -551,7 +598,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "15hWYw5mZVC_7AECvIEUWF9DgYDnW5BxT||1nZU80t0lCtjy-25laOys0AOEZtARrL_g",
                 },
                 {
@@ -564,7 +613,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1mGzCvlL_IhCj5d3KrppTdJAWvb4h-r_M||15SeOfIRRw-1x5LfmcxwBhKMEb7tSvrHd",
                 },
                 {
@@ -577,7 +628,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1d3gytwm4flM3YlUH4AiVximqH0x2True||1AeaFyiylcXVx780v1h4Uk1zk8zYz5T1Q||11P71wMH6lUwU4VToOcpIMmqpKsQ0kKj_",
                 },
                 {
@@ -590,7 +643,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "193ChIm7GWdEQYxTV6Ioh8vr7RnmMfxsm||1tQnfdqyOQUKgKZOyDqQJKOsu4VklbXdC||1KJeSGY7i7C4w81BT7x0z9J9uX9ls44eN||1BrtO2XkccHDKjHDQH8COZOEDib-R1_5Z||1evMKikdUSVO_caAcUo-w2ar4jkRr-2nC",
                 },
                 {
@@ -603,7 +658,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1cvPCH2xktfI6uxsV3w2q0oS1Gf8jEawZ||1qNJc7DwOC2tKINo0Tl1g1lz57pKuERxh||1FIxEltfXMCZqTzsj8YenMu1tNqpoth7S||1d-7ecLWtxKJc2e7fsYjdvjlgZ6-CjHSc",
                 },
                 {
@@ -616,7 +673,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "14_WtT4WyIPbgo6S_d85iNEaVdpXBt2wN||1E_GgQ4U6-TSsgHVJ89aAmuGPacb68QCv||1xkc-aiR1KGhoyz2afxVZ1-Z_bP9NN-tL",
                 },
                 {
@@ -629,7 +688,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "12H5Lsaary_neMblJBnLl2YEgF6E4rXWP||1UCzJ9at0NzmC9l63GRh8Q5lr3YLFqzLm",
                 },
                 {
@@ -642,7 +703,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1JGYFcCvZ5amL1Jbm4YiZVsU37sFHikDQ||1kFr5BsGT2wI82BicgpZWSbtAwyf7t-He||1ypGV_ljPd0KkK3WMQt82tx08V-8kaB5M",
                 },
                 {
@@ -655,7 +718,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1QMT26g0JWDqjy5eS2mIhQVV4c6aGZHAG||1ATSh9ImXjAEqRXB0X9eQD4c0zYjnMhPQ",
                 },
                 {
@@ -668,7 +733,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1bfD3UqUF8Za7WnHf3we5GNZZ5OgkPEOR||1itaEZZomQvSR-RAUqmfYs93LJYnCiLvo||1k-grim8hWmEGZDn7G7UaGNDt7S0NBcnt||1ZDvej7Zs-fdBfNad081U2h2SH_oekpeh",
                 },
                 {
@@ -681,7 +748,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1hzi7CK43Rnd-JCqcjiFJTTHtafQZiVMe||1mJD6dYpdXeAdpae7Xcxr5gFYFjZXl6xs||16aFWDnYg8ozB9HigiNeamjid9acrtg-i",
                 },
                 {
@@ -694,7 +763,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "10TW2nqHDKhM1yzjMuEnUbdPgy6SgVjpB||1FMc3ZcWas5nRX0miw5paZsEet13uLz36||1N6kIf5-3SBiLPI7NoYTafKCKacfUVOWM",
                 },
                 {
@@ -707,7 +778,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1OEFZAyC2h509puXuZgR1Qb9lX2zpEwKz||1f7kVANgCDAuV1e5Qa-knW6x8FCA-YvlK||1oaw2xBA5nN0KkcHzB5EPa9GcXF5Fb5Uh",
                 },
                 {
@@ -720,7 +793,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1AVlp7M0k7SFpe_YZP-JDGweDFjuVMr0U||1YDBYiqleqgq_mUZwWqC7Q8rA0ibaSO_U||1z8hK2Y1IVuEFRApAPZEdAKhTrFku7nBB||1Wu2LAJM6rwKdSyqearVy3kpGGX6xIyUn",
                 },
                 {
@@ -733,7 +808,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "12D-i8eZDEuLJ7cqRUSCTEtr7P1RGg96x||18hT63hvMK8D3ZNo23FulPiHbw0XUD84q||1qc4JDvLnIcVF7jgjVvv2KePF1UAYy2s3",
                 },
                 {
@@ -746,7 +823,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1axKHZcuIDOOHJxwQDhGzJf6uOX7-cUsg||1253hIIPbTzW283bF6dmt7JR3zhy6Qlnt||1N7JvOFH2H6YOGsfvYHsb8CoX5uif2JEa||1ksPec24a6zfWkAcSsnGn4kyVPs6KoPAU",
                 },
                 {
@@ -759,7 +838,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1vyxVxITMBxzjbnWBibwngPXZKyHQLe-X||1hh8_4pAcj3T4NDQkxrQs4fq-oM36IjbF",
                 },
                 {
@@ -772,7 +853,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1Wmwohk4Ad83lYnI0j-h9dgYZ5E83JUX4||1aoPZla0_XOSRPLlw_pqqDOuKoOdOjmLq||1gWoEviFh0OBvks43HBvTmp2WtthSElqF",
                 },
                 {
@@ -785,7 +868,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1EOGvGQO4WWmG3B3NBe2gLpzXbaDIKu9P||1qfMbw7UkSwIcnkwnYL9u0OP7SItwaAI-||1NfW2qeocTAwZ8v5MdhqjJ6YCKvMG2oLa",
                 },
                 {
@@ -798,7 +883,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1avMQWIlb9tBcZtQbAgxpiLSvzOh5ncKI||1-qAUk20oIUOC0YAIiKgu0uqCYc9c3_o-||1I-FQeJT_nD3SDLz6FytW-yIGG8WNINsK",
                 },
                 {
@@ -811,7 +898,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1mzI1svZApJCgsEDQ94GimNrsBHa5-6eO||1P06jUm1t-UeGjLYeq7xcq6RztWd3-hF0||19MmnuwBbcR5xR3gIr9HeHNGd9gEsbSnO",
                 },
                 {
@@ -824,7 +913,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1LzVIbxxrlV3s_3By3Vuiux-_exr6xsvv||12P-p8257XNonXGiUT51W5o7WIOOA-GXV||1wlPNIuy5vX9-DxJQIACRRtbaAi9p_yq-",
                 },
                 {
@@ -837,7 +928,9 @@
                     price: 80,
                     anchor_price: 99,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "13TGXg2-o8pBXRLqdIuGrwF3gaGGsMCwQ||1Y5PTIXYU0Ji4kWML7z7SLXdimP9mQt7q||1DZ2621XetBHj7ZiR6ymwyf0Ezw3l_SLc",
                 },
                 {
@@ -850,7 +943,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1E50pftcTNpKdV8CLtN5AmXdJBUksWnzn||1ulbPejMWowttgaGaUknyI73Sf7qvLfiV",
                 },
                 {
@@ -863,7 +958,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "19_AyAoaRbevsRj6GqOZa6jcz4pkh3GIT||1ixJLFGnbVxaJutGFqPXnWsl0Z-3-8ZmV||12VNb2TsvPPBIcbDkTaENE3olDX7a_aln",
                 },
                 {
@@ -876,7 +973,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "12HOViAkjMN_vIujP-9Che9sAaiRG2o3S||1oU12uXogIXDCOdYMEEtISG6bnGlllnEg||1uXq3rwUvGJ1HIIsRBANZZwyApj653QV5",
                 },
                 {
@@ -889,7 +988,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1mNtqCc8UR191AmGaV_bEDzxBU07jWQ9A||1X-OZlFDZ0JBmlC6WQPEmwA_UYYVTgHTj||1vNp6BZZ7JHAfR4CJg0aAAnFlqCkEh6Uf||19I1X7gjZgNsYteWIfYaZLQ93Exnte056",
                 },
                 {
@@ -902,7 +1003,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: true,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1gqPcHJLwLA6srBGYlzTPQfBTvvn2o6A_||17PZZZh-1p339YNb7k9isyqsPCyXCk0iH",
                 },
                 {
@@ -915,7 +1018,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1WnKh2K3bkxQ29d1Ne9XZQhBbqZ5r9nv3||1FpopwQLFGn-hQSpeMJqOHdEhUB1uEAGt||1tYvrYhvCOCgS7aG-RljNVBmfZlKyvFEy",
                 },
                 {
@@ -928,7 +1033,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1M2EEVGVVuLD9o8zQsCvidR87jRUX7-38||1PSNOC-FwTDOJkd9WkgJPwRTPAgx3QEVm||1SwREnAliKwGu_sCvwfNosSSGIIfLTbaS",
                 },
                 {
@@ -941,7 +1048,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1tD9hLBoDzi5uagFpSez1bUfJ9u9EZ0kL||1QNHwyuDyLnr04ElFu1_UdP7CQ3UcCyxP||1Uxx-NQ2T771kkgMkhdub7VY9-t-Vi12G",
                 },
                 {
@@ -954,7 +1063,9 @@
                     price: 60,
                     anchor_price: 79,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1V7hA1SEiZ2QrZwZxiYiGk_ZaWg2UObHx||1vCRER8PQ4l49e7RYj_MqpVGZHorg2JsM||1pwKpIYe2cuTvTejXH3LvWru0HLX4944u",
                 },
                 {
@@ -967,7 +1078,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1TGzY21s3qptptHnvo5PKj4pjiQw42Nsf||1zmxpKe5e1rUvejRiwcytTr8utaOnbe6i||1HDpiPQ3eezhcTy5oWZToaq9qn23hKchp",
                 },
                 {
@@ -980,7 +1093,9 @@
                     price: 45,
                     anchor_price: 59,
                     is_sold: false,
-                    is_archived: false,
+                    is_reserved: false,
+                    is_new: false,
+                    "No valid Drive URLs found": false,
                     images: "1TpvJJ8ODw6BFsorQg6rxm1TE2sL6cpOq||1aXeava7zftlz_mkHEJDm_Iqh4KT2zj3_||1M6eNXnAyXtTKuwme0wkq91S8EdvrL4jd",
                 },
             ];
@@ -1195,7 +1310,9 @@
 
                         return `
                           <div class="card ${product.is_sold ? "sold" : ""}">
-                              ${product.is_sold ? `<div class="sold-banner">Sold</div>` : ""}
+                              ${product.is_sold ? `<div class="banner sold-banner">Sold</div>` : ""}
+                              ${product.is_reserved && !product.is_sold ? `<div class="banner reserved-banner">Reserved</div>` : ""}
+                              ${product.is_new && !product.is_sold && !product.is_reserved ? `<div class="banner new-banner">New</div>` : ""}
                           <button
                           class="favorite ${fav ? "active" : ""}"
                           onclick="toggleFavorite(${product.id})">
