@@ -380,6 +380,44 @@
                     padding: 0;
                 }
             }
+
+            /* Show Favorites */
+            .fav-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 18px;
+                border-radius: 999px;
+                border: 1px solid #ddd;
+                background: #fff;
+                color: #555;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                transition:
+                    background 0.15s ease,
+                    border-color 0.15s ease,
+                    color 0.15s ease;
+            }
+
+            .fav-btn:hover {
+                background: #f5f5f5;
+                border-color: #ccc;
+            }
+
+            .fav-btn:active {
+                transform: scale(0.97);
+            }
+
+            .fav-btn i {
+                font-size: 16px;
+            }
+
+            .fav-btn.active {
+                background: #fdecec;
+                border-color: #f5b8b8;
+                color: #c0392b;
+            }
         </style>
     </head>
 
@@ -417,7 +455,8 @@
                 </div>
 
                 <div class="fav-row">
-                    <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button>
+                    <!-- <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button> -->
+                    <button id="btnShowFavorites" class="fav-btn" onclick="showFavorites()">❤️ Favorites</button>
                 </div>
             </div>
 
@@ -1604,10 +1643,12 @@
             }
 
             function showFavorites() {
+                document.getElementById("btnShowFavorites").classList.toggle("active");
                 favoriteMode = !favoriteMode;
 
+                /*
                 const btn = document.getElementById("btnShowFavorites");
-                if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites";
+                if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites"; */
 
                 render();
             }
