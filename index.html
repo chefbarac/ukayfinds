@@ -1278,6 +1278,31 @@
                 activeImageIndex[productId] = index;
             }
 
+            function debounce(fn, delay) {
+                let timer;
+                return function (...args) {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => fn.apply(this, args), delay);
+                };
+            }
+
+            // your gtag tracking call
+            const trackFilter = debounce(function (filterValue) {
+                // if (!filterValue) return; // don't track empty/cleared filter
+                const search = document.getElementById("search").value.toLowerCase();
+                const collection = document.getElementById("collection").value;
+                const size = document.getElementById("size").value;
+                const price = document.getElementById("price").value;
+
+                gtag("event", "filter_applied", {
+                    search,
+                    collection,
+                    size,
+                    price,
+                    favoriteMode,
+                });
+            }, 1000); // wait 1 second after user stops typing
+
             function render() {
                 let list = [...products];
 
@@ -1422,7 +1447,12 @@
                 render();
             }
 
-            document.querySelectorAll("input,select").forEach((x) => x.addEventListener("input", render));
+            document.querySelectorAll("input,select").forEach((x) =>
+                x.addEventListener("input", () => {
+                    render();
+                    trackFilter(e.target.value); // gtag waits for pause
+                }),
+            );
 
             // fetchData();
             render();
