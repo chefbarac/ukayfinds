@@ -319,6 +319,67 @@
                 cursor: pointer;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
+
+            /* Horizontal filter controls */
+            .controls {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .search-row input[type="search"] {
+                width: 100%;
+            }
+
+            .filter-group {
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x proximity;
+                padding: 2px 2px 8px;
+                scrollbar-width: thin;
+            }
+            .filter-group::-webkit-scrollbar {
+                height: 6px;
+            }
+            .filter-group::-webkit-scrollbar-thumb {
+                background: #ccc;
+                border-radius: 4px;
+            }
+
+            .chip {
+                flex: 0 0 auto;
+                scroll-snap-align: start;
+                padding: 7px 16px;
+                border-radius: 999px;
+                border: 1px solid #ddd;
+                background: #fff;
+                color: #555;
+                font-size: 13px;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+            .chip:hover {
+                background: #f5f5f5;
+            }
+            .chip.active {
+                background: #111;
+                border-color: #111;
+                color: #fff;
+            }
+
+            .fav-row button {
+                border-radius: 999px;
+                padding: 8px 16px;
+            }
+
+            @media (min-width: 640px) {
+                .filter-group {
+                    overflow-x: visible;
+                    flex-wrap: wrap;
+                    padding: 0;
+                }
+            }
         </style>
     </head>
 
@@ -334,26 +395,30 @@
 
         <div class="container">
             <div class="controls">
-                <input type="search" id="search" placeholder="Search clothes..." />
+                <div class="search-row">
+                    <input type="search" id="search" placeholder="Search clothes..." />
+                </div>
 
-                <select id="collection">
-                    <option value="">All Collections</option>
-                    <!-- Auto Populated Options -->
-                </select>
+                <div class="filter-group" id="collection" data-filter="collection">
+                    <button class="chip active" data-value="">All collections</button>
+                    <!-- Auto Populated: <button class="chip" data-value="summer">Summer</button> etc -->
+                </div>
 
-                <select id="size">
-                    <option value="">All Sizes</option>
-                </select>
+                <div class="filter-group" id="size" data-filter="size">
+                    <button class="chip active" data-value="">All sizes</button>
+                </div>
 
-                <select id="price">
-                    <option value="">Any Price</option>
-                </select>
+                <div class="filter-group" id="price" data-filter="price">
+                    <button class="chip active" data-value="">Any price</button>
+                </div>
 
-                <select id="status">
-                    <option value="">Any Status</option>
-                </select>
+                <div class="filter-group" id="status" data-filter="status">
+                    <button class="chip active" data-value="">Any status</button>
+                </div>
 
-                <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button>
+                <div class="fav-row">
+                    <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button>
+                </div>
             </div>
 
             <div id="products" class="products">Loading products...</div>
@@ -361,7 +426,7 @@
         </div>
 
         <script>
-            console.log("Version 1.0.29");
+            console.log("Version 1.1.0");
 
             let products = [
                 {
@@ -1142,6 +1207,18 @@
                 Premium: "Premium",
             };
 
+            document.querySelectorAll(".filter-group").forEach(function (group) {
+                group.addEventListener("click", function (e) {
+                    var btn = e.target.closest(".chip");
+                    if (!btn) return;
+                    group.querySelectorAll(".chip").forEach(function (c) {
+                        c.classList.remove("active");
+                    });
+                    btn.classList.add("active");
+                    group.dataset.value = btn.dataset.value; // read this wherever you used select.value before
+                });
+            });
+
             function cleanParams() {
                 const url = new URL(window.location);
 
@@ -1155,6 +1232,7 @@
                 window.history.replaceState({}, "", cleanUrl);
             }
 
+            /*
             function handleParams() {
                 // 1. Get the query string from the URL (e.g., ?p=javascript)
                 const urlParams = new URLSearchParams(window.location.search);
@@ -1189,6 +1267,42 @@
                     // 3. Dispatch the event on the input element
                     collectionInput.dispatchEvent(event);
                 }
+            }*/
+
+            function handleParams() {
+                // 1. Get the query string from the URL (e.g., ?p=javascript)
+                const urlParams = new URLSearchParams(window.location.search);
+
+                // 2. Extract the value of the 'p' parameter
+                const productNumber = urlParams.get("p");
+                const collectionName = urlParams.get("c");
+                // cleanParams();
+
+                // 3. If 'p' exists in the URL, populate the input field
+                if (productNumber) {
+                    const searchInput = document.getElementById("search");
+                    searchInput.value = `#${productNumber} `;
+                    const event = new Event("input", {
+                        bubbles: true,
+                        cancelable: true,
+                    });
+                    searchInput.dispatchEvent(event);
+                }
+
+                if (collectionName) {
+                    const collectionGroup = document.getElementById("collection");
+                    const targetChip = collectionGroup.querySelector(`.chip[data-value="${collectionName}"]`);
+                    if (targetChip) {
+                        targetChip.click(); // triggers your existing delegated click handler
+                        /*const event = new Event("click", {
+                            bubbles: true,
+                            cancelable: true,
+                        });
+                        targetChip.dispatchEvent(event);*/
+                    } else {
+                        console.warn(`No chip found for collection "${collectionName}"`);
+                    }
+                }
             }
 
             async function populateFilters() {
@@ -1211,6 +1325,7 @@
                     count: products.filter((p) => p.status === status).length,
                 }));
 
+                /*
                 const fillSelect = (id, items, labelFn, valueFn) => {
                     const select = document.getElementById(id);
                     select.querySelectorAll('option:not([value=""])').forEach((o) => o.remove());
@@ -1219,6 +1334,21 @@
                         opt.value = valueFn ? valueFn(item) : item.name;
                         opt.textContent = labelFn(item);
                         select.appendChild(opt);
+                    });
+                };*/
+
+                const fillSelect = (id, items, labelFn, valueFn) => {
+                    const group = document.getElementById(id);
+                    // remove every chip except the "All ..." default (the one with empty value)
+                    group.querySelectorAll('.chip:not([data-value=""])').forEach((c) => c.remove());
+
+                    items.forEach((item) => {
+                        const chip = document.createElement("button");
+                        chip.className = "chip";
+                        chip.type = "button";
+                        chip.dataset.value = valueFn ? valueFn(item) : item.name;
+                        chip.textContent = labelFn(item);
+                        group.appendChild(chip);
                     });
                 };
 
@@ -1333,11 +1463,16 @@
             function render() {
                 let list = [...products];
 
-                const search = document.getElementById("search").value.toLowerCase();
+                /*const search = document.getElementById("search").value.toLowerCase();
                 const collection = document.getElementById("collection").value;
                 const size = document.getElementById("size").value;
                 const price = document.getElementById("price").value;
-                const status = document.getElementById("status").value;
+                const status = document.getElementById("status").value;*/
+                const search = document.getElementById("search").value.toLowerCase();
+                const collection = document.getElementById("collection").dataset.value;
+                const size = document.getElementById("size").dataset.value;
+                const price = document.getElementById("price").dataset.value;
+                const status = document.getElementById("status").dataset.value;
 
                 if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
                 if (collection) list = list.filter((x) => x.collection === collection);
@@ -1477,12 +1612,34 @@
                 render();
             }
 
+            /*
             document.querySelectorAll("input,select").forEach((x) =>
                 x.addEventListener("input", (e) => {
                     render();
                     trackFilter(e.target.value); // gtag waits for pause
                 }),
-            );
+            );*/
+
+            // Search input still works the same way
+            document.getElementById("search").addEventListener("input", (e) => {
+                render();
+                trackFilter(e.target.value);
+            });
+
+            // Filter chips: click replaces input
+            document.querySelectorAll(".filter-group").forEach((group) => {
+                group.addEventListener("click", (e) => {
+                    const btn = e.target.closest(".chip");
+                    if (!btn) return;
+
+                    group.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+                    btn.classList.add("active");
+                    group.dataset.value = btn.dataset.value;
+
+                    render();
+                    trackFilter(btn.dataset.value);
+                });
+            });
 
             // fetchData();
             render();
