@@ -1481,8 +1481,7 @@
             }
 
             // your gtag tracking call
-            const trackFilter = debounce(function (filterValue) {
-                // if (!filterValue) return; // don't track empty/cleared filter
+            const trackFilter = debounce(function () {
                 const search = document.getElementById("search").value.toLowerCase();
                 const collection = document.getElementById("collection").value;
                 const size = document.getElementById("size").value;
@@ -1651,6 +1650,7 @@
                 if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites"; */
 
                 render();
+                trackFilter();
             }
 
             /*
@@ -1664,7 +1664,7 @@
             // Search input still works the same way
             document.getElementById("search").addEventListener("input", (e) => {
                 render();
-                trackFilter(e.target.value);
+                trackFilter();
             });
 
             // Filter chips: click replaces input
@@ -1678,7 +1678,7 @@
                     group.dataset.value = btn.dataset.value;
 
                     render();
-                    trackFilter(btn.dataset.value);
+                    trackFilter();
                 });
             });
 
