@@ -353,7 +353,7 @@
             </div>
 
             <div id="products" class="products">Loading products...</div>
-            <button id="scrollTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+            <button id="scrollTopBtn" onclick="scrollBackToTop()">↑</button>
         </div>
 
         <script>
@@ -1423,6 +1423,13 @@
                 navigator.clipboard.writeText(url).then(() => {
                     alert("Product link now copied to clipboard!");
                     // optional: show a brief "Copied!" toast
+                });
+            }
+
+            function scrollBackToTop() {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                gtag("event", "button_click", {
+                    button_name: "scroll_back_to_top",
                 });
             }
 
