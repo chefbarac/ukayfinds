@@ -349,6 +349,10 @@
                     <option value="">Any Price</option>
                 </select>
 
+                <select id="status">
+                    <option value="">Any Status</option>
+                </select>
+
                 <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button>
             </div>
 
@@ -574,7 +578,7 @@
                     id: 15,
                     name: "#15 Seniors",
                     description: "Cotton, garter sleeves",
-                    collection: "T-Shirt",
+                    collection: "Crop Top",
                     size: "M",
                     category: "Affordable",
                     price: 45,
@@ -709,7 +713,7 @@
                     id: 24,
                     name: "#24 Fu Shi",
                     description: "Cotton, stretachable",
-                    collection: "T-Shirt",
+                    collection: "Cropped Tee",
                     size: "S",
                     category: "Affordable",
                     price: 45,
@@ -919,7 +923,7 @@
                     id: 38,
                     name: "#38 ",
                     description: "Cotton",
-                    collection: "T-Shirt",
+                    collection: "Cropped Tee",
                     size: "M",
                     category: "Affordable",
                     price: 45,
@@ -964,7 +968,7 @@
                     id: 41,
                     name: "#41 AIMOYAN",
                     description: "Cotton",
-                    collection: "T-Shirt",
+                    collection: "Cropped Tee",
                     size: "M",
                     category: "Affordable",
                     price: 45,
@@ -994,7 +998,7 @@
                     id: 43,
                     name: "#43 R Standard",
                     description: "Cotton",
-                    collection: "T-Shirt",
+                    collection: "Cropped Tee",
                     size: "M",
                     category: "Affordable",
                     price: 45,
@@ -1112,8 +1116,24 @@
                 },
             ];
 
+            function getStatus(item) {
+                if (item.is_sold) {
+                    return "Sold";
+                }
+
+                if (item.is_reserved) {
+                    return "Reserved";
+                }
+
+                return "Available";
+            }
+
             products = products.toReversed().map((p) => {
-                return { ...p, images: p.images ? p.images.split("||") : [] };
+                return {
+                    ...p,
+                    images: p.images ? p.images.split("||") : [],
+                    status: getStatus(p),
+                };
             });
 
             const categoryMap = {
@@ -1186,6 +1206,10 @@
                         name: price,
                         count: products.filter((p) => p.price === price).length,
                     }));
+                const statuses = [...new Set(products.map((p) => p.status).filter(Boolean))].sort().map((status) => ({
+                    name: status,
+                    count: products.filter((p) => p.status === status).length,
+                }));
 
                 const fillSelect = (id, items, labelFn, valueFn) => {
                     const select = document.getElementById(id);
@@ -1206,6 +1230,7 @@
                     (p) => `₱${p.name} (${p.count})`,
                     (p) => String(p.name),
                 );
+                fillSelect("status", statuses, (c) => `${c.name} (${c.count})`);
             }
 
             function sizeComparator(a, b) {
@@ -1293,6 +1318,7 @@
                 const collection = document.getElementById("collection").value;
                 const size = document.getElementById("size").value;
                 const price = document.getElementById("price").value;
+                const status = document.getElementById("status").value;
 
                 gtag("event", "filter_applied", {
                     search,
@@ -1300,6 +1326,7 @@
                     size,
                     price,
                     favoriteMode,
+                    status,
                 });
             }, 3000); // wait 3 second after user stops typing
 
@@ -1307,20 +1334,16 @@
                 let list = [...products];
 
                 const search = document.getElementById("search").value.toLowerCase();
-
                 const collection = document.getElementById("collection").value;
-
                 const size = document.getElementById("size").value;
-
                 const price = document.getElementById("price").value;
+                const status = document.getElementById("status").value;
 
                 if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
-
                 if (collection) list = list.filter((x) => x.collection === collection);
-
                 if (size) list = list.filter((x) => x.size === size);
-
                 if (price) list = list.filter((x) => x.price === Number(price));
+                if (status) list = list.filter((x) => x.status === status);
 
                 if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
 
