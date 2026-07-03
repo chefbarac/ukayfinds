@@ -455,8 +455,12 @@
                     <button class="chip active" data-value="">All sizes</button>
                 </div>
 
-                <div class="filter-group" id="price" data-filter="price">
+                <!-- <div class="filter-group" id="price" data-filter="price">
                     <button class="chip active" data-value="">Any price</button>
+                </div> -->
+
+                <div class="filter-group" id="category" data-filter="category">
+                    <button class="chip active" data-value="">Any pick</button>
                 </div>
 
                 <div class="filter-group" id="status" data-filter="status">
@@ -469,7 +473,7 @@
         </div>
 
         <script>
-            console.log("Version 1.1.3");
+            console.log("Version 1.1.4");
 
             let products = [
                 {
@@ -1236,19 +1240,21 @@
                 return "Available";
             }
 
+            // NOTE: contains emojis
+            const categoryMap = {
+                Affordable: "🟤 Sulit",
+                Regular: "🟢 Classic",
+                Premium: "🟣 Premium",
+            };
+
             products = products.toReversed().map((p) => {
                 return {
                     ...p,
                     images: p.images ? p.images.split("||") : [],
                     status: getStatus(p),
+                    category: categoryMap[p.category],
                 };
             });
-
-            const categoryMap = {
-                Affordable: "Sulit",
-                Regular: "Classic",
-                Premium: "Premium",
-            };
 
             document.querySelectorAll(".filter-group").forEach(function (group) {
                 group.addEventListener("click", function (e) {
@@ -1357,12 +1363,16 @@
                     name: size,
                     count: products.filter((p) => p.size === size).length,
                 }));
-                const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))]
+                /* const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))]
                     .sort((a, b) => a - b)
                     .map((price) => ({
                         name: price,
                         count: products.filter((p) => p.price === price).length,
-                    }));
+                    })); */
+                const categories = [...new Set(products.map((p) => p.category).filter(Boolean))].sort(categoryComparator).map((category) => ({
+                    name: category,
+                    count: products.filter((p) => p.category === category).length,
+                }));
                 const statuses = [...new Set(products.map((p) => p.status).filter(Boolean))].sort().map((status) => ({
                     name: status,
                     count: products.filter((p) => p.status === status).length,
@@ -1397,13 +1407,24 @@
 
                 fillSelect("collection", collections, (c) => `${c.name} (${c.count})`);
                 fillSelect("size", sizes, (s) => `${s.name} (${s.count})`);
-                fillSelect(
+                /* fillSelect(
                     "price",
                     prices,
                     (p) => `₱${p.name} (${p.count})`,
                     (p) => String(p.name),
-                );
+                ); */
+                fillSelect("category", categories, (c) => `${c.name.split(" ")[1]} (${c.count})`);
                 fillSelect("status", statuses, (c) => `${c.name} (${c.count})`);
+            }
+
+            function categoryComparator(a, b) {
+                const ORDER = ["🟤 Sulit", "🟢 Classic", "🟣 Premium"];
+                const ai = ORDER.indexOf(a);
+                const bi = ORDER.indexOf(b);
+                if (ai === -1 && bi === -1) return a.localeCompare(b);
+                if (ai === -1) return 1;
+                if (bi === -1) return -1;
+                return ai - bi;
             }
 
             function sizeComparator(a, b) {
@@ -1435,6 +1456,7 @@
             })();
 
             document.addEventListener("DOMContentLoaded", () => {
+                console.log("DOMContentLoaded!");
                 const ua = navigator.userAgent || navigator.vendor;
 
                 // const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
@@ -1574,17 +1596,25 @@
 
             // your gtag tracking call
             const trackFilter = debounce(function () {
-                const search = document.getElementById("search").value.toLowerCase();
+                /* const search = document.getElementById("search").value.toLowerCase();
                 const collection = document.getElementById("collection").value;
                 const size = document.getElementById("size").value;
                 const price = document.getElementById("price").value;
-                const status = document.getElementById("status").value;
+                const category = document.getElementById("category").value;
+                const status = document.getElementById("status").value; */
+
+                const search = document.getElementById("search").value.toLowerCase();
+                const collection = document.getElementById("collection").dataset.value;
+                const size = document.getElementById("size").dataset.value;
+                // const price = document.getElementById("price").dataset.value;
+                const category = document.getElementById("category").dataset.value;
+                const status = document.getElementById("status").dataset.value;
 
                 gtag("event", "filter_applied", {
                     search,
                     collection,
                     size,
-                    price,
+                    category,
                     favoriteMode,
                     status,
                 });
@@ -1599,21 +1629,18 @@
             function render() {
                 let list = [...products];
 
-                /*const search = document.getElementById("search").value.toLowerCase();
-                const collection = document.getElementById("collection").value;
-                const size = document.getElementById("size").value;
-                const price = document.getElementById("price").value;
-                const status = document.getElementById("status").value;*/
                 const search = document.getElementById("search").value.toLowerCase();
                 const collection = document.getElementById("collection").dataset.value;
                 const size = document.getElementById("size").dataset.value;
-                const price = document.getElementById("price").dataset.value;
+                // const price = document.getElementById("price").dataset.value;
+                const category = document.getElementById("category").dataset.value;
                 const status = document.getElementById("status").dataset.value;
 
                 if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
                 if (collection) list = list.filter((x) => x.collection === collection);
                 if (size) list = list.filter((x) => x.size === size);
-                if (price) list = list.filter((x) => x.price === Number(price));
+                // if (price) list = list.filter((x) => x.price === Number(price));
+                if (category) list = list.filter((x) => x.category === category);
                 if (status) list = list.filter((x) => x.status === status);
 
                 if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
@@ -1629,9 +1656,9 @@
                 }
 
                 const imageColors = {
-                    Affordable: "linear-gradient(135deg, #F6EBDD 0%, #E4CDB2 50%, #CFAF8B 100%)",
-                    Regular: "linear-gradient(135deg, #DCEEEA 0%, #A9CFC8 50%, #6FA8A0 100%)",
-                    Premium: "linear-gradient(135deg, #EDE1EC 0%, #B98BC9 50%, #6B3F7A 100%)",
+                    "🟤 Sulit": "linear-gradient(135deg, #F6EBDD 0%, #E4CDB2 50%, #CFAF8B 100%)",
+                    "🟢 Classic": "linear-gradient(135deg, #DCEEEA 0%, #A9CFC8 50%, #6FA8A0 100%)",
+                    "🟣 Premium": "linear-gradient(135deg, #EDE1EC 0%, #B98BC9 50%, #6B3F7A 100%)",
                 };
 
                 productContainer.innerHTML = list
@@ -1701,7 +1728,7 @@
                             <br><br>
 
                             <span class="badge" style="background: ${imageColors[product.category]}">
-                              ${categoryMap[product.category]}
+                              ${product.category}
                             </span>
 
                             <span class="price">
