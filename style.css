@@ -479,7 +479,7 @@ button {
     position: sticky;
     top: 0;
     padding-top: 8px;
-    z-index: 10;
+    z-index: 20;
     background: #f7f3ee; /* match your page background so content doesn't show through */
     transition: padding 0.2s ease;
     border-bottom-left-radius: 10px;
