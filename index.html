@@ -64,7 +64,15 @@
             <div class="controls" id="controls">
                 <div style="display: flex; gap: 10px">
                     <div class="search-row" style="flex-shrink: 1; width: 100%">
-                        <input type="search" id="search" placeholder="Search..." />
+                        <div class="search-wrapper">
+                            <input type="search" id="search" placeholder="Search..." />
+                            <button type="button" id="clear-search" aria-label="Clear search">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="fav-row" style="flex-shrink: 0">
                         <button id="btnShowFavorites" class="fav-btn" style="height: 100%" onclick="showFavorites()">❤️ Favorites</button>

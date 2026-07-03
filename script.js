@@ -656,5 +656,28 @@ document.querySelectorAll(".filter-group").forEach((group) => {
     });
 });
 
-// fetchData();
+// SEARCH
+const searchInput = document.getElementById('search');
+const clearButton = document.getElementById('clear-search');
+
+// Toggle visibility class smoothly
+searchInput.addEventListener('input', () => {
+    if (searchInput.value) {
+        clearButton.classList.add('is-visible');
+    } else {
+        clearButton.classList.remove('is-visible');
+    }
+});
+
+// Clear and blur interaction
+clearButton.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    searchInput.value = '';
+    searchInput.blur();
+    clearButton.classList.remove('is-visible');
+    render();
+});
+// END SEARCH
+
+
 render();

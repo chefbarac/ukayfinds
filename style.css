@@ -519,3 +519,91 @@ button {
     border: 1px solid #d9b17d;
     color: #2b3d3f;
 }
+.filter-toggle-btn.filters-active:hover {
+    background: #f5f5f5;
+    color: #334155;
+}
+
+/* SEARCH */
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 10px 36px 10px 14px; /* Room for the beautiful X */
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+/* Subtle focus ring for the input itself */
+.search-wrapper input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Remove default browser clear button */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* The Beautiful X Button Container */
+#clear-search {
+    position: absolute;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border: none;
+    background: #f7e8d5; /* Soft, neutral background circle */
+    color: #2b3d3f; /* Slate gray icon color */
+    border-radius: 50%;
+    /* background: #f7e8d5;
+    border: 1px solid #d9b17d;
+    color: #2b3d3f; */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Smooth entry/exit transition */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active/Visible State applied via JS */
+#clear-search.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* Micro-interactions */
+#clear-search:hover {
+    background: #f5f5f5; /* Darkens slightly on hover */
+    color: #334155;
+}
+
+#clear-search:active {
+    transform: scale(0.9); /* Haptic-like shrink when tapped */
+}
+
+/* Ensure the SVG scales perfectly inside the button */
+#clear-search svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* END SEARCH */
