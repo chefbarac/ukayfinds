@@ -53,7 +53,9 @@
             .container {
                 max-width: 1200px;
                 margin: auto;
-                padding: 20px;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 20px;
             }
 
             /* Controls */
@@ -341,6 +343,7 @@
                 scroll-snap-type: x proximity;
                 padding: 2px 2px 8px;
                 scrollbar-width: thin;
+                margin-bottom: 5px;
             }
             .filter-group::-webkit-scrollbar {
                 height: 6px;
@@ -366,9 +369,9 @@
                 background: #f5f5f5;
             }
             .chip.active {
-                background: #111;
-                border-color: #111;
-                color: #fff;
+                background: #f9efe3;
+                border: 1px solid #d8b07b;
+                color: #6a4320;
             }
 
             .fav-row button {
@@ -421,6 +424,52 @@
                 border-color: #f5b8b8;
                 color: #c0392b;
             }
+
+            /* COLLAPSE FILTER ON SCROLL */
+            .controls {
+                position: sticky;
+                top: 0;
+                padding-top: 10px;
+                z-index: 10;
+                background: #f7f7f7; /* match your page background so content doesn't show through */
+                transition: padding 0.2s ease;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+
+            .filter-groups-wrap {
+                max-height: 500px; /* generous upper bound, adjust if your chips wrap taller */
+                overflow: hidden;
+                transition:
+                    max-height 0.25s ease,
+                    opacity 0.2s ease,
+                    margin 0.2s ease;
+                opacity: 1;
+            }
+
+            .controls.collapsed .filter-groups-wrap {
+                max-height: 0;
+                opacity: 0;
+                margin: 0;
+                pointer-events: none;
+            }
+
+            .controls.collapsed .filters-toggle-row {
+                display: block !important;
+            }
+
+            /* when manually expanded again after collapse, show chips even while scrolled */
+            .controls.collapsed.force-expanded .filter-groups-wrap {
+                max-height: 500px;
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .filter-toggle-btn.filters-active {
+                background: #f9efe3;
+                border: 1px solid #d8b07b;
+                color: #6a4320;
+            }
         </style>
     </head>
 
@@ -435,36 +484,35 @@
         </header>
 
         <div class="container">
-            <div class="controls">
+            <div class="controls" id="controls">
                 <div style="display: flex; align-items: center; gap: 10px">
                     <div class="search-row" style="flex-shrink: 1; width: 100%">
-                        <input type="search" id="search" placeholder="Search clothes..." />
+                        <input type="search" id="search" placeholder="Search names..." />
                     </div>
                     <div class="fav-row" style="flex-shrink: 0">
-                        <!-- <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button> -->
                         <button id="btnShowFavorites" class="fav-btn" onclick="showFavorites()">❤️ Favorites</button>
+                    </div>
+                    <div class="fav-row filters-toggle-row" style="flex-shrink: 0; display: none">
+                        <button id="btnToggleFilters" class="fav-btn filter-toggle-btn" onclick="toggleFilters()">☰ Filters</button>
                     </div>
                 </div>
 
-                <div class="filter-group" id="collection" data-filter="collection">
-                    <button class="chip active" data-value="">All collections</button>
-                    <!-- Auto Populated: <button class="chip" data-value="summer">Summer</button> etc -->
-                </div>
+                <div class="filter-groups-wrap" id="filterGroupsWrap">
+                    <div class="filter-group" id="collection" data-filter="collection">
+                        <button class="chip active" data-value="">All collections</button>
+                    </div>
 
-                <div class="filter-group" id="size" data-filter="size">
-                    <button class="chip active" data-value="">All sizes</button>
-                </div>
+                    <div class="filter-group" id="size" data-filter="size">
+                        <button class="chip active" data-value="">All sizes</button>
+                    </div>
 
-                <!-- <div class="filter-group" id="price" data-filter="price">
-                    <button class="chip active" data-value="">Any price</button>
-                </div> -->
+                    <div class="filter-group" id="category" data-filter="category">
+                        <button class="chip active" data-value="">Any picks</button>
+                    </div>
 
-                <div class="filter-group" id="category" data-filter="category">
-                    <button class="chip active" data-value="">Any pick</button>
-                </div>
-
-                <div class="filter-group" id="status" data-filter="status">
-                    <button class="chip active" data-value="">Any status</button>
+                    <div class="filter-group" id="status" data-filter="status">
+                        <button class="chip active" data-value="">Any status</button>
+                    </div>
                 </div>
             </div>
 
@@ -1455,6 +1503,36 @@
                 btn.style.display = "none";
             })();
 
+            // COLLAPSE FILTER ON SCROLL
+            let lastScrollY = window.scrollY;
+            let filtersForceExpanded = false;
+            const controlsEl = document.getElementById("controls");
+            const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
+
+            window.addEventListener(
+                "scroll",
+                () => {
+                    const currentY = window.scrollY;
+
+                    if (currentY > SCROLL_THRESHOLD) {
+                        controlsEl.classList.add("collapsed");
+                    } else {
+                        controlsEl.classList.remove("collapsed");
+                        controlsEl.classList.remove("force-expanded");
+                        filtersForceExpanded = false;
+                    }
+
+                    lastScrollY = currentY;
+                },
+                { passive: true },
+            );
+
+            function toggleFilters() {
+                filtersForceExpanded = !filtersForceExpanded;
+                controlsEl.classList.toggle("force-expanded", filtersForceExpanded);
+            }
+            // END COLLAPSE FILTER ON SCROLL
+
             document.addEventListener("DOMContentLoaded", () => {
                 console.log("DOMContentLoaded!");
                 const ua = navigator.userAgent || navigator.vendor;
@@ -1626,6 +1704,15 @@
                 });
             }, 3000); // wait 3 second after user stops typing
 
+            function updateFilterCount(filters) {
+                const activeCount = Object.values(filters).filter((v) => v !== "" && v != null).length;
+                const btn = document.getElementById("btnToggleFilters");
+                if (btn) {
+                    btn.textContent = activeCount > 0 ? `☰ Filters (${activeCount})` : `☰ Filters`;
+                    btn.classList.toggle("filters-active", activeCount > 0);
+                }
+            }
+
             function render() {
                 let list = [...products];
 
@@ -1635,6 +1722,8 @@
                 // const price = document.getElementById("price").dataset.value;
                 const category = document.getElementById("category").dataset.value;
                 const status = document.getElementById("status").dataset.value;
+
+                updateFilterCount({ collection, size, category, status });
 
                 if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
                 if (collection) list = list.filter((x) => x.collection === collection);
