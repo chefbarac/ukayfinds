@@ -190,7 +190,8 @@
             .main-img {
                 width: 100%;
                 height: 360px;
-                object-fit: contain;
+                /* object-fit: contain; */
+                object-fit: cover;
                 border-radius: 10px;
             }
 
@@ -435,8 +436,14 @@
 
         <div class="container">
             <div class="controls">
-                <div class="search-row">
-                    <input type="search" id="search" placeholder="Search clothes..." />
+                <div style="display: flex; align-items: center; gap: 10px">
+                    <div class="search-row" style="flex-shrink: 1; width: 100%">
+                        <input type="search" id="search" placeholder="Search clothes..." />
+                    </div>
+                    <div class="fav-row" style="flex-shrink: 0">
+                        <!-- <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button> -->
+                        <button id="btnShowFavorites" class="fav-btn" onclick="showFavorites()">❤️ Favorites</button>
+                    </div>
                 </div>
 
                 <div class="filter-group" id="collection" data-filter="collection">
@@ -454,11 +461,6 @@
 
                 <div class="filter-group" id="status" data-filter="status">
                     <button class="chip active" data-value="">Any status</button>
-                </div>
-
-                <div class="fav-row">
-                    <!-- <button id="btnShowFavorites" onclick="showFavorites()">❤️ Favorites</button> -->
-                    <button id="btnShowFavorites" class="fav-btn" onclick="showFavorites()">❤️ Favorites</button>
                 </div>
             </div>
 
@@ -1629,7 +1631,7 @@
                 const imageColors = {
                     Affordable: "linear-gradient(135deg, #F6EBDD 0%, #E4CDB2 50%, #CFAF8B 100%)",
                     Regular: "linear-gradient(135deg, #DCEEEA 0%, #A9CFC8 50%, #6FA8A0 100%)",
-                    Premium: "linear-gradient(135deg, #F5E1DD 0%, #DDB1A8 50%, #B97870 100%)",
+                    Premium: "linear-gradient(135deg, #EDE1EC 0%, #B98BC9 50%, #6B3F7A 100%)",
                 };
 
                 productContainer.innerHTML = list
@@ -1637,8 +1639,20 @@
                     .map((product) => {
                         const fav = favorites.includes(product.id);
 
+                        /*
+                         style="background:
+                            linear-gradient(white, white) padding-box,
+                            ${imageColors[product.category] || "#c8c8c8"} border-box;
+                            border: 1px solid transparent;
+                            border-radius: 12px;"
+                            */
+
                         return `
-                          <div class="card ${product.is_sold ? "sold" : ""}">
+                          <div class="card ${product.is_sold ? "sold" : ""}" style="background:
+                            linear-gradient(white, white) padding-box,
+                            ${imageColors[product.category] || "#c8c8c8"} border-box;
+                            border: 1px solid transparent;
+                            border-radius: 12px;">
                               ${product.is_sold ? `<div class="banner sold-banner">Sold</div>` : ""}
                               ${product.is_reserved && !product.is_sold ? `<div class="banner reserved-banner">Reserved</div>` : ""}
                               ${product.is_new && !product.is_sold && !product.is_reserved ? `<div class="banner new-banner">New</div>` : ""}
@@ -1654,7 +1668,7 @@
                             </button>
 
                           <div class="carousel" id="carousel-${product.id}">
-                            <img src="${toDriveUrl(product.images[0])}=w600" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"};" loading="lazy">
+                            <img src="${toDriveUrl(product.images[0])}=w600" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"}; padding: 1px;" loading="lazy">
                             <div class="img-spinner"></div>
                             <div class="thumbs">
                               ${product.images
