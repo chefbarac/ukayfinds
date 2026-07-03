@@ -1,0 +1,1390 @@
+console.log("Version 1.1.4");
+
+let products = [
+    {
+        id: 1,
+        name: "#1 Seven Studio",
+        description: "Cotton, stretchable",
+        collection: "Crop Top",
+        size: "S",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1m86vRkVzr8A1eiurZSLoe5QT-FBFpZJx||1Q5ilH_duUYjNilNyx9RsIaqsu48Tzc1a||17KzlcPFK4A3Ygnd0K6STfPGJ74iZEdvN||1mwl49EXaX7NdjU_GQVqsJ9I2iyCJoT8B",
+    },
+    {
+        id: 2,
+        name: "#2 Hone Baby",
+        description: "Ultraman sequin graphic sa front, Eye-catching reversible sequins, Soft ug comfy fabric",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1_X6ZIOb9mHJaEPIaSZTIswJ2xqjIe7Hr||1QwyOmAdmHRzT_lgVzjoclVlD5-4OsCpn",
+    },
+    {
+        id: 3,
+        name: "#3 ",
+        description: "Cotton",
+        collection: "Polo Shirt",
+        size: "L",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1Z5AYI-soYLFB5gtQXTI__d_Z-LIMXlB8||1ruCRJWY5DnZ0b4uHOfl13fuqvklLzl84",
+    },
+    {
+        id: 4,
+        name: "#4 Europe Edition",
+        description: 'Square neckline, Stretchable fabric, Printed "HACKED" graphic sa front',
+        collection: "Crop Top",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "145nwKtVDOmB0O0pCzKttPusYWsu3Q0Iv||1ujbyIl6NQba2hLpugH0FGcFzn4IJBYUV||10uk_Fz1-nqU1-B_22VH4ZVMPPDANGk1g",
+    },
+    {
+        id: 5,
+        name: "#5 UNIQLO Disney",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1c3JWgxxo7k4QbFy2kmyZs2yaQk-mVzDF||1MQgRgM0kpoHht_XXnBbCZQMO7HjwMz2y",
+    },
+    {
+        id: 6,
+        name: "#6 Jordan",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1X7dKAHchgUuIKRV3PydbvnMuwYfYQPiB||1nMhMENl4JEssrrb7j-Ovds2VCWMSssJF",
+    },
+    {
+        id: 7,
+        name: "#7 Whale Club",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1foPI-pqvhP762YYkKYfFJ-zoHWdECP1j||10c8hrl6vZh6fEncVvZGgMrLD26_Q38aJ||1V-LjP2tZF_zKJhnVXrt7DyqvW0DS1ehB||1BXDHxcvRUvivQHhqGhOSX57lxzfgbRNL",
+    },
+    {
+        id: 8,
+        name: "#8 UNIQLO Jean-Michel Basquiat",
+        description: "Cotton, stretchable",
+        collection: "T-Shirt",
+        size: "XL",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1RdauQ4rZpvLsvfUm9B-gsVH93UpqS15S||1UjGD3CLHGyVtHMFmd5osorKZ9aP3Xap6||153ntxro58C-7l5FR2qY5kXZzfilTPCuF",
+    },
+    {
+        id: 9,
+        name: "#9 inman",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1xsIhZyOxX0YkQ-ALMHZh4p-uprHbmJAe||1t9dE3QuBAAwDoei94-577lsuzXCufRN2",
+    },
+    {
+        id: 10,
+        name: "#10 ",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1K3c8nchy56_0sQnwnxFGAvlH436FcK5G||1hERU-gNcVinQzyvkOa1QZO_YgIZaNV98",
+    },
+    {
+        id: 11,
+        name: "#11 BAR SOO",
+        description: "Cotton, stretchable",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "10AkCy8DrQpeweew2VovKGsW7WH4-i-uo||1eeXnuN6lc-i0M2FaO-upX6ExdyWEDeDw||1tai636JKjBV84UXhskAFXw2-7KIqrQvo",
+    },
+    {
+        id: 12,
+        name: "#12 DA CHAO LIU",
+        description: "Cotton, stretchable, comfy",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1on4_5OKBBi3J3RwsiYJKnUj8lNt_8-TA||1NGGWZpJSh1I9vjoHEWdcW2e9RMbOc2OF",
+    },
+    {
+        id: 13,
+        name: "#13 Beboy",
+        description: "Blue tie-dye shirt, Cartoon graphic print sa center, Soft ug comfy fabric",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: false,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1q4XfYoXKDf3LXvWErfbIpCUSwUGr8Nxb||1LSf_dBAdeacA8I2S4qbleD1Wulcic2ND||1jrWgYUpcosjEGBIvbWTQu7ujW6jU5LhK||1mPCptQ9BSIsimwSnv-fRx4oGjQxLPL7A",
+    },
+    {
+        id: 14,
+        name: "#14 XJQ",
+        description: "Cotton, comfy",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1eq1Zn9AGMPbh9zP-lMNtcPkvQLxRcx8T||1UuYXZwFQiIM9cw3OaLnxRPvjRPBkunmm||1CSO-HeF3W8BBJULFYql5Al7n8510BfGB||1HUnpYD5mo2s9ECVHlzGmnci5CrTe-Pei",
+    },
+    {
+        id: 15,
+        name: "#15 Seniors",
+        description: "Cotton, garter sleeves",
+        collection: "Crop Top",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "157SdwmYCAtkajVoXjy-65xJiNO_rB8gR||1w0kR0Csd20DumAeey3033D6gh9HDXG8n",
+    },
+    {
+        id: 16,
+        name: "#16 Vary Coon Rawoo",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "L",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1raL7TS6l2gER0YMZenmWxV25wKaMN2P3||1nTa47McX5oSI5dS0TVLsuoM6vlQC2jlR",
+    },
+    {
+        id: 17,
+        name: "#17 MJ Cost VME",
+        description: "Cotton, stretchable",
+        collection: "Crop Top",
+        size: "S",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "15hWYw5mZVC_7AECvIEUWF9DgYDnW5BxT||1nZU80t0lCtjy-25laOys0AOEZtARrL_g",
+    },
+    {
+        id: 18,
+        name: "#18 ",
+        description: "Plain navy blue t-shirt, Round neck, Minimalist design, Soft ug comfortable fabric",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1mGzCvlL_IhCj5d3KrppTdJAWvb4h-r_M||15SeOfIRRw-1x5LfmcxwBhKMEb7tSvrHd",
+    },
+    {
+        id: 19,
+        name: "#19 EASELOVE",
+        description: "Cotton",
+        collection: "Slim Fit",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1d3gytwm4flM3YlUH4AiVximqH0x2True||1AeaFyiylcXVx780v1h4Uk1zk8zYz5T1Q||11P71wMH6lUwU4VToOcpIMmqpKsQ0kKj_",
+    },
+    {
+        id: 20,
+        name: "#20 Hone Baby",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "193ChIm7GWdEQYxTV6Ioh8vr7RnmMfxsm||1tQnfdqyOQUKgKZOyDqQJKOsu4VklbXdC||1KJeSGY7i7C4w81BT7x0z9J9uX9ls44eN||1BrtO2XkccHDKjHDQH8COZOEDib-R1_5Z||1evMKikdUSVO_caAcUo-w2ar4jkRr-2nC",
+    },
+    {
+        id: 21,
+        name: "#21 PIERYOGA",
+        description: "Plain purple blouse, V-neck design, Puff sleeves, Adjustable drawstring sa kilid para mahimong cropped or regular fit",
+        collection: "Slim Fit",
+        size: "S",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1cvPCH2xktfI6uxsV3w2q0oS1Gf8jEawZ||1qNJc7DwOC2tKINo0Tl1g1lz57pKuERxh||1FIxEltfXMCZqTzsj8YenMu1tNqpoth7S||1d-7ecLWtxKJc2e7fsYjdvjlgZ6-CjHSc",
+    },
+    {
+        id: 22,
+        name: "#22 balabala",
+        description: 'All-over "balabala" logo print, Front chest pocket, Round neck',
+        collection: "T-Shirt",
+        size: "M",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "14_WtT4WyIPbgo6S_d85iNEaVdpXBt2wN||1E_GgQ4U6-TSsgHVJ89aAmuGPacb68QCv||1xkc-aiR1KGhoyz2afxVZ1-Z_bP9NN-tL",
+    },
+    {
+        id: 23,
+        name: "#23 ",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "12H5Lsaary_neMblJBnLl2YEgF6E4rXWP||1UCzJ9at0NzmC9l63GRh8Q5lr3YLFqzLm",
+    },
+    {
+        id: 24,
+        name: "#24 Fu Shi",
+        description: "Cotton, stretachable",
+        collection: "Cropped Tee",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1JGYFcCvZ5amL1Jbm4YiZVsU37sFHikDQ||1kFr5BsGT2wI82BicgpZWSbtAwyf7t-He||1ypGV_ljPd0KkK3WMQt82tx08V-8kaB5M",
+    },
+    {
+        id: 25,
+        name: "#25 Tucano",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1QMT26g0JWDqjy5eS2mIhQVV4c6aGZHAG||1ATSh9ImXjAEqRXB0X9eQD4c0zYjnMhPQ",
+    },
+    {
+        id: 26,
+        name: "#26 Byford",
+        description: "Cotton, with side pockets",
+        collection: "Whole Body",
+        size: "L",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1bfD3UqUF8Za7WnHf3we5GNZZ5OgkPEOR||1itaEZZomQvSR-RAUqmfYs93LJYnCiLvo||1k-grim8hWmEGZDn7G7UaGNDt7S0NBcnt||1ZDvej7Zs-fdBfNad081U2h2SH_oekpeh",
+    },
+    {
+        id: 27,
+        name: "#27 ",
+        description: "Cotton, stretchable, knitted, with metal chest",
+        collection: "Sexy Top",
+        size: "S",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1hzi7CK43Rnd-JCqcjiFJTTHtafQZiVMe||1mJD6dYpdXeAdpae7Xcxr5gFYFjZXl6xs||16aFWDnYg8ozB9HigiNeamjid9acrtg-i",
+    },
+    {
+        id: 28,
+        name: "#28 Love",
+        description: 'All-over star print design, "LOVE" text trim sa neckline ug sleeves, Minimalist aesthetic, Soft ug comfortable fabric',
+        collection: "T-Shirt",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "10TW2nqHDKhM1yzjMuEnUbdPgy6SgVjpB||1FMc3ZcWas5nRX0miw5paZsEet13uLz36||1N6kIf5-3SBiLPI7NoYTafKCKacfUVOWM",
+    },
+    {
+        id: 29,
+        name: "#29 Gray",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1OEFZAyC2h509puXuZgR1Qb9lX2zpEwKz||1f7kVANgCDAuV1e5Qa-knW6x8FCA-YvlK||1oaw2xBA5nN0KkcHzB5EPa9GcXF5Fb5Uh",
+    },
+    {
+        id: 30,
+        name: "#30 LuDao",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1AVlp7M0k7SFpe_YZP-JDGweDFjuVMr0U||1YDBYiqleqgq_mUZwWqC7Q8rA0ibaSO_U||1z8hK2Y1IVuEFRApAPZEdAKhTrFku7nBB||1Wu2LAJM6rwKdSyqearVy3kpGGX6xIyUn",
+    },
+    {
+        id: 31,
+        name: "#31 Kappa",
+        description: "Cotton, v-neck",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "12D-i8eZDEuLJ7cqRUSCTEtr7P1RGg96x||18hT63hvMK8D3ZNo23FulPiHbw0XUD84q||1qc4JDvLnIcVF7jgjVvv2KePF1UAYy2s3",
+    },
+    {
+        id: 32,
+        name: "#32 BADCAT!!!",
+        description: "Cute black cat silhouette print sa front, Wide round neckline, Soft ug lightweight fabric",
+        collection: "Stylish",
+        size: "M",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1axKHZcuIDOOHJxwQDhGzJf6uOX7-cUsg||1253hIIPbTzW283bF6dmt7JR3zhy6Qlnt||1N7JvOFH2H6YOGsfvYHsb8CoX5uif2JEa||1ksPec24a6zfWkAcSsnGn4kyVPs6KoPAU",
+    },
+    {
+        id: 33,
+        name: "#33 Yellow Green",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "L",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1vyxVxITMBxzjbnWBibwngPXZKyHQLe-X||1hh8_4pAcj3T4NDQkxrQs4fq-oM36IjbF",
+    },
+    {
+        id: 34,
+        name: "#34 DXCG",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "L",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1Wmwohk4Ad83lYnI0j-h9dgYZ5E83JUX4||1aoPZla0_XOSRPLlw_pqqDOuKoOdOjmLq||1gWoEviFh0OBvks43HBvTmp2WtthSElqF",
+    },
+    {
+        id: 35,
+        name: "#35 ",
+        description: "horizontal striped t-shirt, Round neck design, Cute smiley print, dry fit",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1EOGvGQO4WWmG3B3NBe2gLpzXbaDIKu9P||1qfMbw7UkSwIcnkwnYL9u0OP7SItwaAI-||1NfW2qeocTAwZ8v5MdhqjJ6YCKvMG2oLa",
+    },
+    {
+        id: 36,
+        name: "#36 XYG + Studio",
+        description: "Cotton, stretchable",
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1avMQWIlb9tBcZtQbAgxpiLSvzOh5ncKI||1-qAUk20oIUOC0YAIiKgu0uqCYc9c3_o-||1I-FQeJT_nD3SDLz6FytW-yIGG8WNINsK",
+    },
+    {
+        id: 37,
+        name: "#37 Sexy Lady",
+        description: "Cotton",
+        collection: "Sexy Top",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1VvxSVmepDSXr4ht-lnmiIfVuCjET3aCH||1cJw4v6j80bOrT9VYvqAPbqJUh1NyPKEp||11LGT37VHh1s3ziYh2scUR30Ns3p6R8am||1mzI1svZApJCgsEDQ94GimNrsBHa5-6eO||1P06jUm1t-UeGjLYeq7xcq6RztWd3-hF0||19MmnuwBbcR5xR3gIr9HeHNGd9gEsbSnO",
+    },
+    {
+        id: 38,
+        name: "#38 ",
+        description: "Cotton",
+        collection: "Cropped Tee",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1LzVIbxxrlV3s_3By3Vuiux-_exr6xsvv||12P-p8257XNonXGiUT51W5o7WIOOA-GXV||1wlPNIuy5vX9-DxJQIACRRtbaAi9p_yq-",
+    },
+    {
+        id: 39,
+        name: "#39 ",
+        description: "Cotton, stretchable, comfy",
+        collection: "T-Shirt",
+        size: "L",
+        category: "Premium",
+        price: 80,
+        anchor_price: 99,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "13TGXg2-o8pBXRLqdIuGrwF3gaGGsMCwQ||1Y5PTIXYU0Ji4kWML7z7SLXdimP9mQt7q||1DZ2621XetBHj7ZiR6ymwyf0Ezw3l_SLc",
+    },
+    {
+        id: 40,
+        name: "#40 ",
+        description: "Cotton, stretchable",
+        collection: "Sleeveless",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1E50pftcTNpKdV8CLtN5AmXdJBUksWnzn||1ulbPejMWowttgaGaUknyI73Sf7qvLfiV",
+    },
+    {
+        id: 41,
+        name: "#41 AIMOYAN",
+        description: "Cotton",
+        collection: "Cropped Tee",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "19_AyAoaRbevsRj6GqOZa6jcz4pkh3GIT||1ixJLFGnbVxaJutGFqPXnWsl0Z-3-8ZmV||12VNb2TsvPPBIcbDkTaENE3olDX7a_aln",
+    },
+    {
+        id: 42,
+        name: "#42 ",
+        description: "Cotton, stretachable, with buttons",
+        collection: "Crop Top",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "12HOViAkjMN_vIujP-9Che9sAaiRG2o3S||1oU12uXogIXDCOdYMEEtISG6bnGlllnEg||1uXq3rwUvGJ1HIIsRBANZZwyApj653QV5",
+    },
+    {
+        id: 43,
+        name: "#43 R Standard",
+        description: "Cotton",
+        collection: "Cropped Tee",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1mNtqCc8UR191AmGaV_bEDzxBU07jWQ9A||1X-OZlFDZ0JBmlC6WQPEmwA_UYYVTgHTj||1vNp6BZZ7JHAfR4CJg0aAAnFlqCkEh6Uf||19I1X7gjZgNsYteWIfYaZLQ93Exnte056",
+    },
+    {
+        id: 44,
+        name: "#44 Nanjien",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1gqPcHJLwLA6srBGYlzTPQfBTvvn2o6A_||17PZZZh-1p339YNb7k9isyqsPCyXCk0iH",
+    },
+    {
+        id: 45,
+        name: "#45 jan jian na",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1WnKh2K3bkxQ29d1Ne9XZQhBbqZ5r9nv3||1FpopwQLFGn-hQSpeMJqOHdEhUB1uEAGt||1tYvrYhvCOCgS7aG-RljNVBmfZlKyvFEy",
+    },
+    {
+        id: 46,
+        name: "#46 NSLY",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1M2EEVGVVuLD9o8zQsCvidR87jRUX7-38||1PSNOC-FwTDOJkd9WkgJPwRTPAgx3QEVm||1SwREnAliKwGu_sCvwfNosSSGIIfLTbaS",
+    },
+    {
+        id: 47,
+        name: "#47 ",
+        description: 'Orange graphic t-shirt, Round neck, "BROOKLYN Clothing Co." front print, Soft ug comfy fabric',
+        collection: "T-Shirt",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1tD9hLBoDzi5uagFpSez1bUfJ9u9EZ0kL||1QNHwyuDyLnr04ElFu1_UdP7CQ3UcCyxP||1Uxx-NQ2T771kkgMkhdub7VY9-t-Vi12G",
+    },
+    {
+        id: 48,
+        name: "#48 Adidas",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Regular",
+        price: 60,
+        anchor_price: 79,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1V7hA1SEiZ2QrZwZxiYiGk_ZaWg2UObHx||1vCRER8PQ4l49e7RYj_MqpVGZHorg2JsM||1pwKpIYe2cuTvTejXH3LvWru0HLX4944u",
+    },
+    {
+        id: 49,
+        name: "#49 JINPINGUO",
+        description: "Cotton",
+        collection: "T-Shirt",
+        size: "S",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: true,
+        is_reserved: true,
+        is_new: false,
+        is_archived: false,
+        images: "1TGzY21s3qptptHnvo5PKj4pjiQw42Nsf||1zmxpKe5e1rUvejRiwcytTr8utaOnbe6i||1HDpiPQ3eezhcTy5oWZToaq9qn23hKchp",
+    },
+    {
+        id: 50,
+        name: "#50 Dear Bear",
+        description: "Cotton, comfy",
+        collection: "Sleeveless",
+        size: "M",
+        category: "Affordable",
+        price: 45,
+        anchor_price: 59,
+        is_sold: false,
+        is_reserved: false,
+        is_new: false,
+        is_archived: false,
+        images: "1TpvJJ8ODw6BFsorQg6rxm1TE2sL6cpOq||1aXeava7zftlz_mkHEJDm_Iqh4KT2zj3_||1M6eNXnAyXtTKuwme0wkq91S8EdvrL4jd",
+    },
+];
+
+function getStatus(item) {
+    if (item.is_sold) {
+        return "Sold";
+    }
+
+    if (item.is_reserved) {
+        return "Reserved";
+    }
+
+    return "Available";
+}
+
+// NOTE: contains emojis
+const categoryMap = {
+    Affordable: "🟤 Sulit",
+    Regular: "🟢 Classic",
+    Premium: "🟣 Premium",
+};
+
+products = products.toReversed().map((p) => {
+    return {
+        ...p,
+        images: p.images ? p.images.split("||") : [],
+        status: getStatus(p),
+        category: categoryMap[p.category],
+    };
+});
+
+document.querySelectorAll(".filter-group").forEach(function (group) {
+    group.addEventListener("click", function (e) {
+        var btn = e.target.closest(".chip");
+        if (!btn) return;
+        group.querySelectorAll(".chip").forEach(function (c) {
+            c.classList.remove("active");
+        });
+        btn.classList.add("active");
+        group.dataset.value = btn.dataset.value; // read this wherever you used select.value before
+    });
+});
+
+function cleanParams() {
+    const url = new URL(window.location);
+
+    // Modify your parameters
+    url.searchParams.delete("p");
+    url.searchParams.delete("c");
+
+    // Clean up: If no parameters remain, strip the '?'
+    const cleanUrl = url.searchParams.toString() ? url.toString() : url.toString().split("?")[0];
+
+    window.history.replaceState({}, "", cleanUrl);
+}
+
+/*
+function handleParams() {
+    // 1. Get the query string from the URL (e.g., ?p=javascript)
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // 2. Extract the value of the 'p' parameter
+    const productNumber = urlParams.get("p");
+    const collectionName = urlParams.get("c");
+    // cleanParams();
+
+    // 3. If 'p' exists in the URL, populate the input field
+    if (productNumber) {
+        const searchInput = document.getElementById("search");
+        searchInput.value = `#${productNumber} `;
+        // 2. Create a new 'input' event
+        const event = new Event("input", {
+            bubbles: true, // Allows the event to bubble up the DOM tree
+            cancelable: true, // Allows the event to be canceled
+        });
+
+        // 3. Dispatch the event on the input element
+        searchInput.dispatchEvent(event);
+    }
+    if (collectionName) {
+        const collectionInput = document.getElementById("collection");
+        collectionInput.value = `${collectionName}`;
+        // 2. Create a new 'input' event
+        const event = new Event("input", {
+            bubbles: true, // Allows the event to bubble up the DOM tree
+            cancelable: true, // Allows the event to be canceled
+        });
+
+        // 3. Dispatch the event on the input element
+        collectionInput.dispatchEvent(event);
+    }
+}*/
+
+function handleParams() {
+    // 1. Get the query string from the URL (e.g., ?p=javascript)
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // 2. Extract the value of the 'p' parameter
+    const productNumber = urlParams.get("p");
+    const collectionName = urlParams.get("c");
+    // cleanParams();
+
+    // 3. If 'p' exists in the URL, populate the input field
+    if (productNumber) {
+        const searchInput = document.getElementById("search");
+        searchInput.value = `#${productNumber} `;
+        const event = new Event("input", {
+            bubbles: true,
+            cancelable: true,
+        });
+        searchInput.dispatchEvent(event);
+    }
+
+    if (collectionName) {
+        const collectionGroup = document.getElementById("collection");
+        const targetChip = collectionGroup.querySelector(`.chip[data-value="${collectionName}"]`);
+        if (targetChip) {
+            targetChip.click(); // triggers your existing delegated click handler
+            /*const event = new Event("click", {
+                bubbles: true,
+                cancelable: true,
+            });
+            targetChip.dispatchEvent(event);*/
+        } else {
+            console.warn(`No chip found for collection "${collectionName}"`);
+        }
+    }
+}
+
+async function populateFilters() {
+    const collections = [...new Set(products.map((p) => p.collection).filter(Boolean))].sort().map((collection) => ({
+        name: collection,
+        count: products.filter((p) => p.collection === collection).length,
+    }));
+    const sizes = [...new Set(products.map((p) => p.size).filter(Boolean))].sort(sizeComparator).map((size) => ({
+        name: size,
+        count: products.filter((p) => p.size === size).length,
+    }));
+    /* const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))]
+        .sort((a, b) => a - b)
+        .map((price) => ({
+            name: price,
+            count: products.filter((p) => p.price === price).length,
+        })); */
+    const categories = [...new Set(products.map((p) => p.category).filter(Boolean))].sort(categoryComparator).map((category) => ({
+        name: category,
+        count: products.filter((p) => p.category === category).length,
+    }));
+    const statuses = [...new Set(products.map((p) => p.status).filter(Boolean))].sort().map((status) => ({
+        name: status,
+        count: products.filter((p) => p.status === status).length,
+    }));
+
+    /*
+    const fillSelect = (id, items, labelFn, valueFn) => {
+        const select = document.getElementById(id);
+        select.querySelectorAll('option:not([value=""])').forEach((o) => o.remove());
+        items.forEach((item) => {
+            const opt = document.createElement("option");
+            opt.value = valueFn ? valueFn(item) : item.name;
+            opt.textContent = labelFn(item);
+            select.appendChild(opt);
+        });
+    };*/
+
+    const fillSelect = (id, items, labelFn, valueFn) => {
+        const group = document.getElementById(id);
+        // remove every chip except the "All ..." default (the one with empty value)
+        group.querySelectorAll('.chip:not([data-value=""])').forEach((c) => c.remove());
+
+        items.forEach((item) => {
+            const chip = document.createElement("button");
+            chip.className = "chip";
+            chip.type = "button";
+            chip.dataset.value = valueFn ? valueFn(item) : item.name;
+            chip.textContent = labelFn(item);
+            group.appendChild(chip);
+        });
+    };
+
+    fillSelect("collection", collections, (c) => `${c.name} (${c.count})`);
+    fillSelect("size", sizes, (s) => `${s.name} (${s.count})`);
+    /* fillSelect(
+        "price",
+        prices,
+        (p) => `₱${p.name} (${p.count})`,
+        (p) => String(p.name),
+    ); */
+    fillSelect("category", categories, (c) => `${c.name.split(" ")[1]} (${c.count})`);
+    fillSelect("status", statuses, (c) => `${c.name} (${c.count})`);
+}
+
+function categoryComparator(a, b) {
+    const ORDER = ["🟤 Sulit", "🟢 Classic", "🟣 Premium"];
+    const ai = ORDER.indexOf(a);
+    const bi = ORDER.indexOf(b);
+    if (ai === -1 && bi === -1) return a.localeCompare(b);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+}
+
+function sizeComparator(a, b) {
+    const ORDER = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"];
+    const ai = ORDER.indexOf(a.toUpperCase());
+    const bi = ORDER.indexOf(b.toUpperCase());
+    if (ai === -1 && bi === -1) return a.localeCompare(b);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+}
+
+/* window.addEventListener("popstate", (e) => {
+    // Re-push state to keep trapping the back button
+    history.pushState(null, "", window.location.href);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}); */
+
+/* scroll to top */
+(() => {
+    const btn = document.getElementById("scrollTopBtn");
+
+    window.addEventListener("scroll", () => {
+        btn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    // hide initially
+    btn.style.display = "none";
+})();
+
+// COLLAPSE FILTER ON SCROLL
+let lastScrollY = window.scrollY;
+let filtersForceExpanded = false;
+const controlsEl = document.getElementById("controls");
+const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
+
+window.addEventListener(
+    "scroll",
+    () => {
+        const currentY = window.scrollY;
+
+        if (currentY > SCROLL_THRESHOLD) {
+            controlsEl.classList.add("collapsed");
+        } else {
+            controlsEl.classList.remove("collapsed");
+            controlsEl.classList.remove("force-expanded");
+            filtersForceExpanded = false;
+        }
+
+        lastScrollY = currentY;
+    },
+    { passive: true },
+);
+
+function toggleFilters() {
+    filtersForceExpanded = !filtersForceExpanded;
+    controlsEl.classList.toggle("force-expanded", filtersForceExpanded);
+}
+// END COLLAPSE FILTER ON SCROLL
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOMContentLoaded!");
+    const ua = navigator.userAgent || navigator.vendor;
+
+    // const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
+    const isFacebookOrMessenger = /FBAN|FBAV|FB_IAB|Messenger/i.test(ua);
+
+    if (isFacebookOrMessenger) {
+        const fbMsgEl = document.getElementById("fbMessage");
+        const currentURL = window.location.origin + window.location.pathname + window.location.search + window.location.hash;
+        const intentURL = `intent://${currentURL.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
+        // In your JS, set fbMsgEl to this HTML
+        fbMsgEl.innerHTML = `
+  <div id="fb-tip-banner" style="
+  color: black !important;
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #fff8e6; border: 0.5px solid #f5c842;
+    border-radius: 8px; padding: 12px 14px;
+    position: relative; overflow: hidden; font-size: 14px;
+  ">
+    <span id="fb-tip-icon" style="font-size:20px;flex-shrink:0;margin-top:1px;">💡</span>
+    <span>
+      Tip: <a href="${intentURL}" style="color:#1a6fbf;font-weight:500;text-decoration:underline;">
+        Open in External Browser
+      </a>
+      using the
+      <span id="fb-dots" style="
+        display:inline-flex;align-items:center;gap:3px;
+        background:#f4f4f4;border:0.5px solid #ccc;
+        border-radius:4px;padding:1px 6px;font-weight:500;font-size:13px;
+        position:relative;white-space:nowrap;transition:background 0.3s,box-shadow 0.3s;
+      ">
+        <span style="letter-spacing:1px;">⋮</span> 3 dots
+        <span id="fb-arrow" style="
+          position:absolute;top:-26px;right:-6px;
+          font-size:11px;color:#c47a00;font-weight:600;
+          opacity:0;white-space:nowrap;transition:opacity 0.4s;
+        ">top-right ↗</span>
+      </span>
+      on the top-right corner for smoother experience.
+    </span>
+    <span id="fb-shimmer" style="
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.4) 50%,transparent 100%);
+      transform:translateX(-100%);
+    "></span>
+  </div>
+`;
+
+        // Animate
+        (function () {
+            const banner = document.getElementById("fb-tip-banner");
+            const icon = document.getElementById("fb-tip-icon");
+            const dots = document.getElementById("fb-dots");
+            const arrow = document.getElementById("fb-arrow");
+            const shimmer = document.getElementById("fb-shimmer");
+            let t = 0;
+
+            function sweep() {
+                shimmer.animate([{ transform: "translateX(-100%)" }, { transform: "translateX(200%)" }], { duration: 900, easing: "ease-in-out" });
+            }
+
+            function cycle() {
+                if (t === 0) {
+                    icon.animate([{ transform: "translateY(0)" }, { transform: "translateY(-5px)" }, { transform: "translateY(0)" }], { duration: 400, easing: "ease-out" });
+                    setTimeout(sweep, 200);
+                } else if (t === 1) {
+                    dots.animate(
+                        [
+                            { background: "#f4f4f4", boxShadow: "none" },
+                            { background: "#ddeeff", boxShadow: "0 0 0 2px #5599ee" },
+                            { background: "#f4f4f4", boxShadow: "none" },
+                        ],
+                        { duration: 700, easing: "ease-in-out" },
+                    );
+                    arrow.animate([{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "translateY(0)" }, { opacity: 1, transform: "translateY(0)" }, { opacity: 0 }], {
+                        duration: 1400,
+                    });
+                } else {
+                    banner.animate([{ transform: "scale(1)" }, { transform: "scale(1.015)" }, { transform: "scale(1)" }], { duration: 300, easing: "ease-out" });
+                    setTimeout(sweep, 100);
+                }
+                t = (t + 1) % 3;
+            }
+
+            cycle();
+            setInterval(cycle, 2200);
+        })();
+    }
+
+    populateFilters();
+    handleParams();
+});
+
+let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+let favoriteMode = false;
+
+const productContainer = document.getElementById("products");
+
+const activeImageIndex = {};
+
+function toDriveUrl(id) {
+    return `https://lh3.googleusercontent.com/d/${id}`;
+}
+
+function setImage(productId, index) {
+    const product = products.find((p) => p.id == productId);
+    const carousel = document.querySelector(`#carousel-${productId}`);
+    const imgEl = carousel.querySelector(".main-img");
+    const spinner = carousel.querySelector(".img-spinner");
+
+    // show spinner
+    spinner.style.display = "block";
+    // imgEl.style.opacity = "0";
+
+    const full = new Image();
+    full.onload = () => {
+        imgEl.src = full.src;
+        // imgEl.style.opacity = "1";
+        spinner.style.display = "none";
+    };
+    full.onerror = () => {
+        spinner.style.display = "none";
+        // imgEl.style.opacity = "1";
+    };
+    full.src = toDriveUrl(product.images[index]) + "=w600";
+
+    activeImageIndex[productId] = index;
+}
+
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+// your gtag tracking call
+const trackFilter = debounce(function () {
+    /* const search = document.getElementById("search").value.toLowerCase();
+    const collection = document.getElementById("collection").value;
+    const size = document.getElementById("size").value;
+    const price = document.getElementById("price").value;
+    const category = document.getElementById("category").value;
+    const status = document.getElementById("status").value; */
+
+    const search = document.getElementById("search").value.toLowerCase();
+    const collection = document.getElementById("collection").dataset.value;
+    const size = document.getElementById("size").dataset.value;
+    // const price = document.getElementById("price").dataset.value;
+    const category = document.getElementById("category").dataset.value;
+    const status = document.getElementById("status").dataset.value;
+
+    gtag("event", "filter_applied", {
+        search,
+        collection,
+        size,
+        category,
+        favoriteMode,
+        status,
+    });
+}, 3000); // wait 3 second after user stops typing
+
+const trackFavorite = debounce(function (favorite) {
+    gtag("event", "button_click", {
+        favorite,
+    });
+}, 3000); // wait 3 second after user stops typing
+
+function updateFilterCount(filters) {
+    const activeCount = Object.values(filters).filter((v) => v !== "" && v != null).length;
+    const btn = document.getElementById("btnToggleFilters");
+    if (btn) {
+        btn.textContent = activeCount > 0 ? `☰ Filters (${activeCount})` : `☰ Filters`;
+        btn.classList.toggle("filters-active", activeCount > 0);
+    }
+}
+
+function render() {
+    let list = [...products];
+
+    const search = document.getElementById("search").value.toLowerCase();
+    const collection = document.getElementById("collection").dataset.value;
+    const size = document.getElementById("size").dataset.value;
+    // const price = document.getElementById("price").dataset.value;
+    const category = document.getElementById("category").dataset.value;
+    const status = document.getElementById("status").dataset.value;
+
+    updateFilterCount({ collection, size, category, status });
+
+    if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
+    if (collection) list = list.filter((x) => x.collection === collection);
+    if (size) list = list.filter((x) => x.size === size);
+    // if (price) list = list.filter((x) => x.price === Number(price));
+    if (category) list = list.filter((x) => x.category === category);
+    if (status) list = list.filter((x) => x.status === status);
+
+    if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
+
+    if (!list.length) {
+        productContainer.innerHTML = `
+                          <div class="no-result">
+                          No products found
+                          </div>
+                          `;
+
+        return;
+    }
+
+    const imageColors = {
+        "🟤 Sulit": "linear-gradient(135deg, #F6EBDD 0%, #E4CDB2 50%, #CFAF8B 100%)",
+        "🟢 Classic": "linear-gradient(135deg, #DCEEEA 0%, #A9CFC8 50%, #6FA8A0 100%)",
+        "🟣 Premium": "linear-gradient(135deg, #EDE1EC 0%, #B98BC9 50%, #6B3F7A 100%)",
+    };
+
+    productContainer.innerHTML = list
+        .filter((p) => !p.is_archived)
+        .map((product) => {
+            const fav = favorites.includes(product.id);
+
+            /*
+             style="background:
+                linear-gradient(white, white) padding-box,
+                ${imageColors[product.category] || "#c8c8c8"} border-box;
+                border: 1px solid transparent;
+                border-radius: 12px;"
+                */
+
+            return `
+                          <div class="card ${product.is_sold ? "sold" : ""}" style="background:
+                            linear-gradient(white, white) padding-box,
+                            ${imageColors[product.category] || "#c8c8c8"} border-box;
+                            border: 1px solid transparent;
+                            border-radius: 12px;">
+                              ${product.is_sold ? `<div class="banner sold-banner">Sold</div>` : ""}
+                              ${product.is_reserved && !product.is_sold ? `<div class="banner reserved-banner">Reserved</div>` : ""}
+                              ${product.is_new && !product.is_sold && !product.is_reserved ? `<div class="banner new-banner">New</div>` : ""}
+                          <button
+                          class="favorite ${fav ? "active" : ""}"
+                          onclick="toggleFavorite(${product.id})">
+                            ${fav ? "❤️" : "♡"}
+                          </button>
+                          <button
+                            class="share-link"
+                            onclick="copyShareLink(${product.id})">
+                                ${"🔗"}
+                            </button>
+
+                          <div class="carousel" id="carousel-${product.id}">
+                            <img src="${toDriveUrl(product.images[0])}=w600" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"}; padding: 1px;" loading="lazy">
+                            <div class="img-spinner"></div>
+                            <div class="thumbs">
+                              ${product.images
+                    .map(
+                        (img, i) => `
+                                        <img src="${toDriveUrl(img)}=w100" onclick="setImage(${product.id}, ${i})"  loading="lazy">
+                                    `,
+                    )
+                    .join("")}
+                            </div>
+                          </div>
+
+                          <div class="card-body">
+                            <h3>
+                                ${product.name}
+                            </h3>
+
+                            <p>
+                                ${product.description}
+                            </p>
+
+                            <span class="badge">
+                              ${product.collection}
+                            </span>
+
+                            <span class="badge">
+                                Size ${product.size}
+                            </span>
+
+                            <br><br>
+
+                            <span class="badge" style="background: ${imageColors[product.category]}">
+                              ${product.category}
+                            </span>
+
+                            <span class="price">
+                              <span style="color: gray; text-decoration: line-through; font-style: italic;">₱${product.anchor_price}</span>
+                              <span style="color: #e63946; font-weight: bold;">₱${product.price}</span>
+                            </span>
+                          </div>
+                          </div>
+
+                          `;
+        })
+        .join("");
+}
+
+function copyProductLink(productId) {
+    const link = `https://chefbarac.github.io/ukayfinds/?p=${productId}`;
+    // Copy to clipboard
+    navigator.clipboard.writeText(link).then(() => {
+        alert(`Product link copied to clipboard!`);
+    });
+}
+
+function copyShareLink(productId) {
+    const url = `${window.location.origin}${window.location.pathname}?p=${productId}`;
+    navigator.clipboard.writeText(url).then(() => {
+        alert("Product link now copied to clipboard!");
+        // optional: show a brief "Copied!" toast
+    });
+}
+
+function scrollBackToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    gtag("event", "button_click", {
+        button_name: "scroll_back_to_top",
+    });
+}
+
+function toggleFavorite(id) {
+    if (favorites.includes(id)) {
+        favorites = favorites.filter((x) => x !== id);
+    } else {
+        favorites.push(id);
+        trackFavorite(id);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+
+    render();
+}
+
+function showFavorites() {
+    document.getElementById("btnShowFavorites").classList.toggle("active");
+    favoriteMode = !favoriteMode;
+
+    /*
+    const btn = document.getElementById("btnShowFavorites");
+    if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites"; */
+
+    render();
+    trackFilter();
+}
+
+/*
+document.querySelectorAll("input,select").forEach((x) =>
+    x.addEventListener("input", (e) => {
+        render();
+        trackFilter(e.target.value); // gtag waits for pause
+    }),
+);*/
+
+// Search input still works the same way
+document.getElementById("search").addEventListener("input", (e) => {
+    render();
+    trackFilter();
+});
+
+// Filter chips: click replaces input
+document.querySelectorAll(".filter-group").forEach((group) => {
+    group.addEventListener("click", (e) => {
+        const btn = e.target.closest(".chip");
+        if (!btn) return;
+
+        group.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+        btn.classList.add("active");
+        group.dataset.value = btn.dataset.value;
+
+        render();
+        trackFilter();
+    });
+});
+
+// fetchData();
+render();
