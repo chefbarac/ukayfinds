@@ -607,7 +607,7 @@ function toggleFavorite(id) {
         favorites = favorites.filter((x) => x !== id);
     } else {
         favorites.push(id);
-        trackFavorite(id);
+        trackFavorite(`#${id}`);
     }
 
     localStorage.setItem("favorites", JSON.stringify(favorites));
