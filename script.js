@@ -1,4 +1,4 @@
-console.log("v=1.1.6");
+console.log("v=1.1.7");
 
 function getStatus(item) {
     if (item.is_sold) {
