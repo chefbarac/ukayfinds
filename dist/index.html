@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <!-- Google tag (gtag.js) -->
+        <script defer src="https://www.googletagmanager.com/gtag/js?id=G-0YWX3JXD7R"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-0YWX3JXD7R");
+        </script>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="img/favicon.ico" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+        <!-- <link rel="manifest" href="site.webmanifest" /> -->
+
+        <!-- Facebook -->
+        <meta property="og:title" content="Ukay Finds | Chat now to reserve yours!" />
+        <meta property="og:description" content="Fresh Picks Every Saturday" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://chefbarac.github.io/ukayfinds/" />
+        <meta property="og:image" content="https://lh3.googleusercontent.com/d/1uSf_eEdWAQISeIoffQC826n6rhGbcCmW=w600" />
+
+        <title>Ukay Finds | Chat now to reserve yours!</title>
+
+      <script type="module" crossorigin src="/assets/index-BZ_WDMnF.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index-CdMF9YC_.css">
+    </head>
+
+    <body>
+        <header>
+            <h1 class="visually-hidden">Ukay Finds</h1>
+            <div class="brand-row">
+                <img src="img/logo.jpg" alt="Ukay Finds" class="logo" width="72" height="72" loading="eager" />
+                <p class="tagline">
+                    <strong>Fresh Picks Every Saturday</strong><br />
+                    Limited pieces. First come, first served.
+                </p>
+            </div>
+
+            <nav class="links" aria-label="Contact links">
+                Visit our
+
+                <a href="https://www.facebook.com/61591084660577" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'facebook_page_click')">Facebook</a>
+                or
+
+                <a href="https://m.me/61591084660577" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'facebook_chat_click', { method: 'messenger' })">Chat with the seller</a>
+            </nav>
+
+            <small id="fbMessage" aria-live="polite"></small>
+        </header>
+
+        <div class="container">
+            <div class="controls" id="controls">
+                <div style="display: flex; gap: 10px">
+                    <div class="search-row" style="flex-shrink: 1; width: 100%">
+                        <div class="search-wrapper">
+                            <input type="search" id="search" placeholder="Search..." />
+                            <button type="button" id="clear-search" aria-label="Clear search">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="fav-row" style="flex-shrink: 0">
+                        <button id="btnShowFavorites" class="fav-btn" style="height: 100%" onclick="showFavorites()">❤️ Favorites</button>
+                    </div>
+                    <div class="fav-row filters-toggle-row" style="flex-shrink: 0; display: none">
+                        <button id="btnToggleFilters" class="fav-btn filter-toggle-btn" style="height: 100%" onclick="window.__toggleFilters()">☰ Filters</button>
+                    </div>
+                </div>
+
+                <div class="filter-groups-wrap" id="filterGroupsWrap">
+                    <div class="filter-group" id="collection" data-filter="collection">
+                        <button class="chip active" data-value="">All collections</button>
+                    </div>
+
+                    <div class="filter-group" id="size" data-filter="size">
+                        <button class="chip active" data-value="">All sizes</button>
+                    </div>
+
+                    <div class="filter-group" id="category" data-filter="category">
+                        <button class="chip active" data-value="">Any picks</button>
+                    </div>
+
+                    <div class="filter-group" id="status" data-filter="status">
+                        <button class="chip active" data-value="">Any status</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="products" class="products">Loading products...</div>
+            <button id="scrollTopBtn" onclick="scrollBackToTop()">↑</button>
+        </div>
+    </body>
+</html>
