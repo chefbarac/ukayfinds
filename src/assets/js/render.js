@@ -33,11 +33,12 @@ function render(isInitialLoadNoFilter) {
     if (!list.length) {
         productContainer.innerHTML = `
                           <div class="no-result">
-                            <p class="no-result-text">No products found matching your criteria.</p>
+                            <p class="no-result-text">No products found...</p>
                             <button class="btn-modern-red">Clear Filters</button>
                         </div>
                           `;
         productContainer.querySelector('button').addEventListener('click', resetFilters)
+        productContainer.classList.add('empty-products')
         return;
     }
 
@@ -47,6 +48,7 @@ function render(isInitialLoadNoFilter) {
         "🟣 Premium": "linear-gradient(135deg, #EDE1EC 0%, #B98BC9 50%, #6B3F7A 100%)",
     };
 
+    productContainer.classList.remove('empty-products')
     productContainer.innerHTML = list
         .filter((p) => !p.is_archived)
         .map((product) => {

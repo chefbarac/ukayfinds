@@ -2,6 +2,7 @@ import productsUrl from '../products.json?url';
 import { searchInput, productContainer, scrollTopBtn, btnToggleFavorites, collectionGroup, statusGroup } from './el.js';
 import { showToast } from './toast.js'
 import { render } from './render.js';
+import { showClearSearch } from './search_micro_interact.js';
 
 let products = [];
 let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -95,6 +96,7 @@ function getParams() {
 function handleParams(productNumber, collectionName) {
     if (productNumber) {
         searchInput.value = `#${productNumber} `;
+        showClearSearch();
     }
     else if (collectionName) {
         const targetChip = collectionGroup.querySelector(`.chip[data-value="${collectionName}"]`);
@@ -200,7 +202,7 @@ function sizeComparator(a, b) {
 
     window.addEventListener("scroll", () => {
         scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
+    }), { passive: true };
 
     // hide initially
     scrollTopBtn.style.display = "none";
@@ -217,6 +219,10 @@ function sizeComparator(a, b) {
 const activeImageIndex = {};
 
 function toDriveUrl(id) {
+    // NOTE: don't flood google drive cdn on development
+    if (import.meta.env.DEV) {
+        return "";
+    }
     return `https://lh3.googleusercontent.com/d/${id}`;
 }
 
