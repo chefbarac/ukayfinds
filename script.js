@@ -1,6 +1,6 @@
 import { product_list } from './product_list.js';
 import { searchInput, productContainer, scrollTopBtn, btnShowFavorites } from './el.js';
-import {showToast} from './toast.js'
+import { showToast } from './toast.js'
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -297,7 +297,7 @@ function handleProductClick(e) {
         toggleFavorite(Number(e.target.dataset.productId));
     }
     else if (e.target.matches(".share-link")) {
-        copyShareLink(e.target.dataset.productId);
+        copyShareLink(e.target.dataset.productId, e.target.dataset.productName);
     }
 }
 
@@ -368,7 +368,8 @@ function render() {
                           </button>
                           <button
                             class="share-link"
-                            data-product-id="${product.id}">
+                            data-product-id="${product.id}"
+                            data-product-name="${product.name}">
                                 ${"🔗"}
                             </button>
 
@@ -422,9 +423,10 @@ function render() {
         .join("");
 }
 
-function copyShareLink(productId) {
+function copyShareLink(productId, productName) {
     const url = `${window.location.origin}${window.location.pathname}?p=${productId}`;
-    navigator.clipboard.writeText(url).then(() => {
+    const text = `${productName}\n${url}`
+    navigator.clipboard.writeText(text).then(() => {
         showToast("Product link copied to clipboard!");
     });
 }
