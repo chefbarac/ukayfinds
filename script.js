@@ -1,4 +1,4 @@
-console.log("v=1.1.7");
+console.log("v=1.1.8");
 
 const searchInput = document.getElementById('search');
 const clearButton = document.getElementById('clear-search');
