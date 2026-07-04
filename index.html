@@ -76,7 +76,7 @@
                         <button id="btnShowFavorites" class="fav-btn" style="height: 100%" onclick="showFavorites()">❤️ Favorites</button>
                     </div>
                     <div class="fav-row filters-toggle-row" style="flex-shrink: 0; display: none">
-                        <button id="btnToggleFilters" class="fav-btn filter-toggle-btn" style="height: 100%" onclick="window.__toggleFilters()">☰ Filters</button>
+                        <button id="btnToggleFilters" class="fav-btn filter-toggle-btn" style="height: 100%" onclick="window.toggleFilters()">☰ Filters</button>
                     </div>
                 </div>
 
@@ -103,4 +103,9 @@
             <button id="scrollTopBtn" onclick="scrollBackToTop()">↑</button>
         </div>
     </body>
+
+    <script>
+        import { toggleFilters } from "./collapse_filter_on_scroll.js";
+        import { scrollBackToTop } from "./script.js";
+    </script>
 </html>

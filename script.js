@@ -1,3 +1,5 @@
+import product_list from './product_list.js';
+
 function getStatus(item) {
     if (item.is_sold) {
         return "Sold";
@@ -17,7 +19,8 @@ const categoryMap = {
     Premium: "🟣 Premium",
 };
 
-products = (products || []).toReversed().map((p) => {
+console.log(product_list)
+products = (product_list || []).toReversed().map((p) => {
     return {
         ...p,
         images: p.images ? p.images.split("||") : [],
@@ -475,3 +478,5 @@ document.querySelectorAll(".filter-group").forEach((group) => {
 
 
 render();
+
+export { scrollBackToTop }
