@@ -10,5 +10,6 @@ const statusGroup = document.getElementById("status");
 const productContainer = document.getElementById("products");
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 const btnToggleFavorites = document.getElementById("btnToggleFavorites");
+const btnClearFilters = document.getElementById("btnClearFilters");
 
-export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, sizeGroup, categoryGroup, statusGroup, productContainer, scrollTopBtn, btnToggleFavorites }
+export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, sizeGroup, categoryGroup, statusGroup, productContainer, scrollTopBtn, btnToggleFavorites, btnClearFilters }

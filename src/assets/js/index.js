@@ -1,8 +1,10 @@
 import productsUrl from '../products.json?url';
-import { searchInput, productContainer, scrollTopBtn, btnToggleFavorites, collectionGroup, statusGroup } from './el.js';
+import { searchInput, productContainer, scrollTopBtn, btnToggleFavorites, collectionGroup, statusGroup, btnClearFilters } from './el.js';
 import { showToast } from './toast.js'
 import { render } from './render.js';
 import { showClearSearch } from './search_micro_interact.js';
+import { throttleScroll } from '../lib/scroll.js';
+import { resetFilters } from './render.js';
 
 let products = [];
 let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -200,9 +202,11 @@ function sizeComparator(a, b) {
 (() => {
     scrollTopBtn.addEventListener('click', scrollBackToTop)
 
-    window.addEventListener("scroll", () => {
+    const handleScroll = throttleScroll(() => {
         scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    }), { passive: true };
+    })
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     // hide initially
     scrollTopBtn.style.display = "none";
@@ -379,5 +383,6 @@ searchInput.addEventListener("input", (e) => {
     trackFilter();
 });
 
+btnClearFilters.addEventListener('click', resetFilters)
 
 export { initProductEvents, products, updateFilterCount, favoriteMode, favorites, toDriveUrl, selectChip, toggleFavoriteMode }
