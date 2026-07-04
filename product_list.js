@@ -1,4 +1,4 @@
-let products = [
+export const product_list = [
     {
         "id": 1,
         "name": "#1 Seven Studio",
