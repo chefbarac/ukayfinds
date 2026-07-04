@@ -8,4 +8,4 @@ import './collapse_filter_on_scroll.js';
 import './search_micro_interact.js';
 import './fb.js';
 
-// HOT FIX
+// HOT MERGE
