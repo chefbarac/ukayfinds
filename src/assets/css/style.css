@@ -551,7 +551,7 @@ button {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* Remove default browser clear button */
+/* Remove default browser ` button */
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
@@ -628,7 +628,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Modern Red Button */
 .btn-modern-red {
-    background-color: #dc2626; /* Vibrant, modern red */
+    background-color: #c0392b; /* Vibrant, modern red */
     color: #ffffff;
     font-size: 0.95rem;
     font-weight: 500;
