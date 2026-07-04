@@ -1,5 +1,8 @@
 console.log("v=1.1.7");
 
+const searchInput = document.getElementById('search');
+const clearButton = document.getElementById('clear-search');
+
 function getStatus(item) {
     if (item.is_sold) {
         return "Sold";
@@ -53,42 +56,6 @@ function cleanParams() {
     window.history.replaceState({}, "", cleanUrl);
 }
 
-/*
-function handleParams() {
-    // 1. Get the query string from the URL (e.g., ?p=javascript)
-    const urlParams = new URLSearchParams(window.location.search);
-
-    // 2. Extract the value of the 'p' parameter
-    const productNumber = urlParams.get("p");
-    const collectionName = urlParams.get("c");
-    // cleanParams();
-
-    // 3. If 'p' exists in the URL, populate the input field
-    if (productNumber) {
-        const searchInput = document.getElementById("search");
-        searchInput.value = `#${productNumber} `;
-        // 2. Create a new 'input' event
-        const event = new Event("input", {
-            bubbles: true, // Allows the event to bubble up the DOM tree
-            cancelable: true, // Allows the event to be canceled
-        });
-
-        // 3. Dispatch the event on the input element
-        searchInput.dispatchEvent(event);
-    }
-    if (collectionName) {
-        const collectionInput = document.getElementById("collection");
-        collectionInput.value = `${collectionName}`;
-        // 2. Create a new 'input' event
-        const event = new Event("input", {
-            bubbles: true, // Allows the event to bubble up the DOM tree
-            cancelable: true, // Allows the event to be canceled
-        });
-
-        // 3. Dispatch the event on the input element
-        collectionInput.dispatchEvent(event);
-    }
-}*/
 
 function handleParams() {
     // 1. Get the query string from the URL (e.g., ?p=javascript)
@@ -101,7 +68,7 @@ function handleParams() {
 
     // 3. If 'p' exists in the URL, populate the input field
     if (productNumber) {
-        const searchInput = document.getElementById("search");
+        // const searchInput = document.getElementById("search");
         searchInput.value = `#${productNumber} `;
         const event = new Event("input", {
             bubbles: true,
@@ -228,148 +195,11 @@ function sizeComparator(a, b) {
 })();
 
 // COLLAPSE FILTER ON SCROLL
-let lastScrollY = window.scrollY;
-let filtersForceExpanded = false;
-const controlsEl = document.getElementById("controls");
-const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
-// auto collapse on scroll
-let scrollAnchorY = window.scrollY; // reset point for measuring delta
-const FORCE_COLLAPSE_DELTA = 250; // pixels of movement before force-closing filters
-
-window.addEventListener('scroll', () => {
-    const currentY = window.scrollY;
-
-    if (currentY > SCROLL_THRESHOLD) {
-        controlsEl.classList.add('collapsed');
-    } else {
-        controlsEl.classList.remove('collapsed');
-    }
-
-    if (filtersForceExpanded) {
-        const delta = Math.abs(currentY - scrollAnchorY);
-        if (delta > FORCE_COLLAPSE_DELTA) {
-            filtersForceExpanded = false;
-            controlsEl.classList.remove('force-expanded');
-        }
-    } else {
-        // keep anchor fresh while not force-expanded, so next open starts from a clean baseline
-        scrollAnchorY = currentY;
-    }
-
-    lastScrollY = currentY;
-}, { passive: true });
-
-function toggleFilters() {
-    filtersForceExpanded = !filtersForceExpanded;
-    controlsEl.classList.toggle('force-expanded', filtersForceExpanded);
-
-    if (filtersForceExpanded) {
-        scrollAnchorY = window.scrollY; // start measuring from here
-    }
-}
-
-document.addEventListener('click', (e) => {
-    if (!filtersForceExpanded) return;
-
-    const clickedInsideControls = controlsEl.contains(e.target);
-
-    if (!clickedInsideControls) {
-        filtersForceExpanded = false;
-        controlsEl.classList.remove('force-expanded');
-    }
-});
+// ...
 // END COLLAPSE FILTER ON SCROLL
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded!");
-    const ua = navigator.userAgent || navigator.vendor;
-
-    // const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
-    const isFacebookOrMessenger = /FBAN|FBAV|FB_IAB|Messenger/i.test(ua);
-
-    if (isFacebookOrMessenger) {
-        const fbMsgEl = document.getElementById("fbMessage");
-        const currentURL = window.location.origin + window.location.pathname + window.location.search + window.location.hash;
-        const intentURL = `intent://${currentURL.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
-        // In your JS, set fbMsgEl to this HTML
-        fbMsgEl.innerHTML = `
-  <div id="fb-tip-banner" style="
-  color: black !important;
-    display: flex; align-items: flex-start; gap: 10px;
-    background: #fff8e6; border: 0.5px solid #f5c842;
-    border-radius: 8px; padding: 12px 14px;
-    position: relative; overflow: hidden; font-size: 14px;
-  ">
-    <span id="fb-tip-icon" style="font-size:20px;flex-shrink:0;margin-top:1px;">💡</span>
-    <span>
-      Tip: <a href="${intentURL}" style="color:#1a6fbf;font-weight:500;text-decoration:underline;">
-        Open in External Browser
-      </a>
-      using the
-      <span id="fb-dots" style="
-        display:inline-flex;align-items:center;gap:3px;
-        background:#f4f4f4;border:0.5px solid #ccc;
-        border-radius:4px;padding:1px 6px;font-weight:500;font-size:13px;
-        position:relative;white-space:nowrap;transition:background 0.3s,box-shadow 0.3s;
-      ">
-        <span style="letter-spacing:1px;">⋮</span> 3 dots
-        <span id="fb-arrow" style="
-          position:absolute;top:-26px;right:-6px;
-          font-size:11px;color:#c47a00;font-weight:600;
-          opacity:0;white-space:nowrap;transition:opacity 0.4s;
-        ">top-right ↗</span>
-      </span>
-      on the top-right corner for smoother experience.
-    </span>
-    <span id="fb-shimmer" style="
-      position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.4) 50%,transparent 100%);
-      transform:translateX(-100%);
-    "></span>
-  </div>
-`;
-
-        // Animate
-        (function () {
-            const banner = document.getElementById("fb-tip-banner");
-            const icon = document.getElementById("fb-tip-icon");
-            const dots = document.getElementById("fb-dots");
-            const arrow = document.getElementById("fb-arrow");
-            const shimmer = document.getElementById("fb-shimmer");
-            let t = 0;
-
-            function sweep() {
-                shimmer.animate([{ transform: "translateX(-100%)" }, { transform: "translateX(200%)" }], { duration: 900, easing: "ease-in-out" });
-            }
-
-            function cycle() {
-                if (t === 0) {
-                    icon.animate([{ transform: "translateY(0)" }, { transform: "translateY(-5px)" }, { transform: "translateY(0)" }], { duration: 400, easing: "ease-out" });
-                    setTimeout(sweep, 200);
-                } else if (t === 1) {
-                    dots.animate(
-                        [
-                            { background: "#f4f4f4", boxShadow: "none" },
-                            { background: "#ddeeff", boxShadow: "0 0 0 2px #5599ee" },
-                            { background: "#f4f4f4", boxShadow: "none" },
-                        ],
-                        { duration: 700, easing: "ease-in-out" },
-                    );
-                    arrow.animate([{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "translateY(0)" }, { opacity: 1, transform: "translateY(0)" }, { opacity: 0 }], {
-                        duration: 1400,
-                    });
-                } else {
-                    banner.animate([{ transform: "scale(1)" }, { transform: "scale(1.015)" }, { transform: "scale(1)" }], { duration: 300, easing: "ease-out" });
-                    setTimeout(sweep, 100);
-                }
-                t = (t + 1) % 3;
-            }
-
-            cycle();
-            setInterval(cycle, 2200);
-        })();
-    }
-
     populateFilters();
     handleParams();
 });
@@ -657,8 +487,6 @@ document.querySelectorAll(".filter-group").forEach((group) => {
 });
 
 // SEARCH
-const searchInput = document.getElementById('search');
-const clearButton = document.getElementById('clear-search');
 
 // Toggle visibility class smoothly
 searchInput.addEventListener('input', () => {
@@ -677,6 +505,12 @@ clearButton.addEventListener('pointerdown', (e) => {
     clearButton.classList.remove('is-visible');
     render();
 });
+
+window.addEventListener('scroll', () => {
+    if (document.activeElement === searchInput) {
+        searchInput.blur();
+    }
+}, { passive: true });
 // END SEARCH
 
 
