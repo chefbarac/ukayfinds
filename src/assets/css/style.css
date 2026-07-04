@@ -551,7 +551,7 @@ button {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* Remove default browser clear button */
+/* Remove default browser ` button */
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
@@ -604,6 +604,61 @@ input[type="search"]::-webkit-search-cancel-button {
 #clear-search svg {
     width: 100%;
     height: 100%;
+}
+
+/* No Result */
+/* Container styling */
+.no-result {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+}
+
+.no-result-text {
+    color: #4b5563;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Modern Red Button */
+.btn-modern-red {
+    background-color: #c0392b; /* Vibrant, modern red */
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow:
+        0 1px 3px 0 rgba(220, 38, 38, 0.1),
+        0 1px 2px -1px rgba(220, 38, 38, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Interaction States */
+.btn-modern-red:hover {
+    background-color: #b91c1c; /* Deeper red on hover */
+    transform: translateY(-1px);
+    box-shadow:
+        0 4px 6px -1px rgba(220, 38, 38, 0.2),
+        0 2px 4px -2px rgba(220, 38, 38, 0.1);
+}
+
+.btn-modern-red:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn-modern-red:focus-visible {
+    outline: 2px solid #ef4444; /* Red accessibility focus ring */
+    outline-offset: 2px;
 }
 
 /* END SEARCH */

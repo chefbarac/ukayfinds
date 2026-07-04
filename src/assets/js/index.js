@@ -1,7 +1,11 @@
 import productsUrl from '../products.json?url';
-import { searchInput, productContainer, scrollTopBtn, btnShowFavorites } from './el.js';
+import { searchInput, productContainer, scrollTopBtn, btnToggleFavorites, collectionGroup, statusGroup } from './el.js';
 import { showToast } from './toast.js'
 import { render } from './render.js';
+
+let products = [];
+let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+let favoriteMode = false;
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -22,8 +26,6 @@ const categoryMap = {
     Premium: "🟣 Premium",
 };
 
-let products = [];
-
 async function loadProducts() {
     const res = await fetch(productsUrl);
     const product_list = await res.json(); // or parse module export
@@ -38,24 +40,33 @@ async function loadProducts() {
     });
 
     populateFilters();
-    handleParams();
     initProductEvents();
-    render();
+
+    const { productNumber, collectionName } = getParams();
+    handleParams(productNumber, collectionName);
+    render(!productNumber && !collectionName);
+
+    // Filter chips: click replaces input
+    document.querySelectorAll(".filter-group").forEach((group) => {
+        group.addEventListener("click", (e) => {
+            const btn = e.target.closest(".chip");
+            selectChip(group, btn);
+
+            render();
+            trackFilter();
+        });
+    });
+}
+
+function selectChip(group, chip) {
+    if (!chip) return;
+
+    group.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+    chip.classList.add("active");
+    group.dataset.value = chip.dataset.value;
 }
 
 loadProducts();
-
-document.querySelectorAll(".filter-group").forEach(function (group) {
-    group.addEventListener("click", function (e) {
-        var btn = e.target.closest(".chip");
-        if (!btn) return;
-        group.querySelectorAll(".chip").forEach(function (c) {
-            c.classList.remove("active");
-        });
-        btn.classList.add("active");
-        group.dataset.value = btn.dataset.value; // read this wherever you used select.value before
-    });
-});
 
 function cleanParams() {
     const url = new URL(window.location);
@@ -70,35 +81,27 @@ function cleanParams() {
     window.history.replaceState({}, "", cleanUrl);
 }
 
-
-function handleParams() {
+function getParams() {
     // 1. Get the query string from the URL (e.g., ?p=javascript)
     const urlParams = new URLSearchParams(window.location.search);
 
     // 2. Extract the value of the 'p' parameter
     const productNumber = urlParams.get("p");
     const collectionName = urlParams.get("c");
-    // cleanParams();
+    return { productNumber, collectionName }
+}
 
-    // 3. If 'p' exists in the URL, populate the input field
+
+function handleParams(productNumber, collectionName) {
     if (productNumber) {
-        // const searchInput = document.getElementById("search");
         searchInput.value = `#${productNumber} `;
-        const event = new Event("input", {
-            bubbles: true,
-            cancelable: true,
-        });
-        searchInput.dispatchEvent(event);
     }
-
-    if (collectionName) {
-
+    else if (collectionName) {
         const targetChip = collectionGroup.querySelector(`.chip[data-value="${collectionName}"]`);
-        if (targetChip) {
-            targetChip.click(); // triggers your existing delegated click handler
-        } else {
-            console.warn(`No chip found for collection "${collectionName}"`);
-        }
+        selectChip(collectionGroup, targetChip);
+    } else {
+        const targetChip = statusGroup.querySelector(`.chip[data-value="Available"]`);
+        selectChip(statusGroup, targetChip);
     }
 }
 
@@ -210,10 +213,6 @@ function sizeComparator(a, b) {
 // document.addEventListener("DOMContentLoaded", () => {
 //     console.log("DOMContentLoaded!");
 // });
-
-let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-let favoriteMode = false;
 
 const activeImageIndex = {};
 
@@ -343,18 +342,21 @@ function toggleFavorite(id) {
     render();
 }
 
-btnShowFavorites.addEventListener('click', showFavorites)
+btnToggleFavorites.addEventListener('click', toggleFavoriteMode)
 
-function showFavorites() {
-    btnShowFavorites.classList.toggle("active");
+function toggleFavoriteMode(isReset) {
+    btnToggleFavorites.classList.toggle("active");
     favoriteMode = !favoriteMode;
 
     /*
-    const btn = document.getElementById("btnShowFavorites");
+    const btn = document.getElementById("btnToggleFavorites");
     if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites"; */
 
+
+    if (isReset === true) return;
     render();
     trackFilter();
+
 }
 
 /*
@@ -371,19 +373,5 @@ searchInput.addEventListener("input", (e) => {
     trackFilter();
 });
 
-// Filter chips: click replaces input
-document.querySelectorAll(".filter-group").forEach((group) => {
-    group.addEventListener("click", (e) => {
-        const btn = e.target.closest(".chip");
-        if (!btn) return;
 
-        group.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-        btn.classList.add("active");
-        group.dataset.value = btn.dataset.value;
-
-        render();
-        trackFilter();
-    });
-});
-
-export { initProductEvents, products, updateFilterCount, favoriteMode, favorites, toDriveUrl }
+export { initProductEvents, products, updateFilterCount, favoriteMode, favorites, toDriveUrl, selectChip, toggleFavoriteMode }

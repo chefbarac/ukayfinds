@@ -10,12 +10,9 @@ const FORCE_COLLAPSE_DELTA = 250; // pixels of movement before force-closing fil
 
 window.addEventListener('scroll', () => {
     const currentY = window.scrollY;
+    const shouldCollapse = currentY > SCROLL_THRESHOLD && !filtersForceExpanded;
 
-    if (currentY > SCROLL_THRESHOLD) {
-        controlsEl.classList.add('collapsed');
-    } else {
-        controlsEl.classList.remove('collapsed');
-    }
+    controlsEl.classList.toggle('collapsed', shouldCollapse);
 
     if (filtersForceExpanded) {
         const delta = Math.abs(currentY - scrollAnchorY);
@@ -24,11 +21,8 @@ window.addEventListener('scroll', () => {
             controlsEl.classList.remove('force-expanded');
         }
     } else {
-        // keep anchor fresh while not force-expanded, so next open starts from a clean baseline
         scrollAnchorY = currentY;
     }
-
-    lastScrollY = currentY;
 }, { passive: true });
 
 function toggleFilters() {

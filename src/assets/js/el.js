@@ -4,8 +4,11 @@ const clearButton = document.getElementById('clear-search');
 const btnToggleFilters = document.getElementById("btnToggleFilters");
 const controlsEl = document.getElementById("controls");
 const collectionGroup = document.getElementById("collection");
+const sizeGroup = document.getElementById("size");
+const categoryGroup = document.getElementById("category");
+const statusGroup = document.getElementById("status");
 const productContainer = document.getElementById("products");
 const scrollTopBtn = document.getElementById("scrollTopBtn");
-const btnShowFavorites = document.getElementById("btnShowFavorites");
+const btnToggleFavorites = document.getElementById("btnToggleFavorites");
 
-export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, productContainer, scrollTopBtn, btnShowFavorites }
+export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, sizeGroup, categoryGroup, statusGroup, productContainer, scrollTopBtn, btnToggleFavorites }
