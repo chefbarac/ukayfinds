@@ -6,23 +6,23 @@ let filtersForceExpanded = false;
 const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
 // auto collapse on scroll
 let scrollAnchorY = window.scrollY; // reset point for measuring delta
-const FORCE_COLLAPSE_DELTA = 250; // pixels of movement before force-closing filters
+const FORCE_COLLAPSE_DELTA = 500; // pixels of movement before force-closing filters
 
 window.addEventListener('scroll', () => {
     const currentY = window.scrollY;
-    const shouldCollapse = currentY > SCROLL_THRESHOLD && !filtersForceExpanded;
+    const shouldCollapse = currentY > SCROLL_THRESHOLD;
 
     controlsEl.classList.toggle('collapsed', shouldCollapse);
 
-    if (filtersForceExpanded) {
-        const delta = Math.abs(currentY - scrollAnchorY);
-        if (delta > FORCE_COLLAPSE_DELTA) {
-            filtersForceExpanded = false;
-            controlsEl.classList.remove('force-expanded');
-        }
-    } else {
-        scrollAnchorY = currentY;
-    }
+    // if (filtersForceExpanded) {
+    //     const delta = Math.abs(currentY - scrollAnchorY);
+    //     if (delta > FORCE_COLLAPSE_DELTA) {
+    //         filtersForceExpanded = false;
+    //         controlsEl.classList.remove('force-expanded');
+    //     }
+    // } else {
+    //     scrollAnchorY = currentY;
+    // }
 }, { passive: true });
 
 function toggleFilters() {

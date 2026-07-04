@@ -200,7 +200,7 @@ function sizeComparator(a, b) {
 
     window.addEventListener("scroll", () => {
         scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
+    }), { passive: true };
 
     // hide initially
     scrollTopBtn.style.display = "none";
@@ -217,6 +217,10 @@ function sizeComparator(a, b) {
 const activeImageIndex = {};
 
 function toDriveUrl(id) {
+    // NOTE: don't flood google drive cdn on development
+    if (import.meta.env.DEV) {
+        return "";
+    }
     return `https://lh3.googleusercontent.com/d/${id}`;
 }
 

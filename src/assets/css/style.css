@@ -131,6 +131,12 @@ select {
     gap: 20px;
 }
 
+.products.empty-products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card {
     background: white;
     border-radius: 15px;

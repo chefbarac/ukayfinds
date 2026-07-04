@@ -29,13 +29,13 @@ searchInput.addEventListener('focus', () => {
     focusScrollY = window.scrollY;
 });
 
-window.addEventListener('scroll', () => {
-    if (
-        document.activeElement === searchInput &&
-        Math.abs(window.scrollY - focusScrollY) >= buffer
-    ) {
-        searchInput.blur();
-    }
-}, { passive: true });
+// window.addEventListener('scroll', () => {
+//     if (
+//         document.activeElement === searchInput &&
+//         Math.abs(window.scrollY - focusScrollY) >= buffer
+//     ) {
+//         searchInput.blur();
+//     }
+// }, { passive: true });
 
 export { resetSearch }
