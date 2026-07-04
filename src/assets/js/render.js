@@ -138,4 +138,4 @@ function resetFilters() {
     render();
 }
 
-export { render }
+export { render, resetFilters }

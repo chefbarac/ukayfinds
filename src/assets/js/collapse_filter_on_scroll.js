@@ -1,3 +1,4 @@
+import { throttleScroll } from "../lib/scroll";
 import { controlsEl, btnToggleFilters } from "./el";
 
 
@@ -8,22 +9,19 @@ const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
 let scrollAnchorY = window.scrollY; // reset point for measuring delta
 const FORCE_COLLAPSE_DELTA = 500; // pixels of movement before force-closing filters
 
-window.addEventListener('scroll', () => {
-    const currentY = window.scrollY;
-    const shouldCollapse = currentY > SCROLL_THRESHOLD;
+// const handleScroll = throttleScroll(() => {
+//     const currentY = window.scrollY;
+//     const shouldCollapse = currentY > SCROLL_THRESHOLD;
 
-    controlsEl.classList.toggle('collapsed', shouldCollapse);
+//     controlsEl.classList.toggle('collapsed', shouldCollapse);
 
-    // if (filtersForceExpanded) {
-    //     const delta = Math.abs(currentY - scrollAnchorY);
-    //     if (delta > FORCE_COLLAPSE_DELTA) {
-    //         filtersForceExpanded = false;
-    //         controlsEl.classList.remove('force-expanded');
-    //     }
-    // } else {
-    //     scrollAnchorY = currentY;
-    // }
-}, { passive: true });
+//     if (shouldCollapse) {
+//         window.removeEventListener('scroll', handleScroll);
+//     }
+// });
+
+// window.addEventListener('scroll', handleScroll, { passive: true });
+// handleScroll(); // sync initial state on load
 
 function toggleFilters() {
     filtersForceExpanded = !filtersForceExpanded;
@@ -41,7 +39,7 @@ document.addEventListener('click', (e) => {
 
     const clickedInsideControls = controlsEl.contains(e.target);
 
-    if (!clickedInsideControls) {
+    if (!clickedInsideControls || e.target.id === "btnClearFilters") {
         filtersForceExpanded = false;
         controlsEl.classList.remove('force-expanded');
     }

@@ -7,4 +7,7 @@ import './assets/js/collapse_filter_on_scroll.js';
 import './assets/js/search_micro_interact.js';
 import './assets/js/fb.js';
 
+// lib
+import './assets/lib/scroll.js';
+
 // HOT MERGE
