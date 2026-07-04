@@ -1,9 +1,13 @@
-import { products, updateFilterCount, favoriteMode, favorites, toDriveUrl } from ".";
-import { productContainer } from "./el";
+import { products, updateFilterCount, favoriteMode, favorites, toDriveUrl, selectChip, toggleFavoriteMode } from ".";
+import { productContainer, searchInput, collectionGroup, sizeGroup, categoryGroup, statusGroup } from "./el";
+import { resetSearch } from "./search_micro_interact";
 
 
-function render() {
+function render(isInitialLoadNoFilter) {
     let list = [...products];
+    if (isInitialLoadNoFilter) {
+        list = list.filter(p => !p.is_sold);
+    }
 
     const search = document.getElementById("search").value.toLowerCase();
     const collection = document.getElementById("collection").dataset.value;
@@ -14,22 +18,26 @@ function render() {
 
     updateFilterCount({ collection, size, category, status });
 
-    if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
-    if (collection) list = list.filter((x) => x.collection === collection);
-    if (size) list = list.filter((x) => x.size === size);
-    // if (price) list = list.filter((x) => x.price === Number(price));
-    if (category) list = list.filter((x) => x.category === category);
-    if (status) list = list.filter((x) => x.status === status);
+    if (!isInitialLoadNoFilter) {
 
-    if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
+        if (search) list = list.filter((x) => x.name.toLowerCase().includes(search));
+        if (collection) list = list.filter((x) => x.collection === collection);
+        if (size) list = list.filter((x) => x.size === size);
+        // if (price) list = list.filter((x) => x.price === Number(price));
+        if (category) list = list.filter((x) => x.category === category);
+        if (status) list = list.filter((x) => x.status === status);
+
+        if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
+    }
 
     if (!list.length) {
         productContainer.innerHTML = `
                           <div class="no-result">
-                          No products found
-                          </div>
+                            <p class="no-result-text">No products found matching your criteria.</p>
+                            <button class="btn-modern-red">Clear Filters</button>
+                        </div>
                           `;
-
+        productContainer.querySelector('button').addEventListener('click', resetFilters)
         return;
     }
 
@@ -43,14 +51,6 @@ function render() {
         .filter((p) => !p.is_archived)
         .map((product) => {
             const fav = favorites.includes(product.id);
-
-            /*
-             style="background:
-                linear-gradient(white, white) padding-box,
-                ${imageColors[product.category] || "#c8c8c8"} border-box;
-                border: 1px solid transparent;
-                border-radius: 12px;"
-                */
 
             return `
                           <div class="card ${product.is_sold ? "sold" : ""}" style="background:
@@ -122,6 +122,18 @@ function render() {
                           `;
         })
         .join("");
+}
+
+function resetFilters() {
+    resetSearch();
+    selectChip(collectionGroup, collectionGroup.querySelectorAll('.chip')[0]);
+    selectChip(sizeGroup, sizeGroup.querySelectorAll('.chip')[0]);
+    selectChip(categoryGroup, categoryGroup.querySelectorAll('.chip')[0]);
+    selectChip(statusGroup, statusGroup.querySelectorAll('.chip')[0]);
+    if (favoriteMode) {
+        toggleFavoriteMode(true);
+    }
+    render();
 }
 
 export { render }

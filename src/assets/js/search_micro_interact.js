@@ -10,12 +10,16 @@ searchInput.addEventListener('input', () => {
     }
 });
 
-// Clear and blur interaction
-clearButton.addEventListener('pointerdown', (e) => {
-    e.preventDefault();
+function resetSearch() {
     searchInput.value = '';
     searchInput.blur();
     clearButton.classList.remove('is-visible');
+}
+
+// Clear and blur interaction
+clearButton.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    resetSearch();
     render();
 });
 
@@ -33,3 +37,5 @@ window.addEventListener('scroll', () => {
         searchInput.blur();
     }
 }, { passive: true });
+
+export { resetSearch }
