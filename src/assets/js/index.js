@@ -2,6 +2,7 @@ import productsUrl from '../products.json?url';
 import { searchInput, productContainer, scrollTopBtn, btnToggleFavorites, collectionGroup, statusGroup } from './el.js';
 import { showToast } from './toast.js'
 import { render } from './render.js';
+import { showClearSearch } from './search_micro_interact.js';
 
 let products = [];
 let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -95,6 +96,7 @@ function getParams() {
 function handleParams(productNumber, collectionName) {
     if (productNumber) {
         searchInput.value = `#${productNumber} `;
+        showClearSearch();
     }
     else if (collectionName) {
         const targetChip = collectionGroup.querySelector(`.chip[data-value="${collectionName}"]`);

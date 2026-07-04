@@ -3,12 +3,16 @@ import { render } from './render.js';
 
 // Toggle visibility class smoothly
 searchInput.addEventListener('input', () => {
+    showClearSearch();
+});
+
+function showClearSearch() {
     if (searchInput.value) {
         clearButton.classList.add('is-visible');
     } else {
         clearButton.classList.remove('is-visible');
     }
-});
+}
 
 function resetSearch() {
     searchInput.value = '';
@@ -38,4 +42,4 @@ searchInput.addEventListener('focus', () => {
 //     }
 // }, { passive: true });
 
-export { resetSearch }
+export { resetSearch, showClearSearch }
