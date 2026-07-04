@@ -1,8 +1,3 @@
-console.log("v=1.1.9");
-
-const searchInput = document.getElementById('search');
-const clearButton = document.getElementById('clear-search');
-
 function getStatus(item) {
     if (item.is_sold) {
         return "Sold";
@@ -78,15 +73,10 @@ function handleParams() {
     }
 
     if (collectionName) {
-        const collectionGroup = document.getElementById("collection");
+
         const targetChip = collectionGroup.querySelector(`.chip[data-value="${collectionName}"]`);
         if (targetChip) {
             targetChip.click(); // triggers your existing delegated click handler
-            /*const event = new Event("click", {
-                bubbles: true,
-                cancelable: true,
-            });
-            targetChip.dispatchEvent(event);*/
         } else {
             console.warn(`No chip found for collection "${collectionName}"`);
         }
@@ -208,8 +198,6 @@ let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
 let favoriteMode = false;
 
-const productContainer = document.getElementById("products");
-
 const activeImageIndex = {};
 
 function toDriveUrl(id) {
@@ -283,10 +271,9 @@ const trackFavorite = debounce(function (favorite) {
 
 function updateFilterCount(filters) {
     const activeCount = Object.values(filters).filter((v) => v !== "" && v != null).length;
-    const btn = document.getElementById("btnToggleFilters");
-    if (btn) {
-        btn.textContent = activeCount > 0 ? `☰ Filters (${activeCount})` : `☰ Filters`;
-        btn.classList.toggle("filters-active", activeCount > 0);
+    if (btnToggleFilters) {
+        btnToggleFilters.textContent = activeCount > 0 ? `☰ Filters (${activeCount})` : `☰ Filters`;
+        btnToggleFilters.classList.toggle("filters-active", activeCount > 0);
     }
 }
 
@@ -466,7 +453,7 @@ document.querySelectorAll("input,select").forEach((x) =>
 );*/
 
 // Search input still works the same way
-document.getElementById("search").addEventListener("input", (e) => {
+searchInput.addEventListener("input", (e) => {
     render();
     trackFilter();
 });

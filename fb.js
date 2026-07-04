@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const isFacebookOrMessenger = /FBAN|FBAV|FB_IAB|Messenger/i.test(ua);
 
     if (isFacebookOrMessenger) {
-        const fbMsgEl = document.getElementById("fbMessage");
         const currentURL = window.location.origin + window.location.pathname + window.location.search + window.location.hash;
         const intentURL = `intent://${currentURL.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
         // In your JS, set fbMsgEl to this HTML
