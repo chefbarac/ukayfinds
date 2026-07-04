@@ -1,5 +1,5 @@
 import { product_list } from './product_list.js';
-import { searchInput, productContainer, scrollTopBtn } from './el.js';
+import { searchInput, productContainer, scrollTopBtn, btnShowFavorites } from './el.js';
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded!");
     populateFilters();
     handleParams();
+    initProductEvents();
 });
 
 let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -280,6 +281,25 @@ function updateFilterCount(filters) {
     }
 }
 
+function initProductEvents() {
+    productContainer.addEventListener("click", handleProductClick);
+}
+
+function handleProductClick(e) {
+    if (e.target.matches(".thumbnail")) {
+        setImage(
+            e.target.dataset.productId,
+            Number(e.target.dataset.index)
+        );
+    }
+    else if (e.target.matches(".favorite")) {
+        toggleFavorite(Number(e.target.dataset.productId));
+    }
+    else if (e.target.matches(".share-link")) {
+        copyShareLink(e.target.dataset.productId);
+    }
+}
+
 function render() {
     let list = [...products];
 
@@ -340,13 +360,14 @@ function render() {
                               ${product.is_reserved && !product.is_sold ? `<div class="banner reserved-banner">Reserved</div>` : ""}
                               ${product.is_new && !product.is_sold && !product.is_reserved ? `<div class="banner new-banner">New</div>` : ""}
                           <button
-                          class="favorite ${fav ? "active" : ""}"
-                          onclick="toggleFavorite(${product.id})">
+                          class="favorite ${fav ? " active" : ""}"
+                          data-product-id="${product.id}"
+                          >
                             ${fav ? "❤️" : "♡"}
                           </button>
                           <button
                             class="share-link"
-                            onclick="copyShareLink(${product.id})">
+                            data-product-id="${product.id}">
                                 ${"🔗"}
                             </button>
 
@@ -357,7 +378,8 @@ function render() {
                               ${product.images
                     .map(
                         (img, i) => `
-                                        <img src="${toDriveUrl(img)}=w100" onclick="setImage(${product.id}, ${i})"  loading="lazy">
+                                        <img src="${toDriveUrl(img)}=w100" class="thumbnail"  data-product-id="${product.id}"
+        data-index="${i}"  loading="lazy">
                                     `,
                     )
                     .join("")}
@@ -399,14 +421,6 @@ function render() {
         .join("");
 }
 
-function copyProductLink(productId) {
-    const link = `https://chefbarac.github.io/ukayfinds/?p=${productId}`;
-    // Copy to clipboard
-    navigator.clipboard.writeText(link).then(() => {
-        alert(`Product link copied to clipboard!`);
-    });
-}
-
 function copyShareLink(productId) {
     const url = `${window.location.origin}${window.location.pathname}?p=${productId}`;
     navigator.clipboard.writeText(url).then(() => {
@@ -435,8 +449,10 @@ function toggleFavorite(id) {
     render();
 }
 
+btnShowFavorites.addEventListener('click', showFavorites)
+
 function showFavorites() {
-    document.getElementById("btnShowFavorites").classList.toggle("active");
+    btnShowFavorites.classList.toggle("active");
     favoriteMode = !favoriteMode;
 
     /*
@@ -476,7 +492,6 @@ document.querySelectorAll(".filter-group").forEach((group) => {
     });
 });
 
-
 render();
 
-export { render }
+export { initProductEvents, render }

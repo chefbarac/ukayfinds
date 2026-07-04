@@ -6,5 +6,6 @@ const controlsEl = document.getElementById("controls");
 const collectionGroup = document.getElementById("collection");
 const productContainer = document.getElementById("products");
 const scrollTopBtn = document.getElementById("scrollTopBtn");
+const btnShowFavorites = document.getElementById("btnShowFavorites");
 
-export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, productContainer, scrollTopBtn }
+export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, productContainer, scrollTopBtn, btnShowFavorites }
