@@ -1,4 +1,7 @@
+import { fbMsgEl } from "./el";
+
 document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem('fb-shown') === '1') return;
     const ua = navigator.userAgent || navigator.vendor;
 
     // const isFacebookBrowser = ua.includes("FBAN") || ua.includes("FBAV") || ua.includes("Messenger");
@@ -10,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // In your JS, set fbMsgEl to this HTML
         fbMsgEl.innerHTML = `
   <div id="fb-tip-banner" style="
+  margin-top: 20px;
   color: black !important;
     display: flex; align-items: flex-start; gap: 10px;
     background: #fff8e6; border: 0.5px solid #f5c842;
@@ -44,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "></span>
   </div>
 `;
+
+        localStorage.setItem('fb-shown', '1');
 
         // Animate
         (function () {

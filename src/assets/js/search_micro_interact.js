@@ -1,5 +1,5 @@
-import { searchInput, clearButton } from "./el";
-import { render } from './script.js'
+import { searchInput, clearButton } from "./el.js";
+import { render } from './render.js';
 
 // Toggle visibility class smoothly
 searchInput.addEventListener('input', () => {

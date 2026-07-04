@@ -3,6 +3,9 @@
     <head>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
+        <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin />
+
         <!-- Google tag (gtag.js) -->
         <script defer src="https://www.googletagmanager.com/gtag/js?id=G-0YWX3JXD7R"></script>
         <script>
@@ -28,19 +31,19 @@
         <meta property="og:description" content="Fresh Picks Every Saturday" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://chefbarac.github.io/ukayfinds/" />
-        <meta property="og:image" content="https://lh3.googleusercontent.com/d/1uSf_eEdWAQISeIoffQC826n6rhGbcCmW=w600" />
+        <meta property="og:image" content="https://lh3.googleusercontent.com/d/1uSf_eEdWAQISeIoffQC826n6rhGbcCmW=w300" />
 
         <title>Ukay Finds | Chat now to reserve yours!</title>
 
-      <script type="module" crossorigin src="/ukayfinds/assets/index-B21SqWXO.js"></script>
-      <link rel="stylesheet" crossorigin href="/ukayfinds/assets/index-C7lrdkcu.css">
+      <script type="module" crossorigin src="/ukayfinds/assets/index-BQ8P0R-q.js"></script>
+      <link rel="stylesheet" crossorigin href="/ukayfinds/assets/index-B2ZFjpvW.css">
     </head>
 
     <body>
         <header>
             <h1 class="visually-hidden">Ukay Finds</h1>
             <div class="brand-row">
-                <img src="img/logo.jpg" alt="Ukay Finds" class="logo" width="72" height="72" loading="eager" />
+                <img src="https://lh3.googleusercontent.com/d/1uSf_eEdWAQISeIoffQC826n6rhGbcCmW=w72" alt="Ukay Finds" class="logo" width="72" height="72" loading="lazy" />
                 <p class="tagline">
                     <strong>Fresh Picks Every Saturday</strong><br />
                     Limited pieces. First come, first served.
@@ -101,7 +104,12 @@
                 </div>
             </div>
 
-            <div id="products" class="products">Loading products...</div>
+            <div id="products" class="products">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+            </div>
             <button id="scrollTopBtn">↑</button>
         </div>
     </body>
