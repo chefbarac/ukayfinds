@@ -1,3 +1,5 @@
+import { controlsEl, btnToggleFilters } from "./el";
+
 
 let lastScrollY = window.scrollY;
 let filtersForceExpanded = false;
@@ -38,6 +40,8 @@ function toggleFilters() {
     }
 }
 
+btnToggleFilters.addEventListener('click', toggleFilters);
+
 document.addEventListener('click', (e) => {
     if (!filtersForceExpanded) return;
 
@@ -48,5 +52,3 @@ document.addEventListener('click', (e) => {
         controlsEl.classList.remove('force-expanded');
     }
 });
-
-export { toggleFilters }

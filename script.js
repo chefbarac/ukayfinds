@@ -1,5 +1,5 @@
 import { product_list } from './product_list.js';
-import { searchInput, productContainer } from './el.js';
+import { searchInput, productContainer, scrollTopBtn } from './el.js';
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -177,14 +177,14 @@ function sizeComparator(a, b) {
 
 /* scroll to top */
 (() => {
-    const btn = document.getElementById("scrollTopBtn");
+    scrollTopBtn.addEventListener('click', scrollBackToTop)
 
     window.addEventListener("scroll", () => {
-        btn.style.display = window.scrollY > 300 ? "block" : "none";
+        scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
     });
 
     // hide initially
-    btn.style.display = "none";
+    scrollTopBtn.style.display = "none";
 })();
 
 // COLLAPSE FILTER ON SCROLL
@@ -479,4 +479,4 @@ document.querySelectorAll(".filter-group").forEach((group) => {
 
 render();
 
-export { scrollBackToTop }
+export { render }
