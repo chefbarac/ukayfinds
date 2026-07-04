@@ -1,5 +1,6 @@
 import { product_list } from './product_list.js';
 import { searchInput, productContainer, scrollTopBtn, btnShowFavorites } from './el.js';
+import {showToast} from './toast.js'
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -424,8 +425,7 @@ function render() {
 function copyShareLink(productId) {
     const url = `${window.location.origin}${window.location.pathname}?p=${productId}`;
     navigator.clipboard.writeText(url).then(() => {
-        alert("Product link now copied to clipboard!");
-        // optional: show a brief "Copied!" toast
+        showToast("Product link copied to clipboard!");
     });
 }
 
@@ -439,8 +439,10 @@ function scrollBackToTop() {
 function toggleFavorite(id) {
     if (favorites.includes(id)) {
         favorites = favorites.filter((x) => x !== id);
+        showToast("REMOVED: Product removed from favorites!");
     } else {
         favorites.push(id);
+        showToast("ADDED: Product added to favorites!");
         trackFavorite(`#${id}`);
     }
 
