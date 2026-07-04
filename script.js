@@ -1,4 +1,5 @@
-import product_list from './product_list.js';
+import { product_list } from './product_list.js';
+import { searchInput, productContainer } from './el.js';
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -19,8 +20,7 @@ const categoryMap = {
     Premium: "🟣 Premium",
 };
 
-console.log(product_list)
-products = (product_list || []).toReversed().map((p) => {
+let products = (product_list || []).toReversed().map((p) => {
     return {
         ...p,
         images: p.images ? p.images.split("||") : [],

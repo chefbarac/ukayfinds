@@ -5,3 +5,5 @@ const btnToggleFilters = document.getElementById("btnToggleFilters");
 const controlsEl = document.getElementById("controls");
 const collectionGroup = document.getElementById("collection");
 const productContainer = document.getElementById("products");
+
+export { fbMsgEl, searchInput, clearButton, btnToggleFilters, controlsEl, collectionGroup, productContainer }
