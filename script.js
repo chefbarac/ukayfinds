@@ -1,4 +1,4 @@
-console.log("v=1.1.8");
+console.log("v=1.1.9");
 
 const searchInput = document.getElementById('search');
 const clearButton = document.getElementById('clear-search');
@@ -485,33 +485,6 @@ document.querySelectorAll(".filter-group").forEach((group) => {
         trackFilter();
     });
 });
-
-// SEARCH
-
-// Toggle visibility class smoothly
-searchInput.addEventListener('input', () => {
-    if (searchInput.value) {
-        clearButton.classList.add('is-visible');
-    } else {
-        clearButton.classList.remove('is-visible');
-    }
-});
-
-// Clear and blur interaction
-clearButton.addEventListener('pointerdown', (e) => {
-    e.preventDefault();
-    searchInput.value = '';
-    searchInput.blur();
-    clearButton.classList.remove('is-visible');
-    render();
-});
-
-window.addEventListener('scroll', () => {
-    if (document.activeElement === searchInput) {
-        searchInput.blur();
-    }
-}, { passive: true });
-// END SEARCH
 
 
 render();
