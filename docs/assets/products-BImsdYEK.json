@@ -1,4 +1,4 @@
-export const product_list = [
+[
     {
         "id": 1,
         "name": "#1 Seven Studio",
@@ -188,7 +188,7 @@ export const product_list = [
         "category": "Regular",
         "price": 60,
         "anchor_price": 79,
-        "is_sold": false,
+        "is_sold": true,
         "is_reserved": true,
         "is_new": false,
         "is_archived": false,
@@ -751,7 +751,7 @@ export const product_list = [
     },
     {
         "id": 51,
-        "name": "#51 ",
+        "name": "#51 White & Purple Tie-Dye Cropped Tee",
         "description": "Soft, Comfy fabric (needs wash)",
         "collection": "Cropped Tee",
         "size": "M",
@@ -766,14 +766,14 @@ export const product_list = [
     },
     {
         "id": 52,
-        "name": "#52 ",
+        "name": "#52 CHEN CHEN MA",
         "description": "Stretchable fabric, feminine lace details, Elegant sleeveless top",
         "collection": "Sleeveless",
         "size": "XS",
         "category": "Affordable",
         "price": 45,
         "anchor_price": 59,
-        "is_sold": false,
+        "is_sold": true,
         "is_reserved": false,
         "is_new": true,
         "is_archived": false,
@@ -781,7 +781,7 @@ export const product_list = [
     },
     {
         "id": 53,
-        "name": "#53 ",
+        "name": "#53 Black & White Striped Sleeveless Top",
         "description": "Soft, Slim fit, Gold beld embellished neckline.",
         "collection": "Sleeveless",
         "size": "S",
@@ -796,7 +796,7 @@ export const product_list = [
     },
     {
         "id": 54,
-        "name": "#54 ",
+        "name": "#54 Light Green Graphic Croptop",
         "description": "Soft, Breathable, Comfy, Printed front design",
         "collection": "Cropped Tee",
         "size": "S",
@@ -811,7 +811,7 @@ export const product_list = [
     },
     {
         "id": 55,
-        "name": "#55 ",
+        "name": "#55 Pastel Pink T-shirt ",
         "description": "Stretchable, Relaxed fit, Cute graphic design",
         "collection": "T-Shirt",
         "size": "XL",
@@ -826,7 +826,7 @@ export const product_list = [
     },
     {
         "id": 56,
-        "name": "#56 ",
+        "name": "#56 Green Polo Shirt ",
         "description": "Soft, Slim fit..",
         "collection": "Polo Shirt",
         "size": "S",
@@ -841,7 +841,7 @@ export const product_list = [
     },
     {
         "id": 57,
-        "name": "#57 ",
+        "name": "#57 Black Graphic Tee",
         "description": "Soft, Comfy, Graphic print",
         "collection": "T-Shirt",
         "size": "M",
@@ -856,7 +856,7 @@ export const product_list = [
     },
     {
         "id": 58,
-        "name": "#58 ",
+        "name": "#58 Navy Graphic T-shirt ",
         "description": "Comfortable fit, Soft fabric",
         "collection": "T-Shirt",
         "size": "M",
@@ -886,7 +886,7 @@ export const product_list = [
     },
     {
         "id": 60,
-        "name": "#60 ",
+        "name": "#60 Korean Puff Sleeve Top",
         "description": "Puff Sleeve, Soft, Comfortable (have small stains)",
         "collection": "T-Shirt",
         "size": "S",
@@ -901,7 +901,7 @@ export const product_list = [
     },
     {
         "id": 61,
-        "name": "#61 ",
+        "name": "#61 Black Basic Tee",
         "description": "Soft ang tela, Comfy.",
         "collection": "T-Shirt",
         "size": "S",
@@ -931,7 +931,7 @@ export const product_list = [
     },
     {
         "id": 63,
-        "name": "#63 ",
+        "name": "#63 Green Tee (Nike Inspired)",
         "description": "Soft , Comfy",
         "collection": "T-Shirt",
         "size": "L",
@@ -946,7 +946,7 @@ export const product_list = [
     },
     {
         "id": 64,
-        "name": "#64 ",
+        "name": "#64 Black & Gray Tee",
         "description": "Soft, Breathable fabric, Gray sleeve with sporty stripe design",
         "collection": "T-Shirt",
         "size": "XL",
@@ -961,8 +961,8 @@ export const product_list = [
     },
     {
         "id": 65,
-        "name": "#65 ",
-        "description": "Stretchable,m slim fit, Ruched front design",
+        "name": "#65 Gray Ruched Fitted Top",
+        "description": "Stretchable, slim fit, Ruched front design",
         "collection": "Crop Top",
         "size": "XS",
         "category": "Regular",
@@ -991,7 +991,7 @@ export const product_list = [
     },
     {
         "id": 67,
-        "name": "#67 ",
+        "name": "#67 Black & White Knit Top",
         "description": "Soft premium feel, Stretchable",
         "collection": "T-Shirt",
         "size": "S",
@@ -1006,7 +1006,7 @@ export const product_list = [
     },
     {
         "id": 68,
-        "name": "#68 ",
+        "name": "#68 Gray Graphic Tee",
         "description": "Soft, Comfy, Colorful fabric design, ",
         "collection": "T-Shirt",
         "size": "L",
@@ -1021,7 +1021,7 @@ export const product_list = [
     },
     {
         "id": 69,
-        "name": "#69 ",
+        "name": "#69 Gray Cropped Polo Top",
         "description": "Soft fabric",
         "collection": "Crop Top",
         "size": "M",
@@ -1066,7 +1066,7 @@ export const product_list = [
     },
     {
         "id": 72,
-        "name": "#72 ",
+        "name": "#72 Gray Basic Tee",
         "description": "Simple, comfy,stretchable.",
         "collection": "T-Shirt",
         "size": "S",
@@ -1081,7 +1081,7 @@ export const product_list = [
     },
     {
         "id": 73,
-        "name": "#73 ",
+        "name": "#73 Purple Grpahic Top",
         "description": "Soft, Stretchable, Comfy, Cute girl print with glitter details",
         "collection": "T-Shirt",
         "size": "S",
@@ -1111,7 +1111,7 @@ export const product_list = [
     },
     {
         "id": 75,
-        "name": "#75 ",
+        "name": "#75 Maroon Basic V-Neck Top",
         "description": "V-neck, Soft ang tela,Stretchable, Comfy.",
         "collection": "T-Shirt",
         "size": "M",
@@ -1126,7 +1126,7 @@ export const product_list = [
     },
     {
         "id": 76,
-        "name": "#76 ",
+        "name": "#76 Green Graphic Tee",
         "description": "Unique design, Stretchable, Comfy, Breathable.",
         "collection": "T-Shirt",
         "size": "M",
@@ -1141,7 +1141,7 @@ export const product_list = [
     },
     {
         "id": 77,
-        "name": "#77 ",
+        "name": "#77 Black Elegant Lace Top",
         "description": "V-neck, Soft, Comfy",
         "collection": "T-Shirt",
         "size": "L",
@@ -1156,8 +1156,8 @@ export const product_list = [
     },
     {
         "id": 78,
-        "name": "#78 ",
-        "description": "V-neck design, Soft, Comfy",
+        "name": "#78 Colorful Beaded Neckline ",
+        "description": "V-neck design, Soft, Comfy (have small stains)",
         "collection": "T-Shirt",
         "size": "S",
         "category": "Affordable",
@@ -1171,8 +1171,8 @@ export const product_list = [
     },
     {
         "id": 79,
-        "name": "#79 ",
-        "description": "Soft, Comfy, Floral applique details and sleeves.",
+        "name": "#79 Pink Balloon Blouse ",
+        "description": "Soft, Comfy, Floral applique details and sleeves (have small stains).",
         "collection": "T-Shirt",
         "size": "L",
         "category": "Regular",
@@ -1184,4 +1184,4 @@ export const product_list = [
         "is_archived": false,
         "images": "1YRk217T77tpJXHBMO2wjpait3MiUkCYK||19r80Glr3v5lO8854Dpbt6dvs9s5DwrAY||1Bx1sT4rkYCJSOGWokLKaovxf6yP3Owld"
     }
-];
+]
