@@ -40,6 +40,7 @@ async function loadProducts() {
     summary = data.summary;
 
     products = formatProducts((product_list || []).toReversed())
+    products = randomizeFirstProduct(products);
 
     populateFilters();
     initProductEvents();
@@ -71,7 +72,8 @@ async function loadProducts() {
                     if (data?.data) {
                         let newProducts = formatProducts(data.data);
                         newProducts = [...products, ...newProducts];
-                        products = newProducts.sort((a, b) => b.id - a.id);
+                        newProducts = newProducts.sort((a, b) => b.id - a.id);
+                        products = randomizeFirstProduct(newProducts);
                         isSoldProductsFetched = true;
                         showToast('Sold products have been fetched!')
                     } else {
@@ -90,7 +92,7 @@ async function loadProducts() {
 }
 
 function formatProducts(products) {
-    return products.map(p => {
+    let newProducts = products.map(p => {
         return {
             ...p,
             images: p.images ? p.images.split("||") : [],
@@ -98,6 +100,17 @@ function formatProducts(products) {
             category: categoryMap[p.category],
         }
     });
+    return newProducts;
+}
+
+function randomizeFirstProduct(products) {
+    // random pick first product
+    if (products.length > 0) {
+        const randomIndex = Math.floor(Math.random() * products.length);
+        const [pick] = products.splice(randomIndex, 1);
+        return [pick, ...products];
+    }
+    return products;
 }
 
 function selectChip(group, chip) {

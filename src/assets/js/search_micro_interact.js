@@ -6,6 +6,13 @@ searchInput.addEventListener('input', () => {
     showClearSearch();
 });
 
+searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        e.preventDefault();
+        searchInput.blur();
+    }
+});
+
 function showClearSearch() {
     if (searchInput.value) {
         clearButton.classList.add('is-visible');
