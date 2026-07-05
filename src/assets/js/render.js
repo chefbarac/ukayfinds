@@ -119,7 +119,7 @@ function render(isInitialLoadNoFilter) {
         })
         .join("");
 
-    // show/hide product card floating buttons
+    // show/hide product card floating buttons, including the banner
     const mainImgs = document.querySelectorAll('.main-img-container');
     mainImgs.forEach(container => {
         container.addEventListener("pointerdown", (e) => {
