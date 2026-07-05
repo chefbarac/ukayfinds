@@ -16,7 +16,7 @@ function render(isInitialLoadNoFilter) {
     const category = document.getElementById("category").dataset.value;
     const status = document.getElementById("status").dataset.value;
 
-    updateFilterCount({ collection, size, category, status });
+    updateFilterCount({ search, collection, size, category, status });
 
     if (!isInitialLoadNoFilter) {
 
@@ -55,7 +55,7 @@ function render(isInitialLoadNoFilter) {
             const fav = favorites.includes(product.id);
 
             return `
-                          <div class="card ${product.is_sold ? "sold" : ""}" style="background:
+                          <div class="card product-card ${product.is_sold ? "sold" : ""}" style="background:
                             linear-gradient(white, white) padding-box,
                             ${imageColors[product.category] || "#c8c8c8"} border-box;
                             border: 1px solid transparent;
@@ -64,13 +64,13 @@ function render(isInitialLoadNoFilter) {
                               ${product.is_reserved && !product.is_sold ? `<div class="banner reserved-banner">Reserved</div>` : ""}
                               ${product.is_new && !product.is_sold && !product.is_reserved ? `<div class="banner new-banner">New</div>` : ""}
                           <button
-                          class="favorite ${fav ? " active" : ""}"
+                          class="floating-buttons favorite ${fav ? " active" : ""}"
                           data-product-id="${product.id}"
                           >
                             ${fav ? "❤️" : "♡"}
                           </button>
                           <button
-                            class="share-link"
+                            class="floating-buttons share-link"
                             data-product-id="${product.id}"
                             data-product-name="${product.name}">
                                 ${"🔗"}
@@ -92,21 +92,10 @@ function render(isInitialLoadNoFilter) {
                           </div>
 
                           <div class="card-body">
-                            <h3>
-                                ${product.name}
-                            </h3>
-
-                            <p>
-                                ${product.description}
-                            </p>
-
-                            <span class="badge">
-                              ${product.collection}
-                            </span>
-
-                            <span class="badge">
-                                Size ${product.size}
-                            </span>
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <span class="badge">${product.collection}</span>
+                            <span class="badge">Size ${product.size}</span>
 
                             <br><br>
 
@@ -124,6 +113,28 @@ function render(isInitialLoadNoFilter) {
                           `;
         })
         .join("");
+
+    // show/hide product card floating buttons
+    const mainImgs = document.querySelectorAll('.main-img');
+    mainImgs.forEach(img => {
+        img.addEventListener("pointerdown", (e) => {
+            const card = e.target.closest(".product-card");
+            if (card) card.classList.add("pressing");
+        });
+    })
+
+    document.addEventListener("contextmenu", (e) => {
+        if (e.target.matches(".product-card img")) {
+            e.preventDefault();
+        }
+    });
+    ["pointerup", "pointercancel", "contextmenu", "visibilitychange"].forEach(type => {
+        document.addEventListener(type, (e) => {
+            document.querySelectorAll(".product-card.pressing")
+                .forEach(card => card.classList.remove("pressing"));
+        });
+    });
+
 }
 
 function resetFilters() {
