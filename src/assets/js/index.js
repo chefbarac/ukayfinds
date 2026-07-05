@@ -192,12 +192,6 @@ function sizeComparator(a, b) {
     return ai - bi;
 }
 
-/* window.addEventListener("popstate", (e) => {
-    // Re-push state to keep trapping the back button
-    history.pushState(null, "", window.location.href);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}); */
-
 /* scroll to top */
 (() => {
     scrollTopBtn.addEventListener('click', scrollBackToTop)
@@ -236,19 +230,22 @@ function setImage(productId, index) {
     const imgEl = carousel.querySelector(".main-img");
     const spinner = carousel.querySelector(".img-spinner");
 
-    // show spinner
-    spinner.style.display = "block";
-    // imgEl.style.opacity = "0";
+    const SPINNER_DELAY = 200; // ms before spinner appears
+
+    // delay showing spinner so fast loads don't flash it
+    const spinnerTimeout = setTimeout(() => {
+        spinner.style.display = "block";
+    }, SPINNER_DELAY);
 
     const full = new Image();
     full.onload = () => {
+        clearTimeout(spinnerTimeout);
         imgEl.src = full.src;
-        // imgEl.style.opacity = "1";
         spinner.style.display = "none";
     };
     full.onerror = () => {
+        clearTimeout(spinnerTimeout);
         spinner.style.display = "none";
-        // imgEl.style.opacity = "1";
     };
     full.src = toDriveUrl(product.images[index]) + "=w600";
 
@@ -331,7 +328,14 @@ function copyShareLink(productId, productName) {
 }
 
 function scrollBackToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
     gtag("event", "button_click", {
         button_name: "scroll_back_to_top",
     });

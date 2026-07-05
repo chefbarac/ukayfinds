@@ -1,4 +1,7 @@
 import './assets/css/style.css';
+import './assets/css/header.css';
+import './assets/css/controls.css';
+import './assets/css/products.css';
 
 import './assets/js/version.js';
 import './assets/js/el.js';
