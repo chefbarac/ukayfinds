@@ -1,7 +1,6 @@
 import { throttleScroll } from "../lib/scroll";
 import { controlsEl, btnToggleFilters } from "./el";
 
-
 let lastScrollY = window.scrollY;
 let filtersForceExpanded = false;
 const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
@@ -9,19 +8,6 @@ const SCROLL_THRESHOLD = 100; // pixels scrolled before collapsing
 let scrollAnchorY = window.scrollY; // reset point for measuring delta
 const FORCE_COLLAPSE_DELTA = 500; // pixels of movement before force-closing filters
 
-// const handleScroll = throttleScroll(() => {
-//     const currentY = window.scrollY;
-//     const shouldCollapse = currentY > SCROLL_THRESHOLD;
-
-//     controlsEl.classList.toggle('collapsed', shouldCollapse);
-
-//     if (shouldCollapse) {
-//         window.removeEventListener('scroll', handleScroll);
-//     }
-// });
-
-// window.addEventListener('scroll', handleScroll, { passive: true });
-// handleScroll(); // sync initial state on load
 
 function toggleFilters() {
     filtersForceExpanded = !filtersForceExpanded;

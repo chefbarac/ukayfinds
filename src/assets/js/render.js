@@ -93,7 +93,7 @@ function render(isInitialLoadNoFilter) {
 
                           <div class="card-body">
                             <h3>${product.name}</h3>
-                            <p>${product.description}</p>
+                            <p>${product.description || ''}</p>
                             <span class="badge">${product.collection}</span>
                             <span class="badge">Size ${product.size}</span>
 
@@ -115,25 +115,25 @@ function render(isInitialLoadNoFilter) {
         .join("");
 
     // show/hide product card floating buttons
-    const mainImgs = document.querySelectorAll('.main-img');
-    mainImgs.forEach(img => {
-        img.addEventListener("pointerdown", (e) => {
-            const card = e.target.closest(".product-card");
-            if (card) card.classList.add("pressing");
-        });
-    })
+    // const mainImgs = document.querySelectorAll('.main-img');
+    // mainImgs.forEach(img => {
+    //     img.addEventListener("pointerdown", (e) => {
+    //         const card = e.target.closest(".product-card");
+    //         if (card) card.classList.add("pressing");
+    //     });
+    // })
 
-    document.addEventListener("contextmenu", (e) => {
-        if (e.target.matches(".product-card img")) {
-            e.preventDefault();
-        }
-    });
-    ["pointerup", "pointercancel", "contextmenu", "visibilitychange"].forEach(type => {
-        document.addEventListener(type, (e) => {
-            document.querySelectorAll(".product-card.pressing")
-                .forEach(card => card.classList.remove("pressing"));
-        });
-    });
+    // document.addEventListener("contextmenu", (e) => {
+    //     if (e.target.matches(".product-card img")) {
+    //         e.preventDefault();
+    //     }
+    // });
+    // ["pointerup", "pointercancel", "contextmenu", "visibilitychange"].forEach(type => {
+    //     document.addEventListener(type, (e) => {
+    //         document.querySelectorAll(".product-card.pressing")
+    //             .forEach(card => card.classList.remove("pressing"));
+    //     });
+    // });
 
 }
 

@@ -55,7 +55,15 @@
 .card.sold {
     opacity: 0.6; /* Fades the entire card */
     filter: grayscale(60%); /* Tones down the vibrant colors and image */
-    /* pointer-events: none; /* Optional: Prevents clicks on buttons/thumbs */
+    pointer-events: none;
+}
+
+.card.sold button.share-link {
+    display: none;
+}
+
+.card.sold div.thumbs {
+    display: none;
 }
 
 .card-body {
@@ -201,9 +209,9 @@
         transform: rotate(360deg);
     }
 }
-
+/*
 .product-card.pressing .floating-buttons {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s;
-}
+} */

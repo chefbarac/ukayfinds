@@ -1,4 +1,5 @@
 import productsUrl from '../products.json?url';
+import productsSoldUrl from '../products_sold.json?url';
 import { searchInput, productContainer, scrollTopBtn, btnToggleFavorites, collectionGroup, statusGroup, btnClearFilters } from './el.js';
 import { showToast } from './toast.js'
 import { render } from './render.js';
@@ -7,8 +8,10 @@ import { throttleScroll } from '../lib/scroll.js';
 import { resetFilters } from './render.js';
 
 let products = [];
+let summary = {};
 let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 let favoriteMode = false;
+let isSoldProductsFetched = false;
 
 function getStatus(item) {
     if (item.is_sold) {
@@ -31,16 +34,12 @@ const categoryMap = {
 
 async function loadProducts() {
     const res = await fetch(productsUrl);
-    const product_list = await res.json(); // or parse module export
+    const data = await res.json(); // or parse module export
+    // data = {summary: {}, data: []}
+    const product_list = data.data;
+    summary = data.summary;
 
-    products = (product_list || []).toReversed().map((p) => {
-        return {
-            ...p,
-            images: p.images ? p.images.split("||") : [],
-            status: getStatus(p),
-            category: categoryMap[p.category],
-        };
-    });
+    products = formatProducts((product_list || []).toReversed())
 
     populateFilters();
     initProductEvents();
@@ -50,14 +49,54 @@ async function loadProducts() {
     render(!productNumber && !collectionName);
 
     // Filter chips: click replaces input
-    document.querySelectorAll(".filter-group").forEach((group) => {
-        group.addEventListener("click", (e) => {
+    document.querySelectorAll(".filter-group:not([id='status'])").forEach((group) => {
+        group.addEventListener("click", async (e) => {
             const btn = e.target.closest(".chip");
             selectChip(group, btn);
 
             render();
             trackFilter();
         });
+    });
+    // handle status filter clicks separately
+    document.querySelectorAll('#status .chip').forEach(chip => {
+        chip.addEventListener('click', async () => {
+            const val = chip.dataset.value;
+            if (['', 'Sold'].includes(val)) {
+                // means fetch sold products if not done yet
+                if (!isSoldProductsFetched) {
+                    const res = await fetch(productsSoldUrl);
+                    const data = await res.json().catch(() => showToast('Error fetching the sold products!'));
+
+                    if (data?.data) {
+                        let newProducts = formatProducts(data.data);
+                        newProducts = [...products, ...newProducts];
+                        products = newProducts.sort((a, b) => b.id - a.id);
+                        isSoldProductsFetched = true;
+                        showToast('Sold products have been fetched!')
+                    } else {
+                        return;
+                    }
+                }
+            }
+
+            const group = chip.closest('.filter-group');
+            selectChip(group, chip);
+
+            render();
+            trackFilter();
+        })
+    })
+}
+
+function formatProducts(products) {
+    return products.map(p => {
+        return {
+            ...p,
+            images: p.images ? p.images.split("||") : [],
+            status: getStatus(p),
+            category: categoryMap[p.category],
+        }
     });
 }
 
@@ -118,12 +157,6 @@ async function populateFilters() {
         name: size,
         count: products.filter((p) => p.size === size).length,
     }));
-    /* const prices = [...new Set(products.map((p) => p.price).filter((v) => v != null))]
-        .sort((a, b) => a - b)
-        .map((price) => ({
-            name: price,
-            count: products.filter((p) => p.price === price).length,
-        })); */
     const categories = [...new Set(products.map((p) => p.category).filter(Boolean))].sort(categoryComparator).map((category) => ({
         name: category,
         count: products.filter((p) => p.category === category).length,
@@ -132,18 +165,6 @@ async function populateFilters() {
         name: status,
         count: products.filter((p) => p.status === status).length,
     }));
-
-    /*
-    const fillSelect = (id, items, labelFn, valueFn) => {
-        const select = document.getElementById(id);
-        select.querySelectorAll('option:not([value=""])').forEach((o) => o.remove());
-        items.forEach((item) => {
-            const opt = document.createElement("option");
-            opt.value = valueFn ? valueFn(item) : item.name;
-            opt.textContent = labelFn(item);
-            select.appendChild(opt);
-        });
-    };*/
 
     const fillSelect = (id, items, labelFn, valueFn) => {
         const group = document.getElementById(id);
@@ -169,7 +190,15 @@ async function populateFilters() {
         (p) => String(p.name),
     ); */
     fillSelect("category", categories, (c) => `${c.name.split(" ")[1]} (${c.count})`);
-    fillSelect("status", statuses, (c) => `${c.name} (${c.count})`);
+    // fillSelect("status", statuses, (c) => `${c.name} (${c.count})`);
+    statusGroup.querySelectorAll('.chip:not([data-value=""])').forEach(el => {
+        const status = el.dataset.value;
+        const count = summary[status];
+        if (!count && status === 'Reserved') {
+            el.style = "display: none";
+        }
+        el.innerText = `${el.dataset.value} (${count})`;
+    })
 }
 
 function categoryComparator(a, b) {
@@ -205,14 +234,6 @@ function sizeComparator(a, b) {
     // hide initially
     scrollTopBtn.style.display = "none";
 })();
-
-// COLLAPSE FILTER ON SCROLL
-// ...
-// END COLLAPSE FILTER ON SCROLL
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     console.log("DOMContentLoaded!");
-// });
 
 const activeImageIndex = {};
 
@@ -262,12 +283,6 @@ function debounce(fn, delay) {
 
 // your gtag tracking call
 const trackFilter = debounce(function () {
-    /* const search = document.getElementById("search").value.toLowerCase();
-    const collection = document.getElementById("collection").value;
-    const size = document.getElementById("size").value;
-    const price = document.getElementById("price").value;
-    const category = document.getElementById("category").value;
-    const status = document.getElementById("status").value; */
 
     const search = document.getElementById("search").value.toLowerCase();
     const collection = document.getElementById("collection").dataset.value;
@@ -362,24 +377,11 @@ function toggleFavoriteMode(isReset) {
     btnToggleFavorites.classList.toggle("active");
     favoriteMode = !favoriteMode;
 
-    /*
-    const btn = document.getElementById("btnToggleFavorites");
-    if (btn) btn.innerText = favoriteMode ? "♡ Favorites" : "❤️ Favorites"; */
-
-
     if (isReset === true) return;
     render();
     trackFilter();
 
 }
-
-/*
-document.querySelectorAll("input,select").forEach((x) =>
-    x.addEventListener("input", (e) => {
-        render();
-        trackFilter(e.target.value); // gtag waits for pause
-    }),
-);*/
 
 // Search input still works the same way
 searchInput.addEventListener("input", (e) => {
