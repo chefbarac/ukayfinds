@@ -36,8 +36,8 @@
 
         <title>Ukay Finds | Chat now to reserve yours!</title>
 
-      <script type="module" crossorigin src="/ukayfinds/assets/index-CcbdV9f2.js"></script>
-      <link rel="stylesheet" crossorigin href="/ukayfinds/assets/index-DMdXsSL_.css">
+      <script type="module" crossorigin src="/ukayfinds/assets/index-BvlIXPS8.js"></script>
+      <link rel="stylesheet" crossorigin href="/ukayfinds/assets/index-CabUxDVp.css">
     </head>
 
     <body>
@@ -64,50 +64,52 @@
         </header>
 
         <div class="container">
-            <div class="controls collapsed" id="controls">
-                <div style="display: flex; gap: 5px">
-                    <div class="search-row" style="flex-shrink: 1; width: 100%">
-                        <div class="search-wrapper">
-                            <input type="search" id="search" placeholder="Search..." />
-                            <button type="button" id="clear-search" aria-label="Clear search">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
+            <div class="controls-container">
+                <div class="controls collapsed" id="controls">
+                    <div style="display: flex; gap: 5px">
+                        <div class="search-row" style="flex-shrink: 1; width: 100%">
+                            <div class="search-wrapper">
+                                <input type="search" id="search" placeholder="Search..." />
+                                <button type="button" id="clear-search" aria-label="Clear search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="fav-row" style="flex-shrink: 0">
+                            <button id="btnToggleFavorites" class="fav-btn" style="height: 100%">❤️ Favorites</button>
+                        </div>
+                        <div class="fav-row filters-toggle-row" style="flex-shrink: 0; display: none">
+                            <button id="btnToggleFilters" class="fav-btn filter-toggle-btn" style="height: 100%">☰ Filters</button>
                         </div>
                     </div>
-                    <div class="fav-row" style="flex-shrink: 0">
-                        <button id="btnToggleFavorites" class="fav-btn" style="height: 100%">❤️ Favorites</button>
-                    </div>
-                    <div class="fav-row filters-toggle-row" style="flex-shrink: 0; display: none">
-                        <button id="btnToggleFilters" class="fav-btn filter-toggle-btn" style="height: 100%">☰ Filters</button>
-                    </div>
-                </div>
 
-                <div class="filter-groups-wrap" id="filterGroupsWrap">
-                    <!-- NOTE: with emojis -->
-                    <div class="filter-group" id="collection" data-filter="collection">
-                        <button class="chip active" data-value="">🗂️ Collections</button>
-                    </div>
+                    <div class="filter-groups-wrap" id="filterGroupsWrap">
+                        <!-- NOTE: with emojis -->
+                        <div class="filter-group" id="collection" data-filter="collection">
+                            <button class="chip active" data-value="">🗂️ Collections</button>
+                        </div>
 
-                    <div class="filter-group" id="size" data-filter="size">
-                        <button class="chip active" data-value="">📐 Sizes</button>
-                    </div>
+                        <div class="filter-group" id="size" data-filter="size">
+                            <button class="chip active" data-value="">📐 Sizes</button>
+                        </div>
 
-                    <div class="filter-group" id="category" data-filter="category">
-                        <button class="chip active" data-value="">✨ Picks</button>
-                    </div>
+                        <div class="filter-group" id="category" data-filter="category">
+                            <button class="chip active" data-value="">✨ Picks</button>
+                        </div>
 
-                    <div class="filter-group" id="status" data-filter="status">
-                        <button class="chip active" data-value="">🔖 Status</button>
-                        <button class="chip" data-value="Available">Available</button>
-                        <button class="chip" data-value="Reserved">Reserved</button>
-                        <button class="chip" data-value="Sold">Sold</button>
-                    </div>
+                        <div class="filter-group" id="status" data-filter="status">
+                            <button class="chip active" data-value="">🔖 Status</button>
+                            <button class="chip" data-value="Available">Available</button>
+                            <button class="chip" data-value="Reserved">Reserved</button>
+                            <button class="chip" data-value="Sold">Sold</button>
+                        </div>
 
-                    <div style="display: flex; justify-content: center; padding-top: 10px; margin-top: 10px; margin-bottom: 8px; border-top: 1px solid #ddd">
-                        <button id="btnClearFilters" class="btn-modern-red btn-small">Clear Filters</button>
+                        <div style="display: flex; justify-content: center; padding-top: 10px; margin-top: 10px; margin-bottom: 8px; border-top: 1px solid #ddd">
+                            <button id="btnClearFilters" class="btn-modern-red btn-small">Clear Filters</button>
+                        </div>
                     </div>
                 </div>
             </div>

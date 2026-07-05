@@ -1,16 +1,32 @@
-.controls {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
-    margin-bottom: 25px;
+.controls-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #f7f3ee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+
+    .controls {
+        max-width: 1200px;
+        margin: auto;
+        display: flex; 
+        flex-direction: column;
+        gap: 10px;
+        // margin-bottom: 25px;
+
+        padding-left: 8px;
+        padding-top: 8px;
+        padding-right: 8px;
+
+        transition: padding 0.2s ease;
+        /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    }
 }
 
 /* Horizontal filter controls */
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+
 .search-row input[type="search"] {
     width: 100%;
 }
@@ -113,21 +129,6 @@
 }
 
 /* COLLAPSE FILTER ON SCROLL */
-.controls {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding-left: 8px;
-    padding-top: 8px;
-    padding-right: 8px;
-    z-index: 20;
-    background: #f7f3ee; /* match your page background so content doesn't show through */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: padding 0.2s ease;
-    /* border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px; */
-}
 
 .filter-groups-wrap {
     max-height: 500px; /* generous upper bound, adjust if your chips wrap taller */
