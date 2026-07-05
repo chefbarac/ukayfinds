@@ -209,9 +209,9 @@
         transform: rotate(360deg);
     }
 }
-/*
+
 .product-card.pressing .floating-buttons {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s;
-} */
+}

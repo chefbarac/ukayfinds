@@ -320,7 +320,7 @@ function initProductEvents() {
 }
 
 function handleProductClick(e) {
-    if (e.target.matches(".thumbnail")) {
+    if (e.target.matches(".thumbnail-container")) {
         setImage(
             e.target.dataset.productId,
             Number(e.target.dataset.index)

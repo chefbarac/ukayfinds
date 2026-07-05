@@ -77,14 +77,19 @@ function render(isInitialLoadNoFilter) {
                             </button>
 
                           <div class="carousel" id="carousel-${product.id}">
-                            <img src="${toDriveUrl(product.images[0])}=w600" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"}; padding: 1px;" loading="lazy">
+                            <div class="main-img-container">
+                                <img src="${toDriveUrl(product.images[0])}=w600" class="main-img" style="background: ${imageColors[product.category] || "#c8c8c8"}; padding: 1px;" loading="lazy">
+                                </div>
                             <div class="img-spinner"></div>
                             <div class="thumbs">
                               ${product.images
                     .map(
                         (img, i) => `
-                                        <img src="${toDriveUrl(img)}=w100" class="thumbnail"  data-product-id="${product.id}"
-        data-index="${i}"  loading="lazy">
+                                        <div class="thumbnail-container"
+                                        data-product-id="${product.id}"
+                                        data-index="${i}"  >
+                                        <img src="${toDriveUrl(img)}=w100" class="thumbnail"  loading="lazy">
+                                        </div>
                                     `,
                     )
                     .join("")}
@@ -115,25 +120,25 @@ function render(isInitialLoadNoFilter) {
         .join("");
 
     // show/hide product card floating buttons
-    // const mainImgs = document.querySelectorAll('.main-img');
-    // mainImgs.forEach(img => {
-    //     img.addEventListener("pointerdown", (e) => {
-    //         const card = e.target.closest(".product-card");
-    //         if (card) card.classList.add("pressing");
-    //     });
-    // })
+    const mainImgs = document.querySelectorAll('.main-img-container');
+    mainImgs.forEach(img => {
+        img.addEventListener("pointerdown", (e) => {
+            const card = e.target.closest(".product-card");
+            if (card) card.classList.add("pressing");
+        });
+    })
 
-    // document.addEventListener("contextmenu", (e) => {
-    //     if (e.target.matches(".product-card img")) {
-    //         e.preventDefault();
-    //     }
-    // });
-    // ["pointerup", "pointercancel", "contextmenu", "visibilitychange"].forEach(type => {
-    //     document.addEventListener(type, (e) => {
-    //         document.querySelectorAll(".product-card.pressing")
-    //             .forEach(card => card.classList.remove("pressing"));
-    //     });
-    // });
+    document.addEventListener("contextmenu", (e) => {
+        if (e.target.matches(".product-card .main-img-container")) {
+            e.preventDefault();
+        }
+    });
+    ["pointerup", "pointercancel", "contextmenu", "visibilitychange"].forEach(type => {
+        document.addEventListener(type, (e) => {
+            document.querySelectorAll(".product-card.pressing")
+                .forEach(card => card.classList.remove("pressing"));
+        });
+    });
 
 }
 

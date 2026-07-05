@@ -19,6 +19,10 @@ body {
     color: #222;
 }
 
+img {
+    pointer-events: none;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
