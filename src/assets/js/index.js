@@ -330,15 +330,17 @@ function handleProductClick(e) {
         toggleFavorite(Number(e.target.dataset.productId));
     }
     else if (e.target.matches(".share-link")) {
-        copyShareLink(e.target.dataset.productId, e.target.dataset.productName);
+        copyShareLink(e.target, e.target.dataset.productId, e.target.dataset.productName);
     }
 }
 
-function copyShareLink(productId, productName) {
+function copyShareLink(target, productId, productName) {
     const url = `${window.location.origin}${window.location.pathname}?p=${productId}`;
     const text = `${productName}\n${url}`
     navigator.clipboard.writeText(text).then(() => {
         showToast("Product link copied to clipboard!");
+        target.classList.add('copied');
+        setTimeout(() => target.classList.remove('copied'), 2500);
     });
 }
 

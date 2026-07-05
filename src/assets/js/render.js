@@ -121,25 +121,12 @@ function render(isInitialLoadNoFilter) {
 
     // show/hide product card floating buttons
     const mainImgs = document.querySelectorAll('.main-img-container');
-    mainImgs.forEach(img => {
-        img.addEventListener("pointerdown", (e) => {
+    mainImgs.forEach(container => {
+        container.addEventListener("pointerdown", (e) => {
             const card = e.target.closest(".product-card");
-            if (card) card.classList.add("pressing");
+            if (card) card.classList.toggle("pressed");
         });
     })
-
-    document.addEventListener("contextmenu", (e) => {
-        if (e.target.matches(".product-card .main-img-container")) {
-            e.preventDefault();
-        }
-    });
-    ["pointerup", "pointercancel", "contextmenu", "visibilitychange"].forEach(type => {
-        document.addEventListener(type, (e) => {
-            document.querySelectorAll(".product-card.pressing")
-                .forEach(card => card.classList.remove("pressing"));
-        });
-    });
-
 }
 
 function resetFilters() {

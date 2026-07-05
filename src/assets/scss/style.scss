@@ -54,61 +54,11 @@ button {
     cursor: pointer;
 }
 
-.fb-contact-btn {
-    display: inline-flex;
-    align-items: center;
-    background-color: #0084ff;
-    color: #fff;
-    font-family: system-ui, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.2s;
-}
-
-.fb-contact-btn:hover {
-    background-color: #0066cc;
-}
-
-.fb-icon {
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    fill: currentColor;
-}
-
-.copy-btn {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid black;
-    color: #111;
-    font-family: system-ui, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.copy-btn:hover {
-    background-color: #444;
-    color: white;
-}
-
-/* Turns green temporarily when clicked successfully */
-.copy-btn.copied {
-    background-color: #00a86b;
-}
-
-.copy-icon {
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    fill: currentColor;
+.share-link {
+    transition: background-color 0.2s ease;
+    &.copied {
+        background-color: #00a86b;
+    }
 }
 
 /* Scroll to top */
