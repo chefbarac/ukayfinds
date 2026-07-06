@@ -34,7 +34,7 @@ function render(isInitialLoadNoFilter) {
     const hasCommonFilters = search || collection || size || category || favoriteMode;
     if (hasCommonFilters && list.length > 0) {
         resultCounter.innerText = list.length;
-        resultInfo.style.display = "block";
+        resultInfo.style.display = "flex";
     } else {
         resultInfo.style.display = "none";
     }
