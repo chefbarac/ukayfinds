@@ -1,5 +1,5 @@
 import { products, updateFilterCount, favoriteMode, favorites, toDriveUrl, selectChip, toggleFavoriteMode } from ".";
-import { productContainer, searchInput, collectionGroup, sizeGroup, categoryGroup, statusGroup } from "./el";
+import { productContainer, searchInput, collectionGroup, sizeGroup, categoryGroup, statusGroup, resultInfo, resultCounter } from "./el";
 import { resetSearch } from "./search_micro_interact";
 
 
@@ -30,6 +30,15 @@ function render(isInitialLoadNoFilter) {
         if (favoriteMode) list = list.filter((x) => favorites.includes(x.id));
     }
 
+    // Update result counter
+    const hasCommonFilters = search || collection || size || category || favoriteMode;
+    if (hasCommonFilters && list.length > 0) {
+        resultCounter.innerText = list.length;
+        resultInfo.style.display = "block";
+    } else {
+        resultInfo.style.display = "none";
+    }
+
     if (!list.length) {
         productContainer.innerHTML = `
                           <div class="no-result">
@@ -48,7 +57,7 @@ function render(isInitialLoadNoFilter) {
         "🟣 Premium": "linear-gradient(135deg, #EDE1EC 0%, #B98BC9 50%, #6B3F7A 100%)",
     };
 
-    productContainer.classList.remove('empty-products')
+    productContainer.classList.remove('empty-products');
     productContainer.innerHTML = list
         .filter((p) => !p.is_archived)
         .map((product) => {
