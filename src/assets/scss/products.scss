@@ -1,3 +1,6 @@
+$text-muted: #78716c;
+$accent-color: #8b5e3c;
+
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -219,4 +222,19 @@
         pointer-events: none;
         transition: opacity 0.15s;
     }
+}
+
+.results-info {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: $text-muted;
+    margin-top: 5px;
+}
+
+.counter {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $accent-color;
 }
