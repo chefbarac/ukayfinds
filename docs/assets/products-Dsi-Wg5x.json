@@ -1,8 +1,8 @@
 {
     "summary": {
-        "Available": 48,
+        "Available": 47,
         "Reserved": 0,
-        "Sold": 31
+        "Sold": 32
     },
     "data": [
         {
@@ -619,21 +619,6 @@
             "is_new": true,
             "is_archived": false,
             "images": "1aD8c_A8BulpNJpRC4AFtf7p7d52uIAR_||1JIVPYnWJBqAZNC5_qWMnAgjqx1gWePSl||19clzt7qjhrKh6ugA5laZJX5BBQXzDaCj"
-        },
-        {
-            "id": 73,
-            "name": "#73 Purple Grpahic Top",
-            "description": "Soft, Stretchable, Comfy, Cute girl print with glitter details",
-            "collection": "T-Shirt",
-            "size": "S",
-            "category": "Premium",
-            "price": 80,
-            "anchor_price": 99,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": true,
-            "is_archived": false,
-            "images": "18Gm8h7S3gdCR8gO9Npl6z4Z_VMch02Jk||1_t0wS5oqUxZl2UH2YYvpxjyi-o2jDGgw||16gYnlspjDZVWEMVU_9fHwpcgYNF_PI6u"
         },
         {
             "id": 74,
