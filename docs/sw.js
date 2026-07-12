@@ -3,7 +3,7 @@
 // Don't hand-edit the placeholder comment — it's a string match target.
 
 const CACHE_VERSION = '9ecf96f97f'; // injected at build time
-const CACHE_NAME = `swr-cache-${CACHE_VERSION}`;
+const CACHE_NAME = `ukayfinds-cache-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
   "/assets/index-D9LOGIt2.js",

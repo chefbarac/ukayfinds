@@ -3,7 +3,7 @@
 // Don't hand-edit the placeholder comment — it's a string match target.
 
 const CACHE_VERSION = '__CACHE_VERSION__'; // injected at build time
-const CACHE_NAME = `swr-cache-${CACHE_VERSION}`;
+const CACHE_NAME = `ukayfinds-cache-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [/* PRECACHE_MANIFEST_PLACEHOLDER */];
 
