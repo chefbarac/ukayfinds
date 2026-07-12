@@ -2,12 +2,12 @@
 // automatically by scripts/generate-sw.mjs after `vite build`.
 // Don't hand-edit the placeholder comment — it's a string match target.
 
-const CACHE_VERSION = '78e41de2cc'; // injected at build time
+const CACHE_VERSION = '5ae368e218'; // injected at build time
 const CACHE_NAME = `swr-cache-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
+  "/assets/index-D4i0_t2Y.js",
   "/assets/index-DnFX9sh0.css",
-  "/assets/index-Dv1FAZNV.js",
   "/assets/products-B4SlR-7b.json",
   "/assets/products_sold-CMpPtPIB.json",
   "/img/android-chrome-192x192.png",
