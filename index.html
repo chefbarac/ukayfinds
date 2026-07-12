@@ -128,5 +128,11 @@
         </div>
     </body>
 
-    <script type="module"></script>
+    <script type="module">
+        if ("serviceWorker" in navigator && import.meta.env.PROD) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js");
+            });
+        }
+    </script>
 </html>
