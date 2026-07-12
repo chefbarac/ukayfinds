@@ -10,10 +10,20 @@ const PRECACHE_URLS = [/* PRECACHE_MANIFEST_PLACEHOLDER */];
 self.addEventListener('install', (event) => {
     self.skipWaiting();
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            // addAll fails atomically if any single request fails — that's fine,
-            // it just means this install attempt is retried later.
-            return cache.addAll(PRECACHE_URLS);
+        caches.open(CACHE_NAME).then(async (cache) => {
+            const results = await Promise.allSettled(
+                PRECACHE_URLS.map((url) =>
+                    fetch(url, { cache: 'reload' }).then((res) => {
+                        if (!res.ok) throw new Error(`${res.status} ${url}`);
+                        return cache.put(url, res);
+                    })
+                )
+            );
+            results.forEach((r, i) => {
+                if (r.status === 'rejected') {
+                    console.error('[sw] precache failed:', PRECACHE_URLS[i], r.reason);
+                }
+            });
         })
     );
 });
