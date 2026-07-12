@@ -2,8 +2,9 @@
 // automatically by scripts/generate-sw.mjs after `vite build`.
 // Don't hand-edit the placeholder comment — it's a string match target.
 
+const PREFIX = 'ukayfinds-cache';
 const CACHE_VERSION = '9ecf96f97f'; // injected at build time
-const CACHE_NAME = `ukayfinds-cache-${CACHE_VERSION}`;
+const CACHE_NAME = `${PREFIX}-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
   "/assets/index-D9LOGIt2.js",
@@ -46,7 +47,7 @@ self.addEventListener('activate', (event) => {
         caches.keys().then((keys) =>
             Promise.all(
                 keys
-                    .filter((key) => key !== CACHE_NAME)
+                    .filter((key) => key.startsWith(PREFIX) && key !== CACHE_NAME)
                     .map((key) => caches.delete(key))
             )
         )
