@@ -1,73 +1,18 @@
 {
     "summary": {
-        "Sold": 35
+        "Sold": 43
     },
     "data": [
         {
-            "id": 23,
-            "name": "#23 ",
+            "id": 31,
+            "name": "#31 Kappa",
             "collection": "T-Shirt",
             "size": "M",
             "category": "Affordable",
             "price": 45,
             "anchor_price": 59,
             "is_sold": true,
-            "images": "12H5Lsaary_neMblJBnLl2YEgF6E4rXWP"
-        },
-        {
-            "id": 25,
-            "name": "#25 Tucano",
-            "collection": "T-Shirt",
-            "size": "M",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": true,
-            "images": "1QMT26g0JWDqjy5eS2mIhQVV4c6aGZHAG"
-        },
-        {
-            "id": 26,
-            "name": "#26 Byford",
-            "collection": "Whole Body",
-            "size": "L",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": true,
-            "images": "1bfD3UqUF8Za7WnHf3we5GNZZ5OgkPEOR"
-        },
-        {
-            "id": 27,
-            "name": "#27 ",
-            "collection": "Sexy Top",
-            "size": "S",
-            "category": "Premium",
-            "price": 80,
-            "anchor_price": 99,
-            "is_sold": true,
-            "images": "1hzi7CK43Rnd-JCqcjiFJTTHtafQZiVMe"
-        },
-        {
-            "id": 28,
-            "name": "#28 Love",
-            "collection": "T-Shirt",
-            "size": "S",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": true,
-            "images": "10TW2nqHDKhM1yzjMuEnUbdPgy6SgVjpB"
-        },
-        {
-            "id": 29,
-            "name": "#29 Gray",
-            "collection": "T-Shirt",
-            "size": "S",
-            "category": "Premium",
-            "price": 80,
-            "anchor_price": 99,
-            "is_sold": true,
-            "images": "1OEFZAyC2h509puXuZgR1Qb9lX2zpEwKz"
+            "images": "1lS9KRMxXXorZlBfS7aFtfVdcRqciowtM"
         },
         {
             "id": 32,
@@ -79,6 +24,17 @@
             "anchor_price": 79,
             "is_sold": true,
             "images": "1axKHZcuIDOOHJxwQDhGzJf6uOX7-cUsg"
+        },
+        {
+            "id": 33,
+            "name": "#33 Yellow Green",
+            "collection": "T-Shirt",
+            "size": "L",
+            "category": "Affordable",
+            "price": 45,
+            "anchor_price": 59,
+            "is_sold": true,
+            "images": "1fCTq5DoXgIjC99YqB3q3gB2h9QtnjKOJ"
         },
         {
             "id": 35,
@@ -101,6 +57,17 @@
             "anchor_price": 79,
             "is_sold": true,
             "images": "1VvxSVmepDSXr4ht-lnmiIfVuCjET3aCH"
+        },
+        {
+            "id": 38,
+            "name": "#38 Gentle Light Winor Bust",
+            "collection": "Cropped Tee",
+            "size": "M",
+            "category": "Affordable",
+            "price": 45,
+            "anchor_price": 59,
+            "is_sold": true,
+            "images": "1ZoFJJFQn7k_J3QbCoITxTqJGn24aHt6M"
         },
         {
             "id": 40,
@@ -158,6 +125,17 @@
             "images": "1gqPcHJLwLA6srBGYlzTPQfBTvvn2o6A_"
         },
         {
+            "id": 45,
+            "name": "#45 jan jian na",
+            "collection": "T-Shirt",
+            "size": "S",
+            "category": "Affordable",
+            "price": 45,
+            "anchor_price": 59,
+            "is_sold": true,
+            "images": "1rzfJw6U3lNIPBVwcY5wyW_Cz8r2Bu7xg"
+        },
+        {
             "id": 48,
             "name": "#48 Adidas",
             "collection": "T-Shirt",
@@ -200,6 +178,28 @@
             "anchor_price": 59,
             "is_sold": true,
             "images": "1uSumaGsNE7iN6zEPedE_kJuXRH0X2Fgc"
+        },
+        {
+            "id": 55,
+            "name": "#55 Pastel Pink T-shirt ",
+            "collection": "T-Shirt",
+            "size": "XL",
+            "category": "Regular",
+            "price": 60,
+            "anchor_price": 79,
+            "is_sold": true,
+            "images": "1pY3OYYZNyAgAzb_rF_Z8ZJfhhMnpy1S2"
+        },
+        {
+            "id": 63,
+            "name": "#63 Green Tee (Nike Inspired)",
+            "collection": "T-Shirt",
+            "size": "L",
+            "category": "Regular",
+            "price": 60,
+            "anchor_price": 79,
+            "is_sold": true,
+            "images": "1ofdScEnBXs2HMxzXewZx0zxcs58_ggjB"
         },
         {
             "id": 70,

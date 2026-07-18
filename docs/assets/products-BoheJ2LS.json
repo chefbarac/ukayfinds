@@ -1,8 +1,8 @@
 {
     "summary": {
-        "Available": 44,
+        "Available": 36,
         "Reserved": 0,
-        "Sold": 35
+        "Sold": 43
     },
     "data": [
         {
@@ -21,21 +21,6 @@
             "images": "1msi1UHacjGOLvjhXL-KpOyRWXA0-3a8l||1ruCRJWY5DnZ0b4uHOfl13fuqvklLzl84||1Z5AYI-soYLFB5gtQXTI__d_Z-LIMXlB8"
         },
         {
-            "id": 8,
-            "name": "#8 UNIQLO Jean-Michel Basquiat",
-            "description": "Cotton, stretchable",
-            "collection": "T-Shirt",
-            "size": "XL",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": false,
-            "is_archived": false,
-            "images": "1sDc2sCxVNu3Hbr6EAwIzVmJO7TtLRiNI||153ntxro58C-7l5FR2qY5kXZzfilTPCuF||1UjGD3CLHGyVtHMFmd5osorKZ9aP3Xap6||1RdauQ4rZpvLsvfUm9B-gsVH93UpqS15S"
-        },
-        {
             "id": 10,
             "name": "#10 Pastel Pink T-shirt ",
             "description": "Cotton",
@@ -49,21 +34,6 @@
             "is_new": false,
             "is_archived": false,
             "images": "1ZbHY0PjlWoQKXLjTCz_YA1ZN85s9NwOn||1hERU-gNcVinQzyvkOa1QZO_YgIZaNV98||1K3c8nchy56_0sQnwnxFGAvlH436FcK5G"
-        },
-        {
-            "id": 11,
-            "name": "#11 BAR SOO",
-            "description": "Cotton, stretchable",
-            "collection": "T-Shirt",
-            "size": "M",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": false,
-            "is_archived": false,
-            "images": "1CyCmp2x3VLuDFPR2VzDKUbQaTVfHKPdp||1tai636JKjBV84UXhskAFXw2-7KIqrQvo||1eeXnuN6lc-i0M2FaO-upX6ExdyWEDeDw||10AkCy8DrQpeweew2VovKGsW7WH4-i-uo"
         },
         {
             "id": 12,
@@ -141,36 +111,6 @@
             "images": "1F8Vyjc8wzFpIhpbrDHrdV7t0AN97VMRx||1Wu2LAJM6rwKdSyqearVy3kpGGX6xIyUn||1z8hK2Y1IVuEFRApAPZEdAKhTrFku7nBB||1YDBYiqleqgq_mUZwWqC7Q8rA0ibaSO_U||1AVlp7M0k7SFpe_YZP-JDGweDFjuVMr0U"
         },
         {
-            "id": 31,
-            "name": "#31 Kappa",
-            "description": "Cotton, v-neck (need wash)",
-            "collection": "T-Shirt",
-            "size": "M",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": false,
-            "is_archived": false,
-            "images": "1lS9KRMxXXorZlBfS7aFtfVdcRqciowtM||1qc4JDvLnIcVF7jgjVvv2KePF1UAYy2s3||18hT63hvMK8D3ZNo23FulPiHbw0XUD84q||12D-i8eZDEuLJ7cqRUSCTEtr7P1RGg96x"
-        },
-        {
-            "id": 33,
-            "name": "#33 Yellow Green",
-            "description": "Cotton",
-            "collection": "T-Shirt",
-            "size": "L",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": false,
-            "is_archived": false,
-            "images": "1fCTq5DoXgIjC99YqB3q3gB2h9QtnjKOJ||1hh8_4pAcj3T4NDQkxrQs4fq-oM36IjbF||1vyxVxITMBxzjbnWBibwngPXZKyHQLe-X"
-        },
-        {
             "id": 34,
             "name": "#34 DXCG",
             "description": "Cotton",
@@ -201,21 +141,6 @@
             "images": "1yOFjTJlggRa6V_Kb-v1oxGCKkXcL1Pxa||1avMQWIlb9tBcZtQbAgxpiLSvzOh5ncKI||1-qAUk20oIUOC0YAIiKgu0uqCYc9c3_o-||1I-FQeJT_nD3SDLz6FytW-yIGG8WNINsK"
         },
         {
-            "id": 38,
-            "name": "#38 Gentle Light Winor Bust",
-            "description": "Cotton",
-            "collection": "Cropped Tee",
-            "size": "M",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": false,
-            "is_archived": false,
-            "images": "1ZoFJJFQn7k_J3QbCoITxTqJGn24aHt6M||1wlPNIuy5vX9-DxJQIACRRtbaAi9p_yq-||12P-p8257XNonXGiUT51W5o7WIOOA-GXV||1LzVIbxxrlV3s_3By3Vuiux-_exr6xsvv"
-        },
-        {
             "id": 39,
             "name": "#39 Gray & Blue T-shirt ",
             "description": "Cotton, stretchable, comfy",
@@ -229,21 +154,6 @@
             "is_new": false,
             "is_archived": false,
             "images": "1rawpAePFKpnjgOaRFWHd8c8h7NyWTULp||1DZ2621XetBHj7ZiR6ymwyf0Ezw3l_SLc||1Y5PTIXYU0Ji4kWML7z7SLXdimP9mQt7q||13TGXg2-o8pBXRLqdIuGrwF3gaGGsMCwQ"
-        },
-        {
-            "id": 45,
-            "name": "#45 jan jian na",
-            "description": "Cotton",
-            "collection": "T-Shirt",
-            "size": "S",
-            "category": "Affordable",
-            "price": 45,
-            "anchor_price": 59,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": false,
-            "is_archived": false,
-            "images": "1rzfJw6U3lNIPBVwcY5wyW_Cz8r2Bu7xg||1tYvrYhvCOCgS7aG-RljNVBmfZlKyvFEy||1FpopwQLFGn-hQSpeMJqOHdEhUB1uEAGt||1WnKh2K3bkxQ29d1Ne9XZQhBbqZ5r9nv3"
         },
         {
             "id": 46,
@@ -319,21 +229,6 @@
             "is_new": true,
             "is_archived": false,
             "images": "1e8c4lcOpp5gkXrDMvIzIbjp-5cMORGfF||1j9o2z1RDE3gk3q-IGld1DvI3e3eMI5Xm||1ZfUMLLN0DaD13qY2aSRqmolheLjUBoeJ"
-        },
-        {
-            "id": 55,
-            "name": "#55 Pastel Pink T-shirt ",
-            "description": "Stretchable, Relaxed fit, Cute graphic design",
-            "collection": "T-Shirt",
-            "size": "XL",
-            "category": "Regular",
-            "price": 60,
-            "anchor_price": 79,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": true,
-            "is_archived": false,
-            "images": "1pY3OYYZNyAgAzb_rF_Z8ZJfhhMnpy1S2||1mmsHwRNn-D6q-7bMwir1WlpzOnLnLOHR||1ZH2unYNdRT8JPQHwpkUcnuXGf-NAURWL"
         },
         {
             "id": 56,
@@ -439,21 +334,6 @@
             "is_new": true,
             "is_archived": false,
             "images": "1qO_ZAjQTtpgEXivdSp6LLe6i5bjvCnDm||1OsTt9HqDyDkYtVklckgk5G1Eovgp24vg||1KvOuCGlkJoA7Wbn8MgdIWSFjeSSdAR73"
-        },
-        {
-            "id": 63,
-            "name": "#63 Green Tee (Nike Inspired)",
-            "description": "Soft , Comfy",
-            "collection": "T-Shirt",
-            "size": "L",
-            "category": "Regular",
-            "price": 60,
-            "anchor_price": 79,
-            "is_sold": false,
-            "is_reserved": false,
-            "is_new": true,
-            "is_archived": false,
-            "images": "1ofdScEnBXs2HMxzXewZx0zxcs58_ggjB||15FqlL9l7TUwdFyUG2LW3EfF_CZEus3v-||1Vl-lKmuw2qmnglW4A-EATuRZoBQ0PYFb"
         },
         {
             "id": 64,
