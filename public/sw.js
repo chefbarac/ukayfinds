@@ -44,30 +44,21 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     const { request } = event;
-
     if (request.method !== 'GET') return;
-
-    const url = new URL(request.url);
-    if (url.origin !== self.location.origin) return;
-
-    event.respondWith(staleWhileRevalidate(request));
+    event.respondWith(cacheFirst(request));
 });
 
-async function staleWhileRevalidate(request) {
+async function cacheFirst(request) {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(request);
 
-    const networkFetch = fetch(request)
-        .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-                cache.put(request, networkResponse.clone());
-            }
-            return networkResponse;
-        })
-        .catch(() => {
-            if (cachedResponse) return cachedResponse;
-            throw new Error('Network request failed and no cache available');
-        });
+    // Have it cached — serve it, no network call at all.
+    if (cachedResponse) return cachedResponse;
 
-    return cachedResponse || networkFetch;
+    // Not cached yet — fetch from network and cache for next time.
+    const networkResponse = await fetch(request);
+    if (networkResponse && networkResponse.status === 200) {
+        cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
 }
