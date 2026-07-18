@@ -3,13 +3,13 @@
 // Don't hand-edit the placeholder comment — it's a string match target.
 
 const PREFIX = 'ukayfinds-cache';
-const CACHE_VERSION = 'eebdbf73f8'; // injected at build time
+const CACHE_VERSION = 'a8779f747f'; // injected at build time
 const CACHE_NAME = `${PREFIX}-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
   "/assets/index-DnFX9sh0.css",
-  "/assets/index-nziIwssz.js",
-  "/assets/products--4G_mwSV.json",
+  "/assets/index-DVBzTJQa.js",
+  "/assets/products-CpXvKsRg.json",
   "/assets/products_sold-CRz2l8sR.json",
   "/img/android-chrome-192x192.png",
   "/img/android-chrome-512x512.png",
