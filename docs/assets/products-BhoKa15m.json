@@ -1,8 +1,8 @@
 {
   "summary": {
-    "Available": 50,
+    "Available": 45,
     "Reserved": 1,
-    "Sold": 47
+    "Sold": 52
   },
   "data": [
     {
@@ -20,38 +20,6 @@
       "is_new": false,
       "is_archived": false,
       "images": "1msi1UHacjGOLvjhXL-KpOyRWXA0-3a8l||1ruCRJWY5DnZ0b4uHOfl13fuqvklLzl84||1Z5AYI-soYLFB5gtQXTI__d_Z-LIMXlB8"
-    },
-    {
-      "id": 10,
-      "name": "#10 Pastel Pink T-shirt ",
-      "description": "Cotton",
-      "collection": "T-Shirt",
-      "size": "M",
-      "category": "Affordable",
-      "price": 45,
-      "anchor_price": 59,
-      "is_sold": false,
-      "date_sold": "",
-      "is_reserved": false,
-      "is_new": false,
-      "is_archived": false,
-      "images": "1ZbHY0PjlWoQKXLjTCz_YA1ZN85s9NwOn||1hERU-gNcVinQzyvkOa1QZO_YgIZaNV98||1K3c8nchy56_0sQnwnxFGAvlH436FcK5G"
-    },
-    {
-      "id": 20,
-      "name": "#20 Hone Baby",
-      "description": "Cotton",
-      "collection": "T-Shirt",
-      "size": "M",
-      "category": "Affordable",
-      "price": 45,
-      "anchor_price": 59,
-      "is_sold": false,
-      "date_sold": "",
-      "is_reserved": false,
-      "is_new": false,
-      "is_archived": false,
-      "images": "1V3-xbW54KKyM0yab57XP5-iusM1dHKxp||193ChIm7GWdEQYxTV6Ioh8vr7RnmMfxsm||1tQnfdqyOQUKgKZOyDqQJKOsu4VklbXdC||1KJeSGY7i7C4w81BT7x0z9J9uX9ls44eN||1BrtO2XkccHDKjHDQH8COZOEDib-R1_5Z||1evMKikdUSVO_caAcUo-w2ar4jkRr-2nC"
     },
     {
       "id": 24,
@@ -86,22 +54,6 @@
       "images": "1F8Vyjc8wzFpIhpbrDHrdV7t0AN97VMRx||1Wu2LAJM6rwKdSyqearVy3kpGGX6xIyUn||1z8hK2Y1IVuEFRApAPZEdAKhTrFku7nBB||1YDBYiqleqgq_mUZwWqC7Q8rA0ibaSO_U||1AVlp7M0k7SFpe_YZP-JDGweDFjuVMr0U"
     },
     {
-      "id": 34,
-      "name": "#34 DXCG",
-      "description": "Cotton",
-      "collection": "T-Shirt",
-      "size": "L",
-      "category": "Affordable",
-      "price": 45,
-      "anchor_price": 59,
-      "is_sold": false,
-      "date_sold": "",
-      "is_reserved": false,
-      "is_new": false,
-      "is_archived": false,
-      "images": "17rxRq505uL5lIZIoigLpApUQYMiyrrct||1gWoEviFh0OBvks43HBvTmp2WtthSElqF||1aoPZla0_XOSRPLlw_pqqDOuKoOdOjmLq||1Wmwohk4Ad83lYnI0j-h9dgYZ5E83JUX4"
-    },
-    {
       "id": 36,
       "name": "#36 XYG + Studio",
       "description": "Cotton, stretchable",
@@ -116,22 +68,6 @@
       "is_new": false,
       "is_archived": false,
       "images": "1yOFjTJlggRa6V_Kb-v1oxGCKkXcL1Pxa||1avMQWIlb9tBcZtQbAgxpiLSvzOh5ncKI||1-qAUk20oIUOC0YAIiKgu0uqCYc9c3_o-||1I-FQeJT_nD3SDLz6FytW-yIGG8WNINsK"
-    },
-    {
-      "id": 39,
-      "name": "#39 Gray & Blue T-shirt ",
-      "description": "Cotton, stretchable, comfy",
-      "collection": "T-Shirt",
-      "size": "L",
-      "category": "Premium",
-      "price": 80,
-      "anchor_price": 99,
-      "is_sold": false,
-      "date_sold": "",
-      "is_reserved": false,
-      "is_new": false,
-      "is_archived": false,
-      "images": "1rawpAePFKpnjgOaRFWHd8c8h7NyWTULp||1DZ2621XetBHj7ZiR6ymwyf0Ezw3l_SLc||1Y5PTIXYU0Ji4kWML7z7SLXdimP9mQt7q||13TGXg2-o8pBXRLqdIuGrwF3gaGGsMCwQ"
     },
     {
       "id": 47,
@@ -212,22 +148,6 @@
       "is_new": false,
       "is_archived": false,
       "images": "1F-syuf8kgJUz8AHBn68gchIcSb0Xd32b||1rOe7qk_bsDR6Vj2mUiuhp7wK_oZZouwQ||1uTdm4-WU_fbgQad9LiDKppNHUatjFKYq"
-    },
-    {
-      "id": 59,
-      "name": "#59 FAXILOU",
-      "description": "Bright yellow striped t-shirt, Cotton, Breathable",
-      "collection": "T-Shirt",
-      "size": "L",
-      "category": "Affordable",
-      "price": 45,
-      "anchor_price": 59,
-      "is_sold": false,
-      "date_sold": "",
-      "is_reserved": false,
-      "is_new": false,
-      "is_archived": false,
-      "images": "1z4Nst4xykk87T3zeXwLV5WBqlV-OzQiw||1f_eO1TZwdgVkXpcQ2rYOs4XIlv_vmgcL||1QAtFFeATbHIC0dL2TX_K9vsCjE8l0cR2||1oF7FE39tc6aWCPvBJ6XlIp4jNchw2rOI"
     },
     {
       "id": 61,
