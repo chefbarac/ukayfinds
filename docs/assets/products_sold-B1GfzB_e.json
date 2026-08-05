@@ -1,8 +1,32 @@
 {
   "summary": {
-    "Sold": 57
+    "Sold": 59
   },
   "data": [
+    {
+      "id": 126,
+      "name": "#126 Saishang",
+      "collection": "T-Shirt",
+      "size": "M",
+      "category": "Premium",
+      "price": 80,
+      "anchor_price": 99,
+      "is_sold": true,
+      "date_sold": "2026-08-05T07:25:55.817Z",
+      "images": "1ss6CNP0QRbUvxUFFrtHmmWr6frT-Q_zJ"
+    },
+    {
+      "id": 121,
+      "name": "#121 X.N.Y.X",
+      "collection": "T-Shirt",
+      "size": "XL",
+      "category": "Premium",
+      "price": 80,
+      "anchor_price": 99,
+      "is_sold": true,
+      "date_sold": "2026-08-05T07:25:42.361Z",
+      "images": "1whbdpc1FrgEucc4f86ZiwdmASXmllGGa"
+    },
     {
       "id": 158,
       "name": "#158 Sage Green Ribbed Top",
@@ -218,30 +242,6 @@
       "is_sold": true,
       "date_sold": "2026-07-18T01:44:55.546Z",
       "images": "1ofdScEnBXs2HMxzXewZx0zxcs58_ggjB"
-    },
-    {
-      "id": 55,
-      "name": "#55 Pastel Pink T-shirt ",
-      "collection": "T-Shirt",
-      "size": "XL",
-      "category": "Regular",
-      "price": 60,
-      "anchor_price": 79,
-      "is_sold": true,
-      "date_sold": "2026-07-18T01:44:49.857Z",
-      "images": "1pY3OYYZNyAgAzb_rF_Z8ZJfhhMnpy1S2"
-    },
-    {
-      "id": 33,
-      "name": "#33 Yellow Green",
-      "collection": "T-Shirt",
-      "size": "L",
-      "category": "Affordable",
-      "price": 45,
-      "anchor_price": 59,
-      "is_sold": true,
-      "date_sold": "2026-07-18T01:44:29.009Z",
-      "images": "1fCTq5DoXgIjC99YqB3q3gB2h9QtnjKOJ"
     }
   ]
 }
